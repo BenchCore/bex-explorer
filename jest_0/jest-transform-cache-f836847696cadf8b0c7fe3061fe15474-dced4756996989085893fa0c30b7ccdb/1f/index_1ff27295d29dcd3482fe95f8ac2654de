@@ -1,0 +1,101 @@
+1d142f01aafbb7c64349221509f24fb2
+/* istanbul ignore next */'use strict';
+
+var cov_29lv3616u = function () {
+  var path = '/root/benchcore-explorer/src/store/index.js',
+      hash = 'a3981d2015655f4bc16517b498443925b00f221e',
+      Function = function () {}.constructor,
+      global = new Function('return this')(),
+      gcv = '__coverage__',
+      coverageData = {
+    path: '/root/benchcore-explorer/src/store/index.js',
+    statementMap: {
+      '0': {
+        start: {
+          line: 8,
+          column: 0
+        },
+        end: {
+          line: 8,
+          column: 13
+        }
+      },
+      '1': {
+        start: {
+          line: 10,
+          column: 22
+        },
+        end: {
+          line: 10,
+          column: 27
+        }
+      }
+    },
+    fnMap: {},
+    branchMap: {},
+    s: {
+      '0': 0,
+      '1': 0
+    },
+    f: {},
+    b: {},
+    _coverageSchema: '332fd63041d2c1bcb487cc26dd0d5f7d97098a6c'
+  },
+      coverage = global[gcv] || (global[gcv] = {});
+
+  if (coverage[path] && coverage[path].hash === hash) {
+    return coverage[path];
+  }
+
+  coverageData.hash = hash;
+  return coverage[path] = coverageData;
+}();
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.strict = undefined;
+
+var /* istanbul ignore next */_vue = require('vue');
+
+/* istanbul ignore next */var _vue2 = _interopRequireDefault(_vue);
+
+var /* istanbul ignore next */_vuex = require('vuex');
+
+/* istanbul ignore next */var _vuex2 = _interopRequireDefault(_vuex);
+
+var /* istanbul ignore next */_currency = require('./modules/currency');
+
+/* istanbul ignore next */var _currency2 = _interopRequireDefault(_currency);
+
+var /* istanbul ignore next */_delegates = require('./modules/delegates');
+
+/* istanbul ignore next */var _delegates2 = _interopRequireDefault(_delegates);
+
+var /* istanbul ignore next */_network = require('./modules/network');
+
+/* istanbul ignore next */var _network2 = _interopRequireDefault(_network);
+
+var /* istanbul ignore next */_ui = require('./modules/ui');
+
+/* istanbul ignore next */var _ui2 = _interopRequireDefault(_ui);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+cov_29lv3616u.s[0]++;
+
+
+/* istanbul ignore next */_vue2. /* istanbul ignore next */default.use( /* istanbul ignore next */_vuex2. /* istanbul ignore next */default);
+
+var strict = /* istanbul ignore next */exports.strict = (cov_29lv3616u.s[1]++, false);
+
+/* istanbul ignore next */exports.default = new /* istanbul ignore next */_vuex2. /* istanbul ignore next */default.Store({
+  modules: {
+    currency: /* istanbul ignore next */_currency2. /* istanbul ignore next */default,
+    delegates: /* istanbul ignore next */_delegates2. /* istanbul ignore next */default,
+    network: /* istanbul ignore next */_network2. /* istanbul ignore next */default,
+    ui: /* istanbul ignore next */_ui2. /* istanbul ignore next */default
+  },
+  strict: true
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbIlZ1ZSIsInVzZSIsIlZ1ZXgiLCJzdHJpY3QiLCJTdG9yZSIsIm1vZHVsZXMiLCJjdXJyZW5jeSIsIkN1cnJlbmN5TW9kdWxlIiwiZGVsZWdhdGVzIiwiRGVsZWdhdGVzTW9kdWxlIiwibmV0d29yayIsIk5ldHdvcmtNb2R1bGUiLCJ1aSIsIlVzZXJJbnRlcmZhY2VNb2R1bGUiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBOzs7O0FBQ0E7Ozs7QUFDQTs7OztBQUNBOzs7O0FBQ0E7Ozs7QUFDQTs7Ozs7Ozs7O0FBRUFBLG1FQUFJQyxHQUFKLENBQVFDLG9FQUFSOztBQUVPLElBQU1DLDJFQUFTLEtBQVQsQ0FBTjs7NENBRVEsSUFBSUQsb0VBQUtFLEtBQVQsQ0FBZTtBQUM1QkMsV0FBUztBQUNQQyxjQUFVQyx1RUFESDtBQUVQQyxlQUFXQyx3RUFGSjtBQUdQQyxhQUFTQyxzRUFIRjtBQUlQQyxRQUFJQztBQUpHLEdBRG1CO0FBTzVCVixVQUFRO0FBUG9CLENBQWYsQyIsImZpbGUiOiJpbmRleC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBWdWUgZnJvbSAndnVlJ1xuaW1wb3J0IFZ1ZXggZnJvbSAndnVleCdcbmltcG9ydCBDdXJyZW5jeU1vZHVsZSBmcm9tICcuL21vZHVsZXMvY3VycmVuY3knXG5pbXBvcnQgRGVsZWdhdGVzTW9kdWxlIGZyb20gJy4vbW9kdWxlcy9kZWxlZ2F0ZXMnXG5pbXBvcnQgTmV0d29ya01vZHVsZSBmcm9tICcuL21vZHVsZXMvbmV0d29yaydcbmltcG9ydCBVc2VySW50ZXJmYWNlTW9kdWxlIGZyb20gJy4vbW9kdWxlcy91aSdcblxuVnVlLnVzZShWdWV4KVxuXG5leHBvcnQgY29uc3Qgc3RyaWN0ID0gZmFsc2VcblxuZXhwb3J0IGRlZmF1bHQgbmV3IFZ1ZXguU3RvcmUoe1xuICBtb2R1bGVzOiB7XG4gICAgY3VycmVuY3k6IEN1cnJlbmN5TW9kdWxlLFxuICAgIGRlbGVnYXRlczogRGVsZWdhdGVzTW9kdWxlLFxuICAgIG5ldHdvcms6IE5ldHdvcmtNb2R1bGUsXG4gICAgdWk6IFVzZXJJbnRlcmZhY2VNb2R1bGUsXG4gIH0sXG4gIHN0cmljdDogdHJ1ZVxufSlcbiJdfQ==

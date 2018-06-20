@@ -1,0 +1,27 @@
+40a367a1cd96cbb7b2ef045290a239b6
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  props: ['delegateCount']
+};
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"hidden lg:flex items-center"},[_vm._m(0),_vm._v(" "),_c('div',[_c('div',{staticClass:"text-grey mb-2"},[_vm._v(_vm._s(_vm.$t("Delegates")))]),_vm._v(" "),_c('div',{staticClass:"text-lg text-white semibold truncate"},[_vm._v(_vm._s(_vm.delegateCount))])])])}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"mr-6 flex-none"},[_c('img',{staticClass:"block",attrs:{"src":"@/assets/images/icons/group.svg"}})])}]

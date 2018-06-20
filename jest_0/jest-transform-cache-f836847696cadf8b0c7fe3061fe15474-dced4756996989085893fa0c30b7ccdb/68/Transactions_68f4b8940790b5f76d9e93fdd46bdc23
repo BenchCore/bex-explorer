@@ -1,0 +1,68 @@
+fad250a0c12a2b6d82f05df68a4520ff
+;(function(){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  props: {
+    transactions: {
+      // type: Array or null
+      required: true
+    }
+  }
+};
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('loader',{attrs:{"data":_vm.transactions}},[_vm._l((_vm.transactions),function(transaction){return _c('div',{key:transaction.id,staticClass:"row-mobile"},[_c('div',{staticClass:"list-row-border-b"},[_c('div',[_vm._v(_vm._s(_vm.$t("ID")))]),_vm._v(" "),_c('link-transaction',{attrs:{"id":transaction.id,"side-chain":transaction.vendorField}})],1),_vm._v(" "),_c('div',{staticClass:"list-row-border-b"},[_c('div',[_vm._v(_vm._s(_vm.$t("Timestamp")))]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.readableTimestamp(transaction.timestamp)))])]),_vm._v(" "),_c('div',{staticClass:"list-row-border-b"},[_c('div',[_vm._v(_vm._s(_vm.$t("Sender")))]),_vm._v(" "),_c('link-wallet',{attrs:{"address":transaction.senderId}})],1),_vm._v(" "),_c('div',{staticClass:"list-row-border-b"},[_c('div',[_vm._v(_vm._s(_vm.$t("Recipient")))]),_vm._v(" "),_c('link-wallet',{attrs:{"address":transaction.recipientId,"type":transaction.type}})],1),_vm._v(" "),(_vm.truncate(transaction.vendorField || ''))?_c('div',{staticClass:"list-row-border-b-no-wrap"},[_c('div',{staticClass:"mr-4"},[_vm._v(_vm._s(_vm.$t("Sidechain")))]),_vm._v(" "),_c('div',{staticClass:"truncate"},[_vm._v(_vm._s(transaction.vendorField))])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"list-row-border-b"},[_c('div',[_vm._v(_vm._s(_vm.$t("Amount (token)", {token: _vm.networkToken()})))]),_vm._v(" "),_c('div',[_c('transaction-amount',{attrs:{"transaction":transaction,"type":transaction.type}})],1)]),_vm._v(" "),_c('div',{staticClass:"list-row"},[_c('div',[_vm._v(_vm._s(_vm.$t("Fee (token)", {token: _vm.networkToken()})))]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.readableCrypto(transaction.fee)))])])])}),_vm._v(" "),(_vm.transactions && !_vm.transactions.length)?_c('div',{staticClass:"px-5 md:px-10"},[_c('span',[_vm._v(_vm._s(_vm.$t("No Results")))])]):_vm._e()],2)],1)}
+__vue__options__.staticRenderFns = []

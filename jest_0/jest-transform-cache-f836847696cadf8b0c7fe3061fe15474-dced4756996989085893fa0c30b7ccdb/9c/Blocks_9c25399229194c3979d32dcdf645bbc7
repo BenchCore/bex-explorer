@@ -1,0 +1,197 @@
+7def669f8f7f7c122b53058f80e88b2f
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _wallet = require('@/services/wallet');
+
+var _wallet2 = _interopRequireDefault(_wallet);
+
+var _block = require('@/services/block');
+
+var _block2 = _interopRequireDefault(_block);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      totalBlocks: 0,
+      blocks: null
+    };
+  },
+
+  created: function created() {
+    var _this = this;
+
+    this.$on('paginatorChanged', function (page) {
+      return _this.changePage(page);
+    });
+    this.getTotalBlocks();
+  },
+  beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+    var _this2 = this;
+
+    return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+      var wallet, blocks;
+      return _regenerator2.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return _wallet2.default.find(to.params.address);
+
+            case 3:
+              wallet = _context.sent;
+              _context.next = 6;
+              return _block2.default.getByPublicKey(wallet.publicKey, to.params.page);
+
+            case 6:
+              blocks = _context.sent;
+
+              next(function (vm) {
+                return vm.setBlocks(blocks);
+              });
+              _context.next = 13;
+              break;
+
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context['catch'](0);
+              next({ name: '404' });
+            case 13:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, _this2, [[0, 10]]);
+    }))();
+  },
+  beforeRouteUpdate: function beforeRouteUpdate(to, from, next) {
+    var _this3 = this;
+
+    return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
+      var wallet, blocks;
+      return _regenerator2.default.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _this3.blocks = null;
+
+              _context2.prev = 1;
+              _context2.next = 4;
+              return _wallet2.default.find(to.params.address);
+
+            case 4:
+              wallet = _context2.sent;
+              _context2.next = 7;
+              return _block2.default.getByPublicKey(wallet.publicKey, to.params.page);
+
+            case 7:
+              blocks = _context2.sent;
+
+              _this3.setBlocks(blocks);
+              next();
+              _context2.next = 15;
+              break;
+
+            case 12:
+              _context2.prev = 12;
+              _context2.t0 = _context2['catch'](1);
+              next({ name: '404' });
+            case 15:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, _callee2, _this3, [[1, 12]]);
+    }))();
+  },
+
+
+  computed: {
+    address: function address() {
+      return this.$route.params.address;
+    },
+    page: function page() {
+      return this.$route.params.page;
+    }
+  },
+
+  methods: {
+    setBlocks: function setBlocks(blocks) {
+      if (!blocks) return;
+
+      this.blocks = blocks;
+    },
+    getTotalBlocks: function getTotalBlocks() {
+      var _this4 = this;
+
+      return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3() {
+        var wallet, response;
+        return _regenerator2.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _wallet2.default.find(_this4.address);
+
+              case 2:
+                wallet = _context3.sent;
+                _context3.next = 5;
+                return _block2.default.forgedByPublicKeyCount(wallet.publicKey);
+
+              case 5:
+                response = _context3.sent;
+
+
+                _this4.totalBlocks = Number(response);
+
+              case 7:
+              case 'end':
+                return _context3.stop();
+            }
+          }
+        }, _callee3, _this4);
+      }))();
+    },
+    changePage: function changePage(page) {
+      this.$router.push({
+        name: 'wallet-blocks',
+        params: { address: this.address, page: page }
+      });
+    }
+  }
+};
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"max-w-2xl mx-auto pt-5"},[_c('content-header',[_vm._v(_vm._s(_vm.$t("Blocks")))]),_vm._v(" "),_c('section',{staticClass:"page-section py-10"},[_c('div',{staticClass:"hidden sm:block"},[_c('table-blocks',{attrs:{"blocks":_vm.blocks}})],1),_vm._v(" "),_c('div',{staticClass:"sm:hidden"},[_c('table-blocks-mobile',{attrs:{"blocks":_vm.blocks}})],1),_vm._v(" "),(_vm.blocks)?_c('paginator',{attrs:{"start":+this.page,"count":_vm.totalBlocks}}):_vm._e()],1)],1)}
+__vue__options__.staticRenderFns = []

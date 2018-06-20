@@ -1,0 +1,71 @@
+d39d5c3d049dd734e99b9020befadc3f
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  props: {
+    value: {
+      type: String,
+      required: true
+    }
+  },
+
+  data: function data() {
+    return {
+      copying: false,
+      isMobileCopying: false
+    };
+  },
+
+  methods: {
+    copy: function copy() {
+      var _this = this;
+
+      var textArea = document.createElement('textarea');
+      textArea.value = this.value;
+      textArea.style.cssText = 'position:absolute;top:0;left:0;z-index:-9999;opacity:0;';
+
+      document.body.appendChild(textArea);
+      textArea.select();
+
+      try {
+        this.copying = true;
+
+        setTimeout(function () {
+          return _this.copying = false;
+        }, 500);
+
+        if (window.innerWidth < 768) {
+          this.isMobileCopying = true;
+          setTimeout(function () {
+            return _this.isMobileCopying = false;
+          }, 400); // If set to 500, it will briefly show 'Copy to clipboard' before closing tooltip
+        }
+
+        document.execCommand('copy');
+      } catch (err) {
+        console.error('Clipboard not supported!');
+      }
+
+      document.body.removeChild(textArea);
+    }
+  }
+};
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{directives:[{name:"tooltip",rawName:"v-tooltip",value:({ show: _vm.isMobileCopying, content: _vm.copying ? _vm.$t('Copied!') : _vm.$t('Copy to Clipboard'), trigger:'hover'}),expression:"{ show: isMobileCopying, content: copying ? $t('Copied!') : $t('Copy to Clipboard'), trigger:'hover'}"}],staticClass:"flex-none",on:{"click":_vm.copy}},[_c('img',{ref:"copyImage",class:{
+    'block': !_vm.copying, 'block animated wobble': _vm.copying
+  },attrs:{"src":"@/assets/images/icons/copy.svg"}})])}
+__vue__options__.staticRenderFns = []

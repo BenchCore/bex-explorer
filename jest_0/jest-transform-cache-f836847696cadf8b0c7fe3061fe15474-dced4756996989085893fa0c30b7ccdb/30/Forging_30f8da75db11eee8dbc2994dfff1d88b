@@ -1,0 +1,92 @@
+0572dd5cd534a53e390f81d3f7bb13b3
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _forging = require('@/services/forging');
+
+var _forging2 = _interopRequireDefault(_forging);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  props: {
+    delegates: {
+      type: Array,
+      required: true
+    }
+  },
+
+  data: function data() {
+    return { totals: {} };
+  },
+
+  watch: {
+    delegates: function delegates() {
+      this.getTotals();
+    }
+  },
+
+  methods: {
+    getTotals: function getTotals() {
+      this.totals = _forging2.default.totals(this.delegates);
+    },
+    percentage: function percentage(value) {
+      var activeDelegates = this.$store.getters['network/activeDelegates'];
+
+      return value / activeDelegates * 100;
+    }
+  }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"flex flex-wrap p-5"},[_c('div',{staticClass:"w-1/2 lg:w-1/4 flex items-center px-6 my-6 border-r border-theme-border-secondary flex-col sm:flex-row text-center sm:text-left"},[_c('div',{staticClass:"meter flex-none text-green mb-4 sm:mb-0"},[_c('bex-meter',{attrs:{"percentage":_vm.percentage(_vm.totals.forging)}})],1),_vm._v(" "),_c('div',{staticClass:"p-0 sm:pl-4"},[_c('div',{staticClass:"text-3xl semibold"},[_vm._v(_vm._s(_vm.totals.forging))]),_vm._v(" "),_c('div',{staticClass:"text-grey"},[_vm._v(_vm._s(_vm.$t("Forged block recently")))])])]),_vm._v(" "),_c('div',{staticClass:"w-1/2 lg:w-1/4 flex items-center px-6 my-6 lg:border-r border-theme-border-secondary flex-col sm:flex-row text-center sm:text-left"},[_c('div',{staticClass:"meter flex-none text-yellow mb-4 sm:mb-0"},[_c('bex-meter',{attrs:{"percentage":_vm.percentage(_vm.totals.missedBlock)}})],1),_vm._v(" "),_c('div',{staticClass:"p-0 sm:pl-4"},[_c('div',{staticClass:"text-3xl semibold"},[_vm._v(_vm._s(_vm.totals.missedBlock))]),_vm._v(" "),_c('div',{staticClass:"text-grey"},[_vm._v(_vm._s(_vm.$t("Missed block")))])])]),_vm._v(" "),_c('hr',{staticClass:"block lg:hidden"}),_vm._v(" "),_c('div',{staticClass:"w-1/2 lg:w-1/4 flex items-center px-6 my-6 border-r border-theme-border-secondary flex-col sm:flex-row text-center sm:text-left"},[_c('div',{staticClass:"meter flex-none text-red mb-4 sm:mb-0"},[_c('bex-meter',{attrs:{"percentage":_vm.percentage(_vm.totals.notForging)}})],1),_vm._v(" "),_c('div',{staticClass:"p-0 sm:pl-4"},[_c('div',{staticClass:"text-3xl semibold"},[_vm._v(_vm._s(_vm.totals.notForging))]),_vm._v(" "),_c('div',{staticClass:"text-grey"},[_vm._v(_vm._s(_vm.$t("Not forging")))])])]),_vm._v(" "),_c('div',{staticClass:"w-1/2 lg:w-1/4 flex items-center px-6 my-6 flex-col sm:flex-row text-center sm:text-left"},[_c('div',{staticClass:"meter flex-none text-blue mb-4 sm:mb-0"},[_c('bex-meter',{attrs:{"percentage":_vm.percentage(_vm.totals.awaitingSlot)}})],1),_vm._v(" "),_c('div',{staticClass:"p-0 sm:pl-4"},[_c('div',{staticClass:"text-3xl semibold"},[_vm._v(_vm._s(_vm.totals.awaitingSlot))]),_vm._v(" "),_c('div',{staticClass:"text-grey"},[_vm._v(_vm._s(_vm.$t("In queue for forging")))])])])])}
+__vue__options__.staticRenderFns = []

@@ -1,0 +1,75 @@
+106ad9049ca1d250dd1070943ceee79b
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _ChartWrapper = require('@/components/ChartWrapper');
+
+var _ChartWrapper2 = _interopRequireDefault(_ChartWrapper);
+
+var _LatestTransactions = require('@/components/home/LatestTransactions');
+
+var _LatestTransactions2 = _interopRequireDefault(_LatestTransactions);
+
+var _LatestBlocks = require('@/components/home/LatestBlocks');
+
+var _LatestBlocks2 = _interopRequireDefault(_LatestBlocks);
+
+var _vuex = require('vuex');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  components: {
+    ChartWrapper: _ChartWrapper2.default,
+    LatestTransactions: _LatestTransactions2.default,
+    LatestBlocks: _LatestBlocks2.default
+  },
+
+  data: function data() {
+    return {
+      dataView: 'transactions'
+    };
+  },
+
+  computed: (0, _extends3.default)({}, (0, _vuex.mapGetters)('ui', ['priceChart']))
+};
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"max-w-2xl mx-auto md:pt-5"},[_c('content-header',[_vm._v(_vm._s(_vm.$t("Latest transactions and blocks")))]),_vm._v(" "),(_vm.priceChart)?_c('section',{staticClass:"hidden md:block mb-5 bg-theme-feature-background xl:rounded-lg"},[_c('chart-wrapper')],1):_vm._e(),_vm._v(" "),_c('section',{staticClass:"page-section py-5 md:py-10"},[_c('nav',{staticClass:"mx-5 sm:mx-10 mb-8 border-b flex items-end"},[_c('div',{class:_vm.dataView === 'transactions' ? 'active-tab' : 'inactive-tab',on:{"click":function($event){_vm.dataView = 'transactions'}}},[_vm._v("\n        "+_vm._s(_vm.$t("Latest Transactions"))+"\n      ")]),_vm._v(" "),_c('div',{class:_vm.dataView === 'blocks' ? 'active-tab' : 'inactive-tab',on:{"click":function($event){_vm.dataView = 'blocks'}}},[_vm._v("\n        "+_vm._s(_vm.$t("Latest Blocks"))+"\n      ")])]),_vm._v(" "),(_vm.dataView === 'transactions')?_c('latest-transactions'):_vm._e(),_vm._v(" "),(_vm.dataView === 'blocks')?_c('latest-blocks'):_vm._e()],1)],1)}
+__vue__options__.staticRenderFns = []

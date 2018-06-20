@@ -1,0 +1,128 @@
+ab3f4fd984b0b23e42b83b9b38868320
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _vuex = require('vuex');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  props: {
+    address: {
+      type: String
+    },
+    publicKey: {
+      type: String
+    },
+    type: {
+      type: Number
+    },
+    trunc: {
+      type: Boolean,
+      default: true
+    }
+  },
+
+  data: function data() {
+    return { delegate: null };
+  },
+
+  mounted: function mounted() {
+    this.determine();
+  },
+
+
+  watch: {
+    delegates: function delegates() {
+      this.determine();
+    },
+    address: function address() {
+      this.determine();
+    },
+    publicKey: function publicKey() {
+      this.determine();
+    }
+  },
+
+  computed: (0, _extends3.default)({}, (0, _vuex.mapGetters)('delegates', ['delegates']), (0, _vuex.mapGetters)('network', ['knownWallets']), {
+    isKnown: function isKnown() {
+      return this.knownWallets.hasOwnProperty(this.address);
+    },
+    walletAddress: function walletAddress() {
+      return this.delegate ? this.delegate.address : this.address;
+    },
+    hasDefaultSlot: function hasDefaultSlot() {
+      return !!this.$slots.default;
+    }
+  }),
+
+  methods: {
+    determine: function determine() {
+      this.address ? this.findByAddress() : this.findByPublicKey();
+    },
+    findByAddress: function findByAddress() {
+      var _this = this;
+
+      this.delegate = this.delegates.find(function (d) {
+        return d.address === _this.address;
+      });
+    },
+    findByPublicKey: function findByPublicKey() {
+      var _this2 = this;
+
+      this.delegate = this.delegates.find(function (d) {
+        return d.publicKey === _this2.publicKey;
+      });
+    }
+  }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',[_c('span',{staticClass:"hidden md:inline-block"},[(!_vm.type)?_c('router-link',{attrs:{"to":{ name: 'wallet', params: { address: _vm.walletAddress } }}},[(_vm.isKnown)?_c('span',[_vm._v(_vm._s(_vm.knownWallets[_vm.address]))]):(_vm.delegate)?_c('span',[_vm._v(_vm._s(_vm.delegate.username))]):(_vm.hasDefaultSlot)?_c('span',[_vm._t("default")],2):(_vm.address)?_c('span',[_vm._v(_vm._s(_vm.trunc ? _vm.truncate(_vm.address) : _vm.address))]):_vm._e()]):_vm._e(),_vm._v(" "),(_vm.type === 1)?_c('span',[_vm._v(_vm._s(_vm.$t("2nd Signature Registration")))]):(_vm.type === 2)?_c('span',[_vm._v(_vm._s(_vm.$t("Delegate Registration")))]):(_vm.type === 3)?_c('span',[_vm._v(_vm._s(_vm.$t("Vote")))]):(_vm.type === 4)?_c('span',[_vm._v(_vm._s(_vm.$t("Multisignature Registration")))]):(_vm.type === 5)?_c('span',[_vm._v(_vm._s(_vm.$t("IPFS")))]):(_vm.type === 6)?_c('span',[_vm._v(_vm._s(_vm.$t("Timelock Transfer")))]):(_vm.type === 7)?_c('span',[_vm._v(_vm._s(_vm.$t("Multipayment")))]):(_vm.type === 8)?_c('span',[_vm._v(_vm._s(_vm.$t("Delegate Resignation")))]):_vm._e()],1),_vm._v(" "),_c('span',{staticClass:"md:hidden"},[(!_vm.type)?_c('router-link',{attrs:{"to":{ name: 'wallet', params: { address: _vm.walletAddress } }}},[(_vm.isKnown)?_c('span',[_vm._v(_vm._s(_vm.knownWallets[_vm.address]))]):(_vm.delegate)?_c('span',[_vm._v(_vm._s(_vm.delegate.username))]):(_vm.address)?_c('span',[_vm._v(_vm._s(_vm.truncate(_vm.address)))]):_vm._e()]):_vm._e(),_vm._v(" "),(_vm.type === 1)?_c('span',[_vm._v(_vm._s(_vm.$t("2nd Signature Registration")))]):(_vm.type === 2)?_c('span',[_vm._v(_vm._s(_vm.$t("Delegate Registration")))]):(_vm.type === 3)?_c('span',[_vm._v(_vm._s(_vm.$t("Vote")))]):(_vm.type === 4)?_c('span',[_vm._v(_vm._s(_vm.$t("Multisignature Registration")))]):(_vm.type === 5)?_c('span',[_vm._v(_vm._s(_vm.$t("IPFS")))]):(_vm.type === 6)?_c('span',[_vm._v(_vm._s(_vm.$t("Timelock Transfer")))]):(_vm.type === 7)?_c('span',[_vm._v(_vm._s(_vm.$t("Multipayment")))]):(_vm.type === 8)?_c('span',[_vm._v(_vm._s(_vm.$t("Delegate Resignation")))]):_vm._e()],1)])}
+__vue__options__.staticRenderFns = []

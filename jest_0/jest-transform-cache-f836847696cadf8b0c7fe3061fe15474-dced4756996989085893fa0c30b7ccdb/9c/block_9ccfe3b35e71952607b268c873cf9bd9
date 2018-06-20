@@ -1,0 +1,417 @@
+106dc204b973275a711d8741b9843602
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _node = require('@/services/node');
+
+var _node2 = _interopRequireDefault(_node);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var BlockService = function () {
+  function BlockService() {
+    (0, _classCallCheck3.default)(this, BlockService);
+  }
+
+  (0, _createClass3.default)(BlockService, [{
+    key: 'latest',
+    value: function () {
+      var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+        var limit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 25;
+        var response;
+        return _regenerator2.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _node2.default.get('blocks', {
+                  params: {
+                    orderBy: 'height:desc',
+                    limit: limit
+                  }
+                });
+
+              case 2:
+                response = _context.sent;
+                return _context.abrupt('return', response.data.blocks);
+
+              case 4:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function latest() {
+        return _ref.apply(this, arguments);
+      }
+
+      return latest;
+    }()
+  }, {
+    key: 'last',
+    value: function () {
+      var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
+        var response;
+        return _regenerator2.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _node2.default.get('blocks', {
+                  params: {
+                    orderBy: 'height:desc',
+                    limit: 1
+                  }
+                });
+
+              case 2:
+                response = _context2.sent;
+                return _context2.abrupt('return', response.data.blocks[0]);
+
+              case 4:
+              case 'end':
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function last() {
+        return _ref2.apply(this, arguments);
+      }
+
+      return last;
+    }()
+  }, {
+    key: 'height',
+    value: function () {
+      var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3() {
+        var response;
+        return _regenerator2.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _node2.default.get('blocks/getHeight');
+
+              case 2:
+                response = _context3.sent;
+                return _context3.abrupt('return', response.data.height);
+
+              case 4:
+              case 'end':
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function height() {
+        return _ref3.apply(this, arguments);
+      }
+
+      return height;
+    }()
+  }, {
+    key: 'supply',
+    value: function () {
+      var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4() {
+        var response;
+        return _regenerator2.default.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return _node2.default.get('blocks/getSupply');
+
+              case 2:
+                response = _context4.sent;
+                return _context4.abrupt('return', response.data.supply);
+
+              case 4:
+              case 'end':
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function supply() {
+        return _ref4.apply(this, arguments);
+      }
+
+      return supply;
+    }()
+  }, {
+    key: 'find',
+    value: function () {
+      var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(id) {
+        var response;
+        return _regenerator2.default.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return _node2.default.get('blocks/get', {
+                  params: {
+                    id: id
+                  }
+                });
+
+              case 2:
+                response = _context5.sent;
+                return _context5.abrupt('return', response.data.block);
+
+              case 4:
+              case 'end':
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
+
+      function find(_x2) {
+        return _ref5.apply(this, arguments);
+      }
+
+      return find;
+    }()
+  }, {
+    key: 'paginate',
+    value: function () {
+      var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6(page) {
+        var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 25;
+        var offset, response;
+        return _regenerator2.default.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                offset = page > 1 ? (page - 1) * limit : 0;
+                _context6.next = 3;
+                return _node2.default.get('blocks', {
+                  params: {
+                    orderBy: 'height:desc',
+                    limit: limit,
+                    offset: offset
+                  }
+                });
+
+              case 3:
+                response = _context6.sent;
+                return _context6.abrupt('return', response.data.blocks);
+
+              case 5:
+              case 'end':
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this);
+      }));
+
+      function paginate(_x3) {
+        return _ref6.apply(this, arguments);
+      }
+
+      return paginate;
+    }()
+  }, {
+    key: 'getByPublicKey',
+    value: function () {
+      var _ref7 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee7(generatorPublicKey, page) {
+        var limit = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 25;
+        var offset, response;
+        return _regenerator2.default.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                offset = page > 1 ? (page - 1) * limit : 0;
+                _context7.next = 3;
+                return _node2.default.get('blocks', {
+                  params: {
+                    orderBy: 'height:desc',
+                    limit: limit,
+                    offset: offset,
+                    generatorPublicKey: generatorPublicKey
+                  }
+                });
+
+              case 3:
+                response = _context7.sent;
+                return _context7.abrupt('return', response.data.blocks);
+
+              case 5:
+              case 'end':
+                return _context7.stop();
+            }
+          }
+        }, _callee7, this);
+      }));
+
+      function getByPublicKey(_x5, _x6) {
+        return _ref7.apply(this, arguments);
+      }
+
+      return getByPublicKey;
+    }()
+  }, {
+    key: 'forgedByPublicKeyCount',
+    value: function () {
+      var _ref8 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee8(generatorPublicKey) {
+        var response;
+        return _regenerator2.default.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                _context8.next = 2;
+                return _node2.default.get('blocks', {
+                  params: {
+                    generatorPublicKey: generatorPublicKey,
+                    limit: 1
+                  }
+                });
+
+              case 2:
+                response = _context8.sent;
+                return _context8.abrupt('return', response.data.count);
+
+              case 4:
+              case 'end':
+                return _context8.stop();
+            }
+          }
+        }, _callee8, this);
+      }));
+
+      function forgedByPublicKeyCount(_x8) {
+        return _ref8.apply(this, arguments);
+      }
+
+      return forgedByPublicKeyCount;
+    }()
+  }, {
+    key: 'lastBlockByPublicKey',
+    value: function () {
+      var _ref9 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee9(publicKey) {
+        var response;
+        return _regenerator2.default.wrap(function _callee9$(_context9) {
+          while (1) {
+            switch (_context9.prev = _context9.next) {
+              case 0:
+                _context9.next = 2;
+                return _node2.default.get('blocks', {
+                  params: {
+                    orderBy: 'height:desc',
+                    limit: 1,
+                    generatorPublicKey: publicKey
+                  }
+                });
+
+              case 2:
+                response = _context9.sent;
+                return _context9.abrupt('return', response.data.blocks[0]);
+
+              case 4:
+              case 'end':
+                return _context9.stop();
+            }
+          }
+        }, _callee9, this);
+      }));
+
+      function lastBlockByPublicKey(_x9) {
+        return _ref9.apply(this, arguments);
+      }
+
+      return lastBlockByPublicKey;
+    }()
+  }, {
+    key: 'findPrevious',
+    value: function () {
+      var _ref10 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee10(height) {
+        var response;
+        return _regenerator2.default.wrap(function _callee10$(_context10) {
+          while (1) {
+            switch (_context10.prev = _context10.next) {
+              case 0:
+                _context10.next = 2;
+                return _node2.default.get('blocks', {
+                  params: { height: height - 1 }
+                });
+
+              case 2:
+                response = _context10.sent;
+                return _context10.abrupt('return', response.data.blocks[0]);
+
+              case 4:
+              case 'end':
+                return _context10.stop();
+            }
+          }
+        }, _callee10, this);
+      }));
+
+      function findPrevious(_x10) {
+        return _ref10.apply(this, arguments);
+      }
+
+      return findPrevious;
+    }()
+  }, {
+    key: 'findNext',
+    value: function () {
+      var _ref11 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee11(height) {
+        var response;
+        return _regenerator2.default.wrap(function _callee11$(_context11) {
+          while (1) {
+            switch (_context11.prev = _context11.next) {
+              case 0:
+                _context11.next = 2;
+                return _node2.default.get('blocks', {
+                  params: { height: height + 1 }
+                });
+
+              case 2:
+                response = _context11.sent;
+                return _context11.abrupt('return', response.data.blocks[0]);
+
+              case 4:
+              case 'end':
+                return _context11.stop();
+            }
+          }
+        }, _callee11, this);
+      }));
+
+      function findNext(_x11) {
+        return _ref11.apply(this, arguments);
+      }
+
+      return findNext;
+    }()
+  }]);
+  return BlockService;
+}();
+
+exports.default = new BlockService();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImJsb2NrLmpzIl0sIm5hbWVzIjpbIkJsb2NrU2VydmljZSIsImxpbWl0IiwiTm9kZVNlcnZpY2UiLCJnZXQiLCJwYXJhbXMiLCJvcmRlckJ5IiwicmVzcG9uc2UiLCJkYXRhIiwiYmxvY2tzIiwiaGVpZ2h0Iiwic3VwcGx5IiwiaWQiLCJibG9jayIsInBhZ2UiLCJvZmZzZXQiLCJnZW5lcmF0b3JQdWJsaWNLZXkiLCJjb3VudCIsInB1YmxpY0tleSJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBOzs7Ozs7SUFFTUEsWTs7Ozs7Ozs7O1lBQ1NDLEssdUVBQVEsRTs7Ozs7Ozt1QkFDSUMsZUFBWUMsR0FBWixDQUFnQixRQUFoQixFQUEwQjtBQUMvQ0MsMEJBQVE7QUFDTkMsNkJBQVMsYUFESDtBQUVOSjtBQUZNO0FBRHVDLGlCQUExQixDOzs7QUFBakJLLHdCO2lEQU1DQSxTQUFTQyxJQUFULENBQWNDLE07Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O3VCQUlFTixlQUFZQyxHQUFaLENBQWdCLFFBQWhCLEVBQTBCO0FBQy9DQywwQkFBUTtBQUNOQyw2QkFBUyxhQURIO0FBRU5KLDJCQUFPO0FBRkQ7QUFEdUMsaUJBQTFCLEM7OztBQUFqQkssd0I7a0RBTUNBLFNBQVNDLElBQVQsQ0FBY0MsTUFBZCxDQUFxQixDQUFyQixDOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozt1QkFJZ0JOLGVBQVlDLEdBQVosQ0FBZ0Isa0JBQWhCLEM7OztBQUFqQkcsd0I7a0RBQ0NBLFNBQVNDLElBQVQsQ0FBY0UsTTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7dUJBSUVQLGVBQVlDLEdBQVosQ0FBZ0Isa0JBQWhCLEM7OztBQUFqQkcsd0I7a0RBQ0NBLFNBQVNDLElBQVQsQ0FBY0csTTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs2R0FHWkMsRTs7Ozs7Ozt1QkFDY1QsZUFBWUMsR0FBWixDQUFnQixZQUFoQixFQUE4QjtBQUNuREMsMEJBQVE7QUFDTk87QUFETTtBQUQyQyxpQkFBOUIsQzs7O0FBQWpCTCx3QjtrREFLQ0EsU0FBU0MsSUFBVCxDQUFjSyxLOzs7Ozs7Ozs7Ozs7Ozs7Ozs7OzZHQUdSQyxJO1lBQU1aLEssdUVBQVEsRTs7Ozs7O0FBQ3JCYSxzQixHQUFTRCxPQUFPLENBQVAsR0FBVyxDQUFDQSxPQUFPLENBQVIsSUFBYVosS0FBeEIsR0FBZ0MsQzs7dUJBRXhCQyxlQUFZQyxHQUFaLENBQWdCLFFBQWhCLEVBQTBCO0FBQy9DQywwQkFBUTtBQUNOQyw2QkFBUyxhQURIO0FBRU5KLGdDQUZNO0FBR05hO0FBSE07QUFEdUMsaUJBQTFCLEM7OztBQUFqQlIsd0I7a0RBT0NBLFNBQVNDLElBQVQsQ0FBY0MsTTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs2R0FHRk8sa0IsRUFBb0JGLEk7WUFBTVosSyx1RUFBUSxFOzs7Ozs7QUFDL0NhLHNCLEdBQVNELE9BQU8sQ0FBUCxHQUFXLENBQUNBLE9BQU8sQ0FBUixJQUFhWixLQUF4QixHQUFnQyxDOzt1QkFFeEJDLGVBQVlDLEdBQVosQ0FBZ0IsUUFBaEIsRUFBMEI7QUFDL0NDLDBCQUFRO0FBQ05DLDZCQUFTLGFBREg7QUFFTkosZ0NBRk07QUFHTmEsa0NBSE07QUFJTkM7QUFKTTtBQUR1QyxpQkFBMUIsQzs7O0FBQWpCVCx3QjtrREFRQ0EsU0FBU0MsSUFBVCxDQUFjQyxNOzs7Ozs7Ozs7Ozs7Ozs7Ozs7OzZHQUdNTyxrQjs7Ozs7Ozt1QkFDSmIsZUFBWUMsR0FBWixDQUFnQixRQUFoQixFQUEwQjtBQUMvQ0MsMEJBQVE7QUFDTlcsMERBRE07QUFFTmQsMkJBQU87QUFGRDtBQUR1QyxpQkFBMUIsQzs7O0FBQWpCSyx3QjtrREFRQ0EsU0FBU0MsSUFBVCxDQUFjUyxLOzs7Ozs7Ozs7Ozs7Ozs7Ozs7OzZHQUdJQyxTOzs7Ozs7O3VCQUNGZixlQUFZQyxHQUFaLENBQWdCLFFBQWhCLEVBQTBCO0FBQy9DQywwQkFBUTtBQUNOQyw2QkFBUyxhQURIO0FBRU5KLDJCQUFPLENBRkQ7QUFHTmMsd0NBQW9CRTtBQUhkO0FBRHVDLGlCQUExQixDOzs7QUFBakJYLHdCO2tEQU9DQSxTQUFTQyxJQUFULENBQWNDLE1BQWQsQ0FBcUIsQ0FBckIsQzs7Ozs7Ozs7Ozs7Ozs7Ozs7OzsrR0FHVUMsTTs7Ozs7Ozt1QkFDTVAsZUFBWUMsR0FBWixDQUFnQixRQUFoQixFQUEwQjtBQUMvQ0MsMEJBQVEsRUFBRUssUUFBUUEsU0FBUyxDQUFuQjtBQUR1QyxpQkFBMUIsQzs7O0FBQWpCSCx3QjttREFHQ0EsU0FBU0MsSUFBVCxDQUFjQyxNQUFkLENBQXFCLENBQXJCLEM7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7K0dBR01DLE07Ozs7Ozs7dUJBQ1VQLGVBQVlDLEdBQVosQ0FBZ0IsUUFBaEIsRUFBMEI7QUFDL0NDLDBCQUFRLEVBQUVLLFFBQVFBLFNBQVMsQ0FBbkI7QUFEdUMsaUJBQTFCLEM7OztBQUFqQkgsd0I7bURBR0NBLFNBQVNDLElBQVQsQ0FBY0MsTUFBZCxDQUFxQixDQUFyQixDOzs7Ozs7Ozs7Ozs7Ozs7Ozs7OztrQkFJSSxJQUFJUixZQUFKLEUiLCJmaWxlIjoiYmxvY2suanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgTm9kZVNlcnZpY2UgZnJvbSAnQC9zZXJ2aWNlcy9ub2RlJ1xuXG5jbGFzcyBCbG9ja1NlcnZpY2Uge1xuICBhc3luYyBsYXRlc3QobGltaXQgPSAyNSkge1xuICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgTm9kZVNlcnZpY2UuZ2V0KCdibG9ja3MnLCB7XG4gICAgICBwYXJhbXM6IHtcbiAgICAgICAgb3JkZXJCeTogJ2hlaWdodDpkZXNjJyxcbiAgICAgICAgbGltaXRcbiAgICAgIH1cbiAgICB9KVxuICAgIHJldHVybiByZXNwb25zZS5kYXRhLmJsb2Nrc1xuICB9XG5cbiAgYXN5bmMgbGFzdCgpIHtcbiAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IE5vZGVTZXJ2aWNlLmdldCgnYmxvY2tzJywge1xuICAgICAgcGFyYW1zOiB7XG4gICAgICAgIG9yZGVyQnk6ICdoZWlnaHQ6ZGVzYycsXG4gICAgICAgIGxpbWl0OiAxXG4gICAgICB9XG4gICAgfSlcbiAgICByZXR1cm4gcmVzcG9uc2UuZGF0YS5ibG9ja3NbMF1cbiAgfVxuXG4gIGFzeW5jIGhlaWdodCgpIHtcbiAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IE5vZGVTZXJ2aWNlLmdldCgnYmxvY2tzL2dldEhlaWdodCcpXG4gICAgcmV0dXJuIHJlc3BvbnNlLmRhdGEuaGVpZ2h0XG4gIH1cblxuICBhc3luYyBzdXBwbHkoKSB7XG4gICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBOb2RlU2VydmljZS5nZXQoJ2Jsb2Nrcy9nZXRTdXBwbHknKVxuICAgIHJldHVybiByZXNwb25zZS5kYXRhLnN1cHBseVxuICB9XG5cbiAgYXN5bmMgZmluZChpZCkge1xuICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgTm9kZVNlcnZpY2UuZ2V0KCdibG9ja3MvZ2V0Jywge1xuICAgICAgcGFyYW1zOiB7XG4gICAgICAgIGlkXG4gICAgICB9XG4gICAgfSlcbiAgICByZXR1cm4gcmVzcG9uc2UuZGF0YS5ibG9ja1xuICB9XG5cbiAgYXN5bmMgcGFnaW5hdGUocGFnZSwgbGltaXQgPSAyNSkge1xuICAgIGNvbnN0IG9mZnNldCA9IHBhZ2UgPiAxID8gKHBhZ2UgLSAxKSAqIGxpbWl0IDogMFxuXG4gICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBOb2RlU2VydmljZS5nZXQoJ2Jsb2NrcycsIHtcbiAgICAgIHBhcmFtczoge1xuICAgICAgICBvcmRlckJ5OiAnaGVpZ2h0OmRlc2MnLFxuICAgICAgICBsaW1pdCxcbiAgICAgICAgb2Zmc2V0XG4gICAgICB9XG4gICAgfSlcbiAgICByZXR1cm4gcmVzcG9uc2UuZGF0YS5ibG9ja3NcbiAgfVxuXG4gIGFzeW5jIGdldEJ5UHVibGljS2V5KGdlbmVyYXRvclB1YmxpY0tleSwgcGFnZSwgbGltaXQgPSAyNSkge1xuICAgIGNvbnN0IG9mZnNldCA9IHBhZ2UgPiAxID8gKHBhZ2UgLSAxKSAqIGxpbWl0IDogMFxuXG4gICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBOb2RlU2VydmljZS5nZXQoJ2Jsb2NrcycsIHtcbiAgICAgIHBhcmFtczoge1xuICAgICAgICBvcmRlckJ5OiAnaGVpZ2h0OmRlc2MnLFxuICAgICAgICBsaW1pdCxcbiAgICAgICAgb2Zmc2V0LFxuICAgICAgICBnZW5lcmF0b3JQdWJsaWNLZXlcbiAgICAgIH1cbiAgICB9KVxuICAgIHJldHVybiByZXNwb25zZS5kYXRhLmJsb2Nrc1xuICB9XG5cbiAgYXN5bmMgZm9yZ2VkQnlQdWJsaWNLZXlDb3VudChnZW5lcmF0b3JQdWJsaWNLZXkpIHtcbiAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IE5vZGVTZXJ2aWNlLmdldCgnYmxvY2tzJywge1xuICAgICAgcGFyYW1zOiB7XG4gICAgICAgIGdlbmVyYXRvclB1YmxpY0tleSxcbiAgICAgICAgbGltaXQ6IDFcbiAgICAgIH1cbiAgICB9KVxuXG4gICAgLy8gY3VycmVudGx5IG5vdCBzdXBwb3J0ZWQgYnkgbm9kZVxuICAgIHJldHVybiByZXNwb25zZS5kYXRhLmNvdW50XG4gIH1cblxuICBhc3luYyBsYXN0QmxvY2tCeVB1YmxpY0tleShwdWJsaWNLZXkpIHtcbiAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IE5vZGVTZXJ2aWNlLmdldCgnYmxvY2tzJywge1xuICAgICAgcGFyYW1zOiB7XG4gICAgICAgIG9yZGVyQnk6ICdoZWlnaHQ6ZGVzYycsXG4gICAgICAgIGxpbWl0OiAxLFxuICAgICAgICBnZW5lcmF0b3JQdWJsaWNLZXk6IHB1YmxpY0tleVxuICAgICAgfVxuICAgIH0pXG4gICAgcmV0dXJuIHJlc3BvbnNlLmRhdGEuYmxvY2tzWzBdXG4gIH1cblxuICBhc3luYyBmaW5kUHJldmlvdXMoaGVpZ2h0KSB7XG4gICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBOb2RlU2VydmljZS5nZXQoJ2Jsb2NrcycsIHtcbiAgICAgIHBhcmFtczogeyBoZWlnaHQ6IGhlaWdodCAtIDEgfVxuICAgIH0pXG4gICAgcmV0dXJuIHJlc3BvbnNlLmRhdGEuYmxvY2tzWzBdXG4gIH1cblxuICBhc3luYyBmaW5kTmV4dChoZWlnaHQpIHtcbiAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IE5vZGVTZXJ2aWNlLmdldCgnYmxvY2tzJywge1xuICAgICAgcGFyYW1zOiB7IGhlaWdodDogaGVpZ2h0ICsgMSB9XG4gICAgfSlcbiAgICByZXR1cm4gcmVzcG9uc2UuZGF0YS5ibG9ja3NbMF1cbiAgfVxufVxuXG5leHBvcnQgZGVmYXVsdCBuZXcgQmxvY2tTZXJ2aWNlKClcbiJdfQ==

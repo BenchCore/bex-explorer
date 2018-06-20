@@ -1,0 +1,91 @@
+217c755eb2a45c9bbd228cd17c05e2f6
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  props: {
+    start: {
+      type: Number,
+      require: true
+    },
+    perPage: {
+      type: Number,
+      default: 25
+    },
+    count: {
+      type: Number
+    }
+  },
+
+  data: function data() {
+    return {
+      page: 1
+    };
+  },
+
+  computed: {
+    totalPages: function totalPages() {
+      return Math.ceil(this.count / this.perPage);
+    }
+  },
+
+  mounted: function mounted() {
+    this.page = this.start;
+  },
+
+
+  methods: {
+    prev: function prev() {
+      if (this.page > 1) this.page--;
+
+      this.$parent.$emit('paginatorChanged', this.page);
+    },
+    next: function next() {
+      if (!this.count || this.page < this.totalPages) this.page++;
+
+      this.$parent.$emit('paginatorChanged', this.page);
+    }
+  }
+};
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"mx-5 sm:mx-10 mt-5 md:mt-10 flex flex-wrap"},[_c('button',{staticClass:"mr-auto pager-button items-center",class:{ 'hidden' : _vm.page <= 1, 'flex' : _vm.page > 1 },on:{"click":_vm.prev}},[_c('svg',{staticClass:"inline",attrs:{"xmlns":"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink","width":"5px","height":"8px"}},[_c('path',{attrs:{"fill-rule":"evenodd","fill":"currentColor","d":"M4.054,8.000 L5.000,7.067 L1.892,4.000 L5.000,0.933 L4.054,0.000 L-0.000,4.000 L4.054,8.000 Z"}})]),_vm._v(" "),_c('span',{staticClass:"ml-2"},[_vm._v(_vm._s(_vm.$t("Previous")))])]),_vm._v(" "),_c('button',{staticClass:"ml-auto pager-button items-center float-right",class:{ 'hidden' : _vm.page >= _vm.totalPages, 'flex' : _vm.page < _vm.totalPages},on:{"click":_vm.next}},[_c('span',{staticClass:"mr-2"},[_vm._v(_vm._s(_vm.$t("Next")))]),_vm._v(" "),_c('svg',{staticClass:"inline",attrs:{"xmlns":"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink","width":"5px","height":"8px"}},[_c('path',{attrs:{"fill-rule":"evenodd","fill":"currentColor","d":"M0.946,-0.001 L-0.000,0.933 L3.107,4.000 L-0.000,7.066 L0.946,8.000 L4.999,4.000 L0.946,-0.001 Z"}})])])])}
+__vue__options__.staticRenderFns = []

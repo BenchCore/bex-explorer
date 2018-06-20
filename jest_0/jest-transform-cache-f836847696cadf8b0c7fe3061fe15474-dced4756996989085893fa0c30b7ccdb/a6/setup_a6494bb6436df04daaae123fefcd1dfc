@@ -1,0 +1,17 @@
+51ea6050205963e51294f56000cd1cf8
+'use strict';
+
+var _vue = require('vue');
+
+var _vue2 = _interopRequireDefault(_vue);
+
+var _momentTimezone = require('moment-timezone');
+
+var _momentTimezone2 = _interopRequireDefault(_momentTimezone);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_vue2.default.config.productionTip = false;
+
+_momentTimezone2.default.tz.setDefault('America/Los_Angeles');
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNldHVwLmpzIl0sIm5hbWVzIjpbIlZ1ZSIsImNvbmZpZyIsInByb2R1Y3Rpb25UaXAiLCJtb21lbnQiLCJ0eiIsInNldERlZmF1bHQiXSwibWFwcGluZ3MiOiI7O0FBQUE7Ozs7QUFDQTs7Ozs7O0FBRUFBLGNBQUlDLE1BQUosQ0FBV0MsYUFBWCxHQUEyQixLQUEzQjs7QUFFQUMseUJBQU9DLEVBQVAsQ0FBVUMsVUFBVixDQUFxQixxQkFBckIiLCJmaWxlIjoic2V0dXAuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgVnVlIGZyb20gJ3Z1ZSdcbmltcG9ydCBtb21lbnQgZnJvbSAnbW9tZW50LXRpbWV6b25lJ1xuXG5WdWUuY29uZmlnLnByb2R1Y3Rpb25UaXAgPSBmYWxzZVxuXG5tb21lbnQudHouc2V0RGVmYXVsdCgnQW1lcmljYS9Mb3NfQW5nZWxlcycpXG4iXX0=

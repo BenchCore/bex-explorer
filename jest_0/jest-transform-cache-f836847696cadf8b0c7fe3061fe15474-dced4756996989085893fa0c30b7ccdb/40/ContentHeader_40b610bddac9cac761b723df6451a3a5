@@ -1,0 +1,50 @@
+f17c3f0d65c87e07f0e2bd6ff54560c8
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _vuex = require('vuex');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  computed: (0, _extends3.default)({}, (0, _vuex.mapGetters)('network', ['alias', 'supply', 'height']), (0, _vuex.mapGetters)('currency', ['name', 'rate', 'symbol']))
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"flex justify-between flex-wrap px-5 sm:px-10 xl:px-0"},[_c('h1',{staticClass:"text-2xl md:text-3xl mb-6 text-theme-text-primary sm:mr-10"},[_vm._t("default")],2),_vm._v(" "),_c('div',{staticClass:"hidden sm:flex items-center text-theme-text-tertiary text-2xs px-3 sm:px-8 xl:px-6 py-3 mb-6 bg-stat-background rounded-md"},[_c('div',{staticClass:"pr-6"},[_vm._v(_vm._s(_vm.$t("Height"))+": "+_vm._s(_vm.height.toLocaleString()))]),_vm._v(" "),_c('div',{staticClass:"pr-6"},[_vm._v(_vm._s(_vm.$t("Network"))+": "+_vm._s(_vm.$t(_vm.alias)))]),_vm._v(" "),_c('div',{staticClass:"pr-6"},[_vm._v(_vm._s(_vm.$t("Supply"))+": "),_c('span',{staticClass:"whitespace-no-wrap"},[_vm._v(_vm._s(_vm.readableCrypto(_vm.supply)))])]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.$t("Market Cap"))+": "),_c('currency',{attrs:{"amount":+_vm.supply}})],1)])]),_vm._v(" "),_c('div',{staticClass:"sm:hidden flex items-center justify-between text-theme-text-tertiary text-2xs px-5 sm:px-8 xl:px-6 py-3 bg-stat-background"},[_c('div',{staticClass:"mr-2"},[_c('span',[_vm._v(_vm._s(_vm.$t("Height"))+":")]),_vm._v(" "),_c('span',{staticClass:"block md:inline-block"},[_vm._v(_vm._s(_vm.height.toLocaleString()))])]),_vm._v(" "),_c('div',{staticClass:"mr-2"},[_c('span',[_vm._v("BEX/"+_vm._s(_vm.name)+":")]),_vm._v(" "),_c('span',{staticClass:"block md:inline-block"},[_vm._v(_vm._s(_vm.rawCurrency(_vm.rate, _vm.name)))])]),_vm._v(" "),_c('div',[_c('span',[_vm._v(_vm._s(_vm.$t("Supply"))+":")]),_vm._v(" "),_c('span',{staticClass:"block md:inline-block whitespace-no-wrap"},[_vm._v(_vm._s(_vm.readableCrypto(_vm.supply)))])])])])}
+__vue__options__.staticRenderFns = []

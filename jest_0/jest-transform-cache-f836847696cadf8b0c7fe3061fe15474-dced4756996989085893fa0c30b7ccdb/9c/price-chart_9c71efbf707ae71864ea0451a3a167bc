@@ -1,0 +1,30 @@
+23ac34638dc6ee2d384b993a61c7db68
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _vueChartjs = require('vue-chartjs');
+
+exports.default = {
+  extends: _vueChartjs.Line,
+
+  mixins: [_vueChartjs.mixins.reactiveProp],
+
+  props: {
+    chartData: {
+      type: Object,
+      required: true
+    },
+    options: {
+      type: Object,
+      required: true
+    }
+  },
+
+  mounted: function mounted() {
+    this.renderChart(this.chartData, this.options);
+  }
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInByaWNlLWNoYXJ0LmpzIl0sIm5hbWVzIjpbImV4dGVuZHMiLCJMaW5lIiwibWl4aW5zIiwicmVhY3RpdmVQcm9wIiwicHJvcHMiLCJjaGFydERhdGEiLCJ0eXBlIiwiT2JqZWN0IiwicmVxdWlyZWQiLCJvcHRpb25zIiwibW91bnRlZCIsInJlbmRlckNoYXJ0Il0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQTs7a0JBRWU7QUFDYkEsV0FBU0MsZ0JBREk7O0FBR2JDLFVBQVEsQ0FBQ0EsbUJBQU9DLFlBQVIsQ0FISzs7QUFLYkMsU0FBTztBQUNMQyxlQUFXO0FBQ1RDLFlBQU1DLE1BREc7QUFFVEMsZ0JBQVU7QUFGRCxLQUROO0FBS0xDLGFBQVM7QUFDUEgsWUFBTUMsTUFEQztBQUVQQyxnQkFBVTtBQUZIO0FBTEosR0FMTTs7QUFnQmJFLFNBaEJhLHFCQWdCSDtBQUNSLFNBQUtDLFdBQUwsQ0FBaUIsS0FBS04sU0FBdEIsRUFBaUMsS0FBS0ksT0FBdEM7QUFDRDtBQWxCWSxDIiwiZmlsZSI6InByaWNlLWNoYXJ0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgTGluZSwgbWl4aW5zIH0gZnJvbSAndnVlLWNoYXJ0anMnXG5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgZXh0ZW5kczogTGluZSxcblxuICBtaXhpbnM6IFttaXhpbnMucmVhY3RpdmVQcm9wXSxcblxuICBwcm9wczoge1xuICAgIGNoYXJ0RGF0YToge1xuICAgICAgdHlwZTogT2JqZWN0LFxuICAgICAgcmVxdWlyZWQ6IHRydWVcbiAgICB9LFxuICAgIG9wdGlvbnM6IHtcbiAgICAgIHR5cGU6IE9iamVjdCxcbiAgICAgIHJlcXVpcmVkOiB0cnVlXG4gICAgfVxuICB9LFxuXG4gIG1vdW50ZWQoKSB7XG4gICAgdGhpcy5yZW5kZXJDaGFydCh0aGlzLmNoYXJ0RGF0YSwgdGhpcy5vcHRpb25zKVxuICB9XG59XG4iXX0=

@@ -1,0 +1,121 @@
+8fe5800c9f3dc1d31b9fa94fbebdc569
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _block = require('@/services/block');
+
+var _block2 = _interopRequireDefault(_block);
+
+var _vuex = require('vuex');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      block: {},
+      timer: null
+    };
+  },
+
+  mounted: function mounted() {
+    var _this = this;
+
+    return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+      return _regenerator2.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.getBlock();
+
+            case 2:
+              _this.initialiseTimer();
+
+            case 3:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, _this);
+    }))();
+  },
+
+
+  methods: {
+    getBlock: function getBlock() {
+      var _this2 = this;
+
+      return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
+        var response;
+        return _regenerator2.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _block2.default.last();
+
+              case 2:
+                response = _context2.sent;
+
+                _this2.block = response;
+
+              case 4:
+              case 'end':
+                return _context2.stop();
+            }
+          }
+        }, _callee2, _this2);
+      }))();
+    },
+    initialiseTimer: function initialiseTimer() {
+      this.timer = setInterval(this.getBlock, 8 * 1000);
+    }
+  },
+
+  beforeDestroy: function beforeDestroy() {
+    clearInterval(this.timer);
+  }
+};
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"flex-auto flex justify-between sm:ml-10"},[_c('div',[_c('div',{staticClass:"text-grey mb-2 min-w-0"},[_vm._v(_vm._s(_vm.$t("Last block")))]),_vm._v(" "),(_vm.block.id)?_c('div',{staticClass:"text-lg truncate"},[_c('link-block',{attrs:{"id":_vm.block.id}},[_vm._v(_vm._s(_vm.block.id))])],1):_vm._e()]),_vm._v(" "),_c('div',{staticClass:"hidden md:block"},[_c('div',{staticClass:"text-grey mb-2 min-w-0"},[_vm._v(_vm._s(_vm.$t("Forged")))]),_vm._v(" "),_c('div',{staticClass:"text-lg text-white truncate"},[_vm._v("\n      "+_vm._s(_vm.readableCrypto(_vm.block.totalForged))+" "+_vm._s(_vm.$tc("from transactions", _vm.block.numberOfTransactions, { count: _vm.block.numberOfTransactions }))+"\n    ")])]),_vm._v(" "),_c('div',{staticClass:"w-32"},[_c('div',{staticClass:"text-grey mb-2 min-w-0"},[_vm._v(_vm._s(_vm.$t("Delegate")))]),_vm._v(" "),_c('div',{staticClass:"text-lg text-white truncate semibold"},[_c('link-wallet',{attrs:{"public-key":_vm.block.generatorPublicKey}})],1)])])}
+__vue__options__.staticRenderFns = []

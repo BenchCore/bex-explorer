@@ -1,0 +1,236 @@
+daa84e7fc9e09445d6ddea0807c8656d
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _search = require('@/services/search');
+
+var _search2 = _interopRequireDefault(_search);
+
+var _vuex = require('vuex');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      query: null,
+      nothingFound: false,
+      searchCount: 0,
+      placeholder: 'Search'
+    };
+  },
+
+  computed: (0, _extends3.default)({}, (0, _vuex.mapGetters)('ui', ['nightMode']), (0, _vuex.mapGetters)('network', ['knownWallets'])),
+
+  mounted: function mounted() {
+    var _this = this;
+
+    this.$refs.search.focus();
+
+    var WIDTH_THRESHOLD = 1024;
+    var widthQuery = window.matchMedia('(max-width: ' + WIDTH_THRESHOLD + 'px)');
+
+    widthQuery.addListener(function (e) {
+      return _this.setMobilePlaceholder(e.matches);
+    });
+
+    this.setMobilePlaceholder(window.innerWidth < WIDTH_THRESHOLD);
+  },
+
+
+  methods: {
+    search: function search() {
+      var _this2 = this;
+
+      return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+        var responseAddress, responseUsername, responsePublicKey, responseBlock, responseTransaction, address;
+        return _regenerator2.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _this2.nothingFound = false;
+                _this2.searchCount = 0;
+
+                _context.prev = 2;
+                _context.next = 5;
+                return _search2.default.findByAddress(_this2.query);
+
+              case 5:
+                responseAddress = _context.sent;
+
+                _this2.changePage('wallet', { address: responseAddress.account.address });
+                _context.next = 12;
+                break;
+
+              case 9:
+                _context.prev = 9;
+                _context.t0 = _context['catch'](2);
+                _this2.updateSearchCount(_context.t0);
+
+              case 12:
+                _context.prev = 12;
+                _context.next = 15;
+                return _search2.default.findByUsername(_this2.query);
+
+              case 15:
+                responseUsername = _context.sent;
+
+                _this2.changePage('wallet', { address: responseUsername.delegate.address });
+                _context.next = 22;
+                break;
+
+              case 19:
+                _context.prev = 19;
+                _context.t1 = _context['catch'](12);
+                _this2.updateSearchCount(_context.t1);
+
+              case 22:
+                _context.prev = 22;
+                _context.next = 25;
+                return _search2.default.findByPublicKey(_this2.query);
+
+              case 25:
+                responsePublicKey = _context.sent;
+
+                _this2.changePage('wallet', { address: responsePublicKey.delegate.address });
+                _context.next = 32;
+                break;
+
+              case 29:
+                _context.prev = 29;
+                _context.t2 = _context['catch'](22);
+                _this2.updateSearchCount(_context.t2);
+
+              case 32:
+                _context.prev = 32;
+                _context.next = 35;
+                return _search2.default.findByBlockId(_this2.query);
+
+              case 35:
+                responseBlock = _context.sent;
+
+                _this2.changePage('block', { id: responseBlock.block.id });
+                _context.next = 42;
+                break;
+
+              case 39:
+                _context.prev = 39;
+                _context.t3 = _context['catch'](32);
+                _this2.updateSearchCount(_context.t3);
+
+              case 42:
+                _context.prev = 42;
+                _context.next = 45;
+                return _search2.default.findByTransactionId(_this2.query);
+
+              case 45:
+                responseTransaction = _context.sent;
+
+                _this2.changePage('transaction', { id: responseTransaction.transaction.id });
+                _context.next = 52;
+                break;
+
+              case 49:
+                _context.prev = 49;
+                _context.t4 = _context['catch'](42);
+                _this2.updateSearchCount(_context.t4);
+
+              case 52:
+                address = _this2.findByNameInKnownWallets(_this2.query);
+
+                if (address) {
+                  _this2.changePage('wallet', { address: address });
+                } else {
+                  _this2.updateSearchCount(null);
+                }
+
+              case 54:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, _this2, [[2, 9], [12, 19], [22, 29], [32, 39], [42, 49]]);
+      }))();
+    },
+    updateSearchCount: function updateSearchCount(err) {
+      var _this3 = this;
+
+      if (err !== null) {
+        console.log(err.message || err.data.error);
+      }
+
+      // Increment counter to keep track of whether we found anything
+      this.searchCount += 1;
+      if (this.searchCount === 6) {
+        // Should match total amount of callbacks
+        this.nothingFound = true;
+        setTimeout(function () {
+          return _this3.nothingFound = false;
+        }, 1500);
+      }
+    },
+    setMobilePlaceholder: function setMobilePlaceholder(showMobile) {
+      this.placeholder = showMobile ? this.$i18n.t('Search') : this.$i18n.t('Find a block, transaction, address or delegate');
+    },
+    changePage: function changePage(name, params) {
+      this.$router.push({ name: name, params: params });
+      this.$store.dispatch('ui/setHeaderType', null);
+    },
+    findByNameInKnownWallets: function findByNameInKnownWallets(name) {
+      if (name !== null) {
+        for (var address in this.knownWallets) {
+          if (this.knownWallets.hasOwnProperty(address)) {
+            if (this.query.toLowerCase() === this.knownWallets[address].toLowerCase()) {
+              return address;
+            }
+          }
+        }
+      }
+    }
+  }
+};
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"w-full flex items-center px-5 sm:px-10"},[_c('button',{on:{"click":function($event){_vm.$store.dispatch('ui/setHeaderType', null)}}},[_c('img',{attrs:{"src":"@/assets/images/icons/cross.svg"}})]),_vm._v(" "),_c('label',{staticClass:"hidden",attrs:{"for":"search"}},[_vm._v(_vm._s(_vm.$t("Search")))]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.query),expression:"query"},{name:"tooltip",rawName:"v-tooltip",value:({show: _vm.nothingFound, content: _vm.$t('Nothing matched your search'), trigger: 'manual', placement: 'bottom-start', classes: 'search-tip' }),expression:"{show: nothingFound, content: $t('Nothing matched your search'), trigger: 'manual', placement: 'bottom-start', classes: 'search-tip' }"}],ref:"search",staticClass:"search-input w-full flex-auto mr-2 py-4 pl-4 bg-transparent",class:{ 'text-grey': _vm.nightMode },attrs:{"type":"search","placeholder":_vm.placeholder},domProps:{"value":(_vm.query)},on:{"keyup":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.search($event)},"input":function($event){if($event.target.composing){ return; }_vm.query=$event.target.value}}}),_vm._v(" "),_c('div',{staticClass:"search-icon text-grey hover:text-blue p-3 md:p-4",on:{"click":_vm.search}},[_c('svg',{staticClass:"fill-current",attrs:{"width":"20","height":"20","viewBox":"0 0 1792 1792","xmlns":"http://www.w3.org/2000/svg"}},[_c('path',{attrs:{"d":"M1216 832q0-185-131.5-316.5t-316.5-131.5-316.5 131.5-131.5 316.5 131.5 316.5 316.5 131.5 316.5-131.5 131.5-316.5zm512 832q0 52-38 90t-90 38q-54 0-90-38l-343-342q-179 124-399 124-143 0-273.5-55.5t-225-150-150-225-55.5-273.5 55.5-273.5 150-225 225-150 273.5-55.5 273.5 55.5 225 150 150 225 55.5 273.5q0 220-124 399l343 343q37 37 37 90z"}})])])])}
+__vue__options__.staticRenderFns = []

@@ -1,0 +1,82 @@
+e22fedec0991726888c92aa803409369
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _coinMarketCap = require('@/services/coin-market-cap');
+
+var _coinMarketCap2 = _interopRequireDefault(_coinMarketCap);
+
+var _vuex = require('vuex');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  computed: (0, _extends3.default)({}, (0, _vuex.mapGetters)('ui', ['nightMode']), (0, _vuex.mapGetters)('currency', { currencyName: 'name' }), (0, _vuex.mapGetters)('network', ['currencies'])),
+
+  methods: {
+    setCurrency: function setCurrency(currency, symbol) {
+      var _this = this;
+
+      return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+        var rate;
+        return _regenerator2.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _coinMarketCap2.default.price(currency);
+
+              case 2:
+                rate = _context.sent;
+
+                _this.storeCurrency(currency, rate, symbol);
+
+              case 4:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, _this);
+      }))();
+    },
+    storeCurrency: function storeCurrency(currency, rate, symbol) {
+      this.$store.dispatch('currency/setName', currency);
+      this.$store.dispatch('currency/setRate', rate);
+      this.$store.dispatch('currency/setSymbol', symbol);
+
+      this.$store.dispatch('ui/setHeaderType', null);
+    }
+  }
+};
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"menu-container w-full text-center max-w-480px justify-center bg-table-row list-reset absolute pin-b pin-r py-5 block xl:hidden"},_vm._l((_vm.currencies),function(symbol,currency){return _c('li',{key:currency,class:[_vm.nightMode ? 'hover:bg-grey-dark' : 'hover:bg-grey-light', 'inline-flex justify-center'],on:{"click":function($event){_vm.setCurrency(currency, symbol)}}},[_c('a',{staticClass:"cursor-pointer py-3 w-32 flex-none",attrs:{"href":"#"}},[_vm._v(_vm._s(currency))])])}))}
+__vue__options__.staticRenderFns = []

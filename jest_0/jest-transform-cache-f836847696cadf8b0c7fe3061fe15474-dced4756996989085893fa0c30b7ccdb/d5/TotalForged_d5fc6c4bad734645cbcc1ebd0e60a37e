@@ -1,0 +1,55 @@
+6550724e1c659cb5fe6f80b4bbfe1d97
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _vuex = require('vuex');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  data: function data() {
+    return { forged: 0 };
+  },
+
+  computed: (0, _extends3.default)({}, (0, _vuex.mapGetters)('network', ['height', 'rewardOffset'])),
+
+  mounted: function mounted() {
+    this.prepareComponent();
+  },
+
+
+  methods: {
+    prepareComponent: function prepareComponent() {
+      var _this = this;
+
+      this.getTotal();
+
+      this.$store.watch(function (state) {
+        return state.network.height;
+      }, function (value) {
+        return _this.getTotal();
+      });
+    },
+    getTotal: function getTotal() {
+      this.forged = (this.height - this.rewardOffset) * 2 * Math.pow(10, 8);
+    }
+  }
+}; //
+//
+//
+//
+//
+//
+//
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"hidden xl:block border-l border-r border-grey-dark px-10 ml-10"},[_c('div',{staticClass:"text-grey mb-2 min-w-0"},[_vm._v(_vm._s(_vm.$t("Total Forged (token)", {token: _vm.networkToken()})))]),_vm._v(" "),_c('div',{staticClass:"text-lg text-white truncate"},[_vm._v(_vm._s(_vm.readableCrypto(_vm.forged, false)))])])}
+__vue__options__.staticRenderFns = []

@@ -1,0 +1,224 @@
+03764f2267b39e3ac5b0d89b9490b993
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _moment = require('moment');
+
+var _moment2 = _interopRequireDefault(_moment);
+
+var _store = require('@/store');
+
+var _store2 = _interopRequireDefault(_store);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var CryptoCompareService = function () {
+  function CryptoCompareService() {
+    (0, _classCallCheck3.default)(this, CryptoCompareService);
+  }
+
+  (0, _createClass3.default)(CryptoCompareService, [{
+    key: 'day',
+    value: function () {
+      var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+        return _regenerator2.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                return _context.abrupt('return', this.sendRequest('hour', 24, 'HH:mm'));
+
+              case 1:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function day() {
+        return _ref.apply(this, arguments);
+      }
+
+      return day;
+    }()
+  }, {
+    key: 'week',
+    value: function () {
+      var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
+        return _regenerator2.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                return _context2.abrupt('return', this.sendRequest('day', 7, 'DD.MM'));
+
+              case 1:
+              case 'end':
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function week() {
+        return _ref2.apply(this, arguments);
+      }
+
+      return week;
+    }()
+  }, {
+    key: 'month',
+    value: function () {
+      var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3() {
+        return _regenerator2.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                return _context3.abrupt('return', this.sendRequest('day', 30, 'DD.MM'));
+
+              case 1:
+              case 'end':
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function month() {
+        return _ref3.apply(this, arguments);
+      }
+
+      return month;
+    }()
+  }, {
+    key: 'quarter',
+    value: function () {
+      var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4() {
+        return _regenerator2.default.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                return _context4.abrupt('return', this.sendRequest('day', 120, 'DD.MM'));
+
+              case 1:
+              case 'end':
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function quarter() {
+        return _ref4.apply(this, arguments);
+      }
+
+      return quarter;
+    }()
+  }, {
+    key: 'year',
+    value: function () {
+      var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5() {
+        return _regenerator2.default.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                return _context5.abrupt('return', this.sendRequest('day', 365, 'DD.MM'));
+
+              case 1:
+              case 'end':
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
+
+      function year() {
+        return _ref5.apply(this, arguments);
+      }
+
+      return year;
+    }()
+  }, {
+    key: 'sendRequest',
+    value: function () {
+      var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6(type, limit, dateTimeFormat) {
+        var date, targetCurrency, response;
+        return _regenerator2.default.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                date = Math.round(new Date().getTime() / 1000);
+                targetCurrency = 'USD';
+
+                if (_store2.default.getters['currency/name'] !== _store2.default.getters['network/token']) {
+                  targetCurrency = _store2.default.getters['currency/name'];
+                }
+
+                _context6.next = 5;
+                return _axios2.default.get('https://min-api.cryptocompare.com/data/histo' + type, {
+                  params: {
+                    fsym: _store2.default.getters['network/token'],
+                    tsym: targetCurrency,
+                    toTs: date,
+                    limit: limit
+                  }
+                });
+
+              case 5:
+                response = _context6.sent;
+                return _context6.abrupt('return', this.transform(response.data.Data, dateTimeFormat));
+
+              case 7:
+              case 'end':
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this);
+      }));
+
+      function sendRequest(_x, _x2, _x3) {
+        return _ref6.apply(this, arguments);
+      }
+
+      return sendRequest;
+    }()
+  }, {
+    key: 'transform',
+    value: function transform(response, dateTimeFormat) {
+      return {
+        labels: response.map(function (value) {
+          return _moment2.default.unix(value.time).format(dateTimeFormat);
+        }),
+        datasets: response.map(function (value) {
+          return value.close;
+        })
+      };
+    }
+  }]);
+  return CryptoCompareService;
+}();
+
+exports.default = new CryptoCompareService();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNyeXB0by1jb21wYXJlLmpzIl0sIm5hbWVzIjpbIkNyeXB0b0NvbXBhcmVTZXJ2aWNlIiwic2VuZFJlcXVlc3QiLCJ0eXBlIiwibGltaXQiLCJkYXRlVGltZUZvcm1hdCIsImRhdGUiLCJNYXRoIiwicm91bmQiLCJEYXRlIiwiZ2V0VGltZSIsInRhcmdldEN1cnJlbmN5Iiwic3RvcmUiLCJnZXR0ZXJzIiwiYXhpb3MiLCJnZXQiLCJwYXJhbXMiLCJmc3ltIiwidHN5bSIsInRvVHMiLCJyZXNwb25zZSIsInRyYW5zZm9ybSIsImRhdGEiLCJEYXRhIiwibGFiZWxzIiwibWFwIiwibW9tZW50IiwidW5peCIsInZhbHVlIiwidGltZSIsImZvcm1hdCIsImRhdGFzZXRzIiwiY2xvc2UiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQTs7OztBQUNBOzs7O0FBQ0E7Ozs7OztJQUVNQSxvQjs7Ozs7Ozs7Ozs7OztpREFFSyxLQUFLQyxXQUFMLENBQWlCLE1BQWpCLEVBQXlCLEVBQXpCLEVBQTZCLE9BQTdCLEM7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztrREFJQSxLQUFLQSxXQUFMLENBQWlCLEtBQWpCLEVBQXdCLENBQXhCLEVBQTJCLE9BQTNCLEM7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztrREFJQSxLQUFLQSxXQUFMLENBQWlCLEtBQWpCLEVBQXdCLEVBQXhCLEVBQTRCLE9BQTVCLEM7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztrREFJQSxLQUFLQSxXQUFMLENBQWlCLEtBQWpCLEVBQXdCLEdBQXhCLEVBQTZCLE9BQTdCLEM7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztrREFJQSxLQUFLQSxXQUFMLENBQWlCLEtBQWpCLEVBQXdCLEdBQXhCLEVBQTZCLE9BQTdCLEM7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7NkdBR1NDLEksRUFBTUMsSyxFQUFPQyxjOzs7Ozs7QUFDdkJDLG9CLEdBQU9DLEtBQUtDLEtBQUwsQ0FBVyxJQUFJQyxJQUFKLEdBQVdDLE9BQVgsS0FBdUIsSUFBbEMsQztBQUVUQyw4QixHQUFpQixLOztBQUNyQixvQkFBSUMsZ0JBQU1DLE9BQU4sQ0FBYyxlQUFkLE1BQW1DRCxnQkFBTUMsT0FBTixDQUFjLGVBQWQsQ0FBdkMsRUFBdUU7QUFDckVGLG1DQUFpQkMsZ0JBQU1DLE9BQU4sQ0FBYyxlQUFkLENBQWpCO0FBQ0Q7Ozt1QkFFc0JDLGdCQUNwQkMsR0FEb0Isa0RBQytCWixJQUQvQixFQUN1QztBQUMxRGEsMEJBQVE7QUFDTkMsMEJBQU1MLGdCQUFNQyxPQUFOLENBQWMsZUFBZCxDQURBO0FBRU5LLDBCQUFNUCxjQUZBO0FBR05RLDBCQUFNYixJQUhBO0FBSU5GO0FBSk07QUFEa0QsaUJBRHZDLEM7OztBQUFqQmdCLHdCO2tEQVNDLEtBQUtDLFNBQUwsQ0FBZUQsU0FBU0UsSUFBVCxDQUFjQyxJQUE3QixFQUFtQ2xCLGNBQW5DLEM7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs4QkFHQ2UsUSxFQUFVZixjLEVBQWdCO0FBQ2xDLGFBQU87QUFDTG1CLGdCQUFRSixTQUFTSyxHQUFULENBQWEsaUJBQVM7QUFDNUIsaUJBQU9DLGlCQUFPQyxJQUFQLENBQVlDLE1BQU1DLElBQWxCLEVBQXdCQyxNQUF4QixDQUErQnpCLGNBQS9CLENBQVA7QUFDRCxTQUZPLENBREg7QUFJTDBCLGtCQUFVWCxTQUFTSyxHQUFULENBQWEsaUJBQVM7QUFDOUIsaUJBQU9HLE1BQU1JLEtBQWI7QUFDRCxTQUZTO0FBSkwsT0FBUDtBQVFEOzs7OztrQkFHWSxJQUFJL0Isb0JBQUosRSIsImZpbGUiOiJjcnlwdG8tY29tcGFyZS5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBheGlvcyBmcm9tICdheGlvcydcbmltcG9ydCBtb21lbnQgZnJvbSAnbW9tZW50J1xuaW1wb3J0IHN0b3JlIGZyb20gJ0Avc3RvcmUnXG5cbmNsYXNzIENyeXB0b0NvbXBhcmVTZXJ2aWNlIHtcbiAgYXN5bmMgZGF5KCkge1xuICAgIHJldHVybiB0aGlzLnNlbmRSZXF1ZXN0KCdob3VyJywgMjQsICdISDptbScpXG4gIH1cblxuICBhc3luYyB3ZWVrKCkge1xuICAgIHJldHVybiB0aGlzLnNlbmRSZXF1ZXN0KCdkYXknLCA3LCAnREQuTU0nKVxuICB9XG5cbiAgYXN5bmMgbW9udGgoKSB7XG4gICAgcmV0dXJuIHRoaXMuc2VuZFJlcXVlc3QoJ2RheScsIDMwLCAnREQuTU0nKVxuICB9XG5cbiAgYXN5bmMgcXVhcnRlcigpIHtcbiAgICByZXR1cm4gdGhpcy5zZW5kUmVxdWVzdCgnZGF5JywgMTIwLCAnREQuTU0nKVxuICB9XG5cbiAgYXN5bmMgeWVhcigpIHtcbiAgICByZXR1cm4gdGhpcy5zZW5kUmVxdWVzdCgnZGF5JywgMzY1LCAnREQuTU0nKVxuICB9XG5cbiAgYXN5bmMgc2VuZFJlcXVlc3QodHlwZSwgbGltaXQsIGRhdGVUaW1lRm9ybWF0KSB7XG4gICAgY29uc3QgZGF0ZSA9IE1hdGgucm91bmQobmV3IERhdGUoKS5nZXRUaW1lKCkgLyAxMDAwKVxuXG4gICAgbGV0IHRhcmdldEN1cnJlbmN5ID0gJ1VTRCdcbiAgICBpZiAoc3RvcmUuZ2V0dGVyc1snY3VycmVuY3kvbmFtZSddICE9PSBzdG9yZS5nZXR0ZXJzWyduZXR3b3JrL3Rva2VuJ10pIHtcbiAgICAgIHRhcmdldEN1cnJlbmN5ID0gc3RvcmUuZ2V0dGVyc1snY3VycmVuY3kvbmFtZSddXG4gICAgfVxuXG4gICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBheGlvc1xuICAgICAgLmdldChgaHR0cHM6Ly9taW4tYXBpLmNyeXB0b2NvbXBhcmUuY29tL2RhdGEvaGlzdG8ke3R5cGV9YCwge1xuICAgICAgICBwYXJhbXM6IHtcbiAgICAgICAgICBmc3ltOiBzdG9yZS5nZXR0ZXJzWyduZXR3b3JrL3Rva2VuJ10sXG4gICAgICAgICAgdHN5bTogdGFyZ2V0Q3VycmVuY3ksXG4gICAgICAgICAgdG9UczogZGF0ZSxcbiAgICAgICAgICBsaW1pdFxuICAgICAgICB9XG4gICAgICB9KVxuICAgIHJldHVybiB0aGlzLnRyYW5zZm9ybShyZXNwb25zZS5kYXRhLkRhdGEsIGRhdGVUaW1lRm9ybWF0KVxuICB9XG5cbiAgdHJhbnNmb3JtKHJlc3BvbnNlLCBkYXRlVGltZUZvcm1hdCkge1xuICAgIHJldHVybiB7XG4gICAgICBsYWJlbHM6IHJlc3BvbnNlLm1hcCh2YWx1ZSA9PiB7XG4gICAgICAgIHJldHVybiBtb21lbnQudW5peCh2YWx1ZS50aW1lKS5mb3JtYXQoZGF0ZVRpbWVGb3JtYXQpXG4gICAgICB9KSxcbiAgICAgIGRhdGFzZXRzOiByZXNwb25zZS5tYXAodmFsdWUgPT4ge1xuICAgICAgICByZXR1cm4gdmFsdWUuY2xvc2VcbiAgICAgIH0pXG4gICAgfVxuICB9XG59XG5cbmV4cG9ydCBkZWZhdWx0IG5ldyBDcnlwdG9Db21wYXJlU2VydmljZSgpXG4iXX0=

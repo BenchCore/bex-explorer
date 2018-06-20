@@ -1,0 +1,38 @@
+e6e28368d8785ea02be4db90d3540c9c
+;(function(){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  props: {
+    id: {
+      type: String,
+      required: true
+    }
+  },
+
+  computed: {
+    hasDefaultSlot: function hasDefaultSlot() {
+      return !!this.$slots.default;
+    }
+  }
+};
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',[_c('router-link',{staticClass:"hidden md:inline-block",attrs:{"to":{ name: 'block', params: { id: _vm.id } }}},[(_vm.hasDefaultSlot)?_c('span',[_vm._t("default")],2):_c('span',[_vm._v(_vm._s(_vm.truncate(_vm.id)))])]),_vm._v(" "),_c('router-link',{staticClass:"md:hidden",attrs:{"to":{ name: 'block', params: { id: _vm.id } }}},[_c('span',[_vm._v(_vm._s(_vm.truncate(_vm.id)))])])],1)}
+__vue__options__.staticRenderFns = []

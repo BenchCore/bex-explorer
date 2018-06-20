@@ -1,0 +1,199 @@
+9c6fdcfb1231a528f0a18c6242866a35
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _block = require('@/services/block');
+
+var _block2 = _interopRequireDefault(_block);
+
+var _transaction = require('@/services/transaction');
+
+var _transaction2 = _interopRequireDefault(_transaction);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      totalTransactions: 0,
+      transactions: null
+    };
+  },
+
+  created: function created() {
+    var _this = this;
+
+    this.$on('paginatorChanged', function (page) {
+      return _this.changePage(page);
+    });
+    this.getTotalTransactions();
+  },
+  beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+    var _this2 = this;
+
+    return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+      var block, transactions;
+      return _regenerator2.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return _block2.default.find(to.params.id);
+
+            case 3:
+              block = _context.sent;
+              _context.next = 6;
+              return _transaction2.default.findByBlock(block.id, to.params.page);
+
+            case 6:
+              transactions = _context.sent;
+
+              next(function (vm) {
+                return vm.setTransactions(transactions);
+              });
+              _context.next = 13;
+              break;
+
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context['catch'](0);
+              next({ name: '404' });
+            case 13:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, _this2, [[0, 10]]);
+    }))();
+  },
+  beforeRouteUpdate: function beforeRouteUpdate(to, from, next) {
+    var _this3 = this;
+
+    return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
+      var block, transactions;
+      return _regenerator2.default.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _this3.transactions = null;
+
+              _context2.prev = 1;
+              _context2.next = 4;
+              return _block2.default.find(to.params.id);
+
+            case 4:
+              block = _context2.sent;
+              _context2.next = 7;
+              return _transaction2.default.findByBlock(block.id, to.params.page);
+
+            case 7:
+              transactions = _context2.sent;
+
+              _this3.setTransactions(transactions);
+              next();
+              _context2.next = 15;
+              break;
+
+            case 12:
+              _context2.prev = 12;
+              _context2.t0 = _context2['catch'](1);
+              next({ name: '404' });
+            case 15:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, _callee2, _this3, [[1, 12]]);
+    }))();
+  },
+
+
+  computed: {
+    id: function id() {
+      return this.$route.params.id;
+    },
+    page: function page() {
+      return this.$route.params.page;
+    }
+  },
+
+  methods: {
+    setTransactions: function setTransactions(transactions) {
+      if (!transactions) return;
+
+      this.transactions = transactions;
+    },
+    getTotalTransactions: function getTotalTransactions() {
+      var _this4 = this;
+
+      return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3() {
+        var block, response;
+        return _regenerator2.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _block2.default.find(_this4.id);
+
+              case 2:
+                block = _context3.sent;
+                _context3.next = 5;
+                return _transaction2.default.findByBlockCount(block.id);
+
+              case 5:
+                response = _context3.sent;
+
+                _this4.totalTransactions += Number(response);
+
+              case 7:
+              case 'end':
+                return _context3.stop();
+            }
+          }
+        }, _callee3, _this4);
+      }))();
+    },
+    changePage: function changePage(page) {
+      this.$router.push({
+        name: 'block-transactions',
+        params: {
+          id: this.id,
+          page: page
+        }
+      });
+    }
+  }
+};
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"max-w-2xl mx-auto pt-5"},[_c('content-header',[_vm._v(_vm._s(_vm.$t("Transactions")))]),_vm._v(" "),_c('section',{staticClass:"page-section py-10"},[_c('div',{staticClass:"hidden sm:block"},[_c('table-transactions',{attrs:{"transactions":_vm.transactions}})],1),_vm._v(" "),_c('div',{staticClass:"sm:hidden"},[_c('table-transactions-mobile',{attrs:{"transactions":_vm.transactions}})],1),_vm._v(" "),(_vm.transactions)?_c('paginator',{attrs:{"start":+this.page,"count":_vm.totalTransactions}}):_vm._e()],1)],1)}
+__vue__options__.staticRenderFns = []

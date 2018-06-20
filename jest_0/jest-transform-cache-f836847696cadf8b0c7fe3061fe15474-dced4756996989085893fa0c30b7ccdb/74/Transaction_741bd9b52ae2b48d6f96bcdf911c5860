@@ -1,0 +1,192 @@
+a02227f5cd3dedeaf56d5ec4e768d4a6
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _transaction = require('@/services/transaction');
+
+var _transaction2 = _interopRequireDefault(_transaction);
+
+var _vuex = require('vuex');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      transaction: {}
+    };
+  },
+
+  computed: (0, _extends3.default)({}, (0, _vuex.mapGetters)('delegates', ['delegates'])),
+
+  beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+    var _this = this;
+
+    return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+      var response;
+      return _regenerator2.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return _transaction2.default.find(to.params.id);
+
+            case 3:
+              response = _context.sent;
+
+              next(function (vm) {
+                return vm.setTransaction(response);
+              });
+              _context.next = 10;
+              break;
+
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context['catch'](0);
+              next({ name: '404' });
+            case 10:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, _this, [[0, 7]]);
+    }))();
+  },
+  beforeRouteUpdate: function beforeRouteUpdate(to, from, next) {
+    var _this2 = this;
+
+    return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
+      var response;
+      return _regenerator2.default.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _this2.transaction = {};
+
+              _context2.prev = 1;
+              _context2.next = 4;
+              return _transaction2.default.find(to.params.id);
+
+            case 4:
+              response = _context2.sent;
+
+              _this2.setTransaction(response);
+              next();
+              _context2.next = 12;
+              break;
+
+            case 9:
+              _context2.prev = 9;
+              _context2.t0 = _context2['catch'](1);
+              next({ name: '404' });
+            case 12:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, _callee2, _this2, [[1, 9]]);
+    }))();
+  },
+
+
+  methods: {
+    setTransaction: function setTransaction(transaction) {
+      this.transaction = transaction;
+    }
+  }
+};
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.transaction)?_c('div',{staticClass:"max-w-2xl mx-auto md:pt-5"},[_c('content-header',[_vm._v(_vm._s(_vm.$t("Transaction")))]),_vm._v(" "),_c('section',{staticClass:"mb-5"},[_c('div',{staticClass:"px-5 sm:px-10 py-8 bg-theme-feature-background flex xl:rounded-lg items-center"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"flex-auto min-w-0"},[_c('div',{staticClass:"text-grey mb-2"},[_vm._v(_vm._s(_vm.$t("Transaction ID")))]),_vm._v(" "),_c('div',{staticClass:"flex"},[_c('div',{staticClass:"text-xl text-white semibold truncate"},[_c('span',{staticClass:"mr-2"},[_vm._v(_vm._s(_vm.transaction.id))])]),_vm._v(" "),(_vm.transaction.id)?_c('clipboard',{attrs:{"value":_vm.transaction.id}}):_vm._e()],1)])])]),_vm._v(" "),_c('section',{staticClass:"page-section py-8 mb-5"},[_c('div',{staticClass:"px-5 sm:px-10 py-4"},[_c('div',{staticClass:"list-row-border-b"},[_c('div',[_vm._v(_vm._s(_vm.$t("Sender")))]),_vm._v(" "),_c('div',{staticClass:"truncate"},[_c('link-wallet',{attrs:{"address":_vm.transaction.senderId}},[_vm._v(_vm._s(_vm.transaction.senderId))])],1)]),_vm._v(" "),_c('div',{staticClass:"list-row-border-b"},[_c('div',[_vm._v(_vm._s(_vm.$t("Recipient")))]),_vm._v(" "),_c('div',{staticClass:"truncate"},[_c('link-wallet',{attrs:{"address":_vm.transaction.recipientId,"type":_vm.transaction.type}},[_vm._v(_vm._s(_vm.transaction.recipientId))])],1)]),_vm._v(" "),_c('div',{staticClass:"list-row-border-b"},[_c('div',[_vm._v(_vm._s(_vm.$t("Confirmations")))]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.transaction.confirmations))])]),_vm._v(" "),_c('div',{staticClass:"list-row-border-b"},[_c('div',[_vm._v(_vm._s(_vm.$t("Amount")))]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.readableCrypto(_vm.transaction.amount)))])]),_vm._v(" "),_c('div',{staticClass:"list-row-border-b"},[_c('div',[_vm._v(_vm._s(_vm.$t("Fee")))]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.readableCrypto(_vm.transaction.fee)))])]),_vm._v(" "),_c('div',{staticClass:"list-row-border-b"},[_c('div',[_vm._v(_vm._s(_vm.$t("Timestamp")))]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.readableTimestamp(_vm.transaction.timestamp)))])]),_vm._v(" "),(_vm.transaction.vendorField)?_c('div',{staticClass:"list-row-border-b-no-wrap"},[_c('div',{staticClass:"mr-4"},[_vm._v(_vm._s(_vm.$t("Sidechain")))]),_vm._v(" "),_c('div',{staticClass:"text-right"},[_vm._v(_vm._s(_vm.transaction.vendorField))])]):_vm._e(),_vm._v(" "),(_vm.transaction.blockid)?_c('div',{staticClass:"list-row"},[_c('div',[_vm._v(_vm._s(_vm.$t("Block")))]),_vm._v(" "),_c('div',[_c('link-block',{attrs:{"id":_vm.transaction.blockid}},[_vm._v(_vm._s(_vm.transaction.blockid))])],1)]):_vm._e()])])],1):_vm._e()}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"mr-6 flex-none"},[_c('img',{staticClass:"block",attrs:{"src":"@/assets/images/icons/transaction.svg"}})])}]

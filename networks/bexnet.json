@@ -1,0 +1,46 @@
+{
+  "title": "BenchPay Network Explorer",
+  "server": "http://node1.bex.life:6620/api",
+  "alias": "Main",
+  "activeDelegates": 51,
+  "rewardOffset": 75600,
+  "currencies": {
+    "AUD": "A$",
+    "BRL": "R$",
+    "BTC": "Ƀ",
+    "CAD": "C$",
+    "CHF": "CHF",
+    "CNY": "¥",
+    "ETH": "Ξ",
+    "EUR": "€",
+    "GBP": "£",
+    "INR": "₹",
+    "JPY": "¥",
+    "KRW": "₩",
+    "LTC": "Ł",
+    "NZD": "N$",
+    "RUB": "₽",
+    "USD": "$"
+  },
+  "knownWallets": {
+"BFEHhMyRUWPaovYyr1u6rMxtbzyt5aNnAK": "BitShares3",
+"AYCTHSZionfGoQsRnv5gECEuFWcZXS38gs": "BEX Bounty Fund",
+"BAry8Wbrmw53f5Ua1i8DpQoXJcJ29TeCA2": "Jared Rice Jr.",
+"BSVLxHGkceU8uvKXVrTNBFCxkaLWUYBNRZ": "BEX Developers",
+"BRCsrVwERkG7tpoFXmis4nxHE5Mbdw6cpu": "BEX Community",
+"BDJqhMqaR6YusSXw3rdqEcU7eB9Y3q9o1p": "BEX Legal Fund",
+"B4jb6Fr3EnRibz7kargNvYi2xkKsG3bBMQ": "Cryptonomex",
+"BShA4L1KdVdZAMFQWqSQS6zx7aCbsxcWgt": "nomoreheroes",
+"B4jb6Fr3EnRibz7kargNvYi2xkKsG3bBMQ": "michaelx",
+"BECnrGEdvRvRzxTHSgs3FVAiRtYFw6epoa": "BEX Dawn Wallet"
+  },
+  "defaults": {
+    "currency": {
+      "name": "USD",
+      "symbol": "$"
+    }
+  },
+  "config": {
+    "priceChart": false
+  }
+}

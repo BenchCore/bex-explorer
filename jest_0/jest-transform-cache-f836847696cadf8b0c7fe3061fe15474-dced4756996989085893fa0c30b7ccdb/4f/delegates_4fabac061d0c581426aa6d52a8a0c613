@@ -1,0 +1,268 @@
+1212a434aa616ca208d9d1f754755bbf
+/* istanbul ignore next */'use strict';
+
+var cov_2jg55u15lp = function () {
+  var path = '/root/benchcore-explorer/src/store/modules/delegates.js',
+      hash = '8b55370d9b2f9132571349eb3158630e9fdefc8a',
+      Function = function () {}.constructor,
+      global = new Function('return this')(),
+      gcv = '__coverage__',
+      coverageData = {
+    path: '/root/benchcore-explorer/src/store/modules/delegates.js',
+    statementMap: {
+      '0': {
+        start: {
+          line: 11,
+          column: 6
+        },
+        end: {
+          line: 11,
+          column: 37
+        }
+      },
+      '1': {
+        start: {
+          line: 14,
+          column: 6
+        },
+        end: {
+          line: 14,
+          column: 34
+        }
+      },
+      '2': {
+        start: {
+          line: 19,
+          column: 6
+        },
+        end: {
+          line: 22,
+          column: 8
+        }
+      },
+      '3': {
+        start: {
+          line: 25,
+          column: 6
+        },
+        end: {
+          line: 28,
+          column: 8
+        }
+      },
+      '4': {
+        start: {
+          line: 32,
+          column: 24
+        },
+        end: {
+          line: 32,
+          column: 39
+        }
+      },
+      '5': {
+        start: {
+          line: 33,
+          column: 21
+        },
+        end: {
+          line: 33,
+          column: 33
+        }
+      }
+    },
+    fnMap: {
+      '0': {
+        name: '(anonymous_0)',
+        decl: {
+          start: {
+            line: 18,
+            column: 18
+          },
+          end: {
+            line: 18,
+            column: 19
+          }
+        },
+        loc: {
+          start: {
+            line: 18,
+            column: 39
+          },
+          end: {
+            line: 23,
+            column: 5
+          }
+        },
+        line: 18
+      },
+      '1': {
+        name: '(anonymous_1)',
+        decl: {
+          start: {
+            line: 24,
+            column: 15
+          },
+          end: {
+            line: 24,
+            column: 16
+          }
+        },
+        loc: {
+          start: {
+            line: 24,
+            column: 36
+          },
+          end: {
+            line: 29,
+            column: 5
+          }
+        },
+        line: 24
+      },
+      '2': {
+        name: '(anonymous_2)',
+        decl: {
+          start: {
+            line: 32,
+            column: 15
+          },
+          end: {
+            line: 32,
+            column: 16
+          }
+        },
+        loc: {
+          start: {
+            line: 32,
+            column: 24
+          },
+          end: {
+            line: 32,
+            column: 39
+          }
+        },
+        line: 32
+      },
+      '3': {
+        name: '(anonymous_3)',
+        decl: {
+          start: {
+            line: 33,
+            column: 12
+          },
+          end: {
+            line: 33,
+            column: 13
+          }
+        },
+        loc: {
+          start: {
+            line: 33,
+            column: 21
+          },
+          end: {
+            line: 33,
+            column: 33
+          }
+        },
+        line: 33
+      }
+    },
+    branchMap: {},
+    s: {
+      '0': 0,
+      '1': 0,
+      '2': 0,
+      '3': 0,
+      '4': 0,
+      '5': 0
+    },
+    f: {
+      '0': 0,
+      '1': 0,
+      '2': 0,
+      '3': 0
+    },
+    b: {},
+    _coverageSchema: '332fd63041d2c1bcb487cc26dd0d5f7d97098a6c'
+  },
+      coverage = global[gcv] || (global[gcv] = {});
+
+  if (coverage[path] && coverage[path].hash === hash) {
+    return coverage[path];
+  }
+
+  coverageData.hash = hash;
+  return coverage[path] = coverageData;
+}();
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _mutations;
+
+var /* istanbul ignore next */_mutationTypes = require('../mutation-types');
+
+/* istanbul ignore next */var types = _interopRequireWildcard(_mutationTypes);
+
+/* istanbul ignore next */function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  namespaced: true,
+  state: {
+    delegates: [],
+    forged: []
+  },
+  mutations: /* istanbul ignore next */(_mutations = {}, (0, _defineProperty3.default)(_mutations, types.SET_DELEGATES, function (state, payload) {
+    /* istanbul ignore next */cov_2jg55u15lp.s[0]++;
+
+    state.delegates = payload.value;
+  }), (0, _defineProperty3.default)(_mutations, types.SET_FORGED, function (state, payload) {
+    /* istanbul ignore next */cov_2jg55u15lp.s[1]++;
+
+    state.forged = payload.value;
+  }), _mutations),
+  actions: {
+    setDelegates: function /* istanbul ignore next */setDelegates( /* istanbul ignore next */_ref, value) {
+      /* istanbul ignore next */var commit = _ref.commit;
+      /* istanbul ignore next */cov_2jg55u15lp.f[0]++;
+      cov_2jg55u15lp.s[2]++;
+
+      commit({
+        type: types.SET_DELEGATES,
+        value: value
+      });
+    },
+    setForged: function /* istanbul ignore next */setForged( /* istanbul ignore next */_ref2, value) {
+      /* istanbul ignore next */var commit = _ref2.commit;
+      /* istanbul ignore next */cov_2jg55u15lp.f[1]++;
+      cov_2jg55u15lp.s[3]++;
+
+      commit({
+        type: types.SET_FORGED,
+        value: value
+      });
+    }
+  },
+  getters: {
+    delegates: function /* istanbul ignore next */delegates(state) {
+      /* istanbul ignore next */cov_2jg55u15lp.f[2]++;
+      cov_2jg55u15lp.s[4]++;
+      return state.delegates;
+    },
+    forged: function /* istanbul ignore next */forged(state) {
+      /* istanbul ignore next */cov_2jg55u15lp.f[3]++;
+      cov_2jg55u15lp.s[5]++;
+      return state.forged;
+    }
+  }
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRlbGVnYXRlcy5qcyJdLCJuYW1lcyI6WyJ0eXBlcyIsIm5hbWVzcGFjZWQiLCJzdGF0ZSIsImRlbGVnYXRlcyIsImZvcmdlZCIsIm11dGF0aW9ucyIsIlNFVF9ERUxFR0FURVMiLCJwYXlsb2FkIiwidmFsdWUiLCJTRVRfRk9SR0VEIiwiYWN0aW9ucyIsInNldERlbGVnYXRlcyIsImNvbW1pdCIsInR5cGUiLCJzZXRGb3JnZWQiLCJnZXR0ZXJzIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUE7OzhCQUFZQSxLOzs7Ozs7a0JBRUc7QUFDYkMsY0FBWSxJQURDO0FBRWJDLFNBQU87QUFDTEMsZUFBVyxFQUROO0FBRUxDLFlBQVE7QUFGSCxHQUZNO0FBTWJDLG1HQUNHTCxNQUFNTSxhQURULFlBQ3dCSixLQUR4QixFQUMrQkssT0FEL0IsRUFDd0M7QUFBQTs7QUFDcENMLFVBQU1DLFNBQU4sR0FBa0JJLFFBQVFDLEtBQTFCO0FBQ0QsR0FISCw2Q0FJR1IsTUFBTVMsVUFKVCxZQUlxQlAsS0FKckIsRUFJNEJLLE9BSjVCLEVBSXFDO0FBQUE7O0FBQ2pDTCxVQUFNRSxNQUFOLEdBQWVHLFFBQVFDLEtBQXZCO0FBQ0QsR0FOSCxjQU5hO0FBY2JFLFdBQVM7QUFDUEMsa0JBQWMsaUZBQVdILEtBQVgsRUFBcUI7QUFBQSxvQ0FBbkJJLE1BQW1CLFFBQW5CQSxNQUFtQjtBQUFBO0FBQUE7O0FBQ2pDQSxhQUFPO0FBQ0xDLGNBQU1iLE1BQU1NLGFBRFA7QUFFTEU7QUFGSyxPQUFQO0FBSUQsS0FOTTtBQU9QTSxlQUFXLCtFQUFXTixLQUFYLEVBQXFCO0FBQUEsb0NBQW5CSSxNQUFtQixTQUFuQkEsTUFBbUI7QUFBQTtBQUFBOztBQUM5QkEsYUFBTztBQUNMQyxjQUFNYixNQUFNUyxVQURQO0FBRUxEO0FBRkssT0FBUDtBQUlEO0FBWk0sR0FkSTtBQTRCYk8sV0FBUztBQUNQWixlQUFXLG9EQUFTO0FBQUE7QUFBQTtBQUFBLG1CQUFNQSxTQUFOO0FBQWUsS0FENUI7QUFFUEMsWUFBUSxpREFBUztBQUFBO0FBQUE7QUFBQSxtQkFBTUEsTUFBTjtBQUFZO0FBRnRCO0FBNUJJLEMiLCJmaWxlIjoiZGVsZWdhdGVzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICogYXMgdHlwZXMgZnJvbSAnLi4vbXV0YXRpb24tdHlwZXMnXG5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgbmFtZXNwYWNlZDogdHJ1ZSxcbiAgc3RhdGU6IHtcbiAgICBkZWxlZ2F0ZXM6IFtdLFxuICAgIGZvcmdlZDogW11cbiAgfSxcbiAgbXV0YXRpb25zOiB7XG4gICAgW3R5cGVzLlNFVF9ERUxFR0FURVNdKHN0YXRlLCBwYXlsb2FkKSB7XG4gICAgICBzdGF0ZS5kZWxlZ2F0ZXMgPSBwYXlsb2FkLnZhbHVlXG4gICAgfSxcbiAgICBbdHlwZXMuU0VUX0ZPUkdFRF0oc3RhdGUsIHBheWxvYWQpIHtcbiAgICAgIHN0YXRlLmZvcmdlZCA9IHBheWxvYWQudmFsdWVcbiAgICB9XG4gIH0sXG4gIGFjdGlvbnM6IHtcbiAgICBzZXREZWxlZ2F0ZXM6ICh7Y29tbWl0fSwgdmFsdWUpID0+IHtcbiAgICAgIGNvbW1pdCh7XG4gICAgICAgIHR5cGU6IHR5cGVzLlNFVF9ERUxFR0FURVMsXG4gICAgICAgIHZhbHVlXG4gICAgICB9KVxuICAgIH0sXG4gICAgc2V0Rm9yZ2VkOiAoe2NvbW1pdH0sIHZhbHVlKSA9PiB7XG4gICAgICBjb21taXQoe1xuICAgICAgICB0eXBlOiB0eXBlcy5TRVRfRk9SR0VELFxuICAgICAgICB2YWx1ZVxuICAgICAgfSlcbiAgICB9XG4gIH0sXG4gIGdldHRlcnM6IHtcbiAgICBkZWxlZ2F0ZXM6IHN0YXRlID0+IHN0YXRlLmRlbGVnYXRlcyxcbiAgICBmb3JnZWQ6IHN0YXRlID0+IHN0YXRlLmZvcmdlZFxuICB9XG59XG4iXX0=

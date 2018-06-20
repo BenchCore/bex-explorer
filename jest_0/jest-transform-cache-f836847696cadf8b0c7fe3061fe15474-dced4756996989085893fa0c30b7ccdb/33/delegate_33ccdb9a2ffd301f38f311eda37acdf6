@@ -1,0 +1,550 @@
+5de2cf7c4a4558671fe080a992d20858
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _stringify = require('babel-runtime/core-js/json/stringify');
+
+var _stringify2 = _interopRequireDefault(_stringify);
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
+
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _node = require('@/services/node');
+
+var _node2 = _interopRequireDefault(_node);
+
+var _block = require('@/services/block');
+
+var _block2 = _interopRequireDefault(_block);
+
+var _forging = require('@/services/forging');
+
+var _forging2 = _interopRequireDefault(_forging);
+
+var _store = require('@/store');
+
+var _store2 = _interopRequireDefault(_store);
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var DelegateService = function () {
+  function DelegateService() {
+    (0, _classCallCheck3.default)(this, DelegateService);
+  }
+
+  (0, _createClass3.default)(DelegateService, [{
+    key: 'all',
+    value: function () {
+      var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+        var activeDelegates, response, requests, index, results;
+        return _regenerator2.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                activeDelegates = _store2.default.getters['network/activeDelegates'];
+                _context.next = 3;
+                return _node2.default.get('delegates', {
+                  params: {
+                    limit: activeDelegates
+                  }
+                });
+
+              case 3:
+                response = _context.sent;
+                requests = [];
+
+                requests.push(response);
+
+                for (index = 1; index < Math.ceil(response.data.totalCount / activeDelegates); index++) {
+                  requests.push(_node2.default.get('delegates', {
+                    params: {
+                      limit: activeDelegates,
+                      offset: index * activeDelegates
+                    }
+                  }));
+                }
+
+                _context.next = 9;
+                return _promise2.default.all(requests);
+
+              case 9:
+                results = _context.sent;
+                return _context.abrupt('return', results.map(function (result) {
+                  return result.data.delegates;
+                }).reduce(function (a, b) {
+                  return [].concat((0, _toConsumableArray3.default)(a), (0, _toConsumableArray3.default)(b));
+                }));
+
+              case 11:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function all() {
+        return _ref.apply(this, arguments);
+      }
+
+      return all;
+    }()
+  }, {
+    key: 'voters',
+    value: function () {
+      var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(publicKey) {
+        var excludeLowBalances = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+        var response, voters;
+        return _regenerator2.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _node2.default.get('delegates/voters', {
+                  params: { publicKey: publicKey }
+                });
+
+              case 2:
+                response = _context2.sent;
+                voters = _lodash2.default.orderBy(response.data.accounts.map(function (account) {
+                  account.balance = Number(account.balance);
+
+                  return account;
+                }), 'balance', 'desc');
+
+
+                if (excludeLowBalances) {
+                  voters = _lodash2.default.filter(voters, function (account) {
+                    return account.balance > 0.1 * Math.pow(10, 8);
+                  });
+                }
+
+                return _context2.abrupt('return', voters);
+
+              case 6:
+              case 'end':
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function voters(_x) {
+        return _ref2.apply(this, arguments);
+      }
+
+      return voters;
+    }()
+  }, {
+    key: 'findByUsername',
+    value: function () {
+      var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(username) {
+        var response;
+        return _regenerator2.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _node2.default.get('delegates/get', {
+                  params: { username: username }
+                });
+
+              case 2:
+                response = _context3.sent;
+                return _context3.abrupt('return', response.data.delegate);
+
+              case 4:
+              case 'end':
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function findByUsername(_x3) {
+        return _ref3.apply(this, arguments);
+      }
+
+      return findByUsername;
+    }()
+  }, {
+    key: 'find',
+    value: function () {
+      var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(publicKey) {
+        var response, delegate, forgeResponse;
+        return _regenerator2.default.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return _node2.default.get('delegates/get', {
+                  params: { publicKey: publicKey }
+                });
+
+              case 2:
+                response = _context4.sent;
+                delegate = response.data.delegate;
+
+                if (delegate) {
+                  _context4.next = 6;
+                  break;
+                }
+
+                return _context4.abrupt('return', false);
+
+              case 6:
+                _context4.next = 8;
+                return _node2.default.get('delegates/forging/getForgedByAccount?generatorPublicKey=' + delegate.publicKey);
+
+              case 8:
+                forgeResponse = _context4.sent;
+
+
+                delegate.forged = Number(forgeResponse.data.forged);
+
+                return _context4.abrupt('return', delegate);
+
+              case 11:
+              case 'end':
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function find(_x4) {
+        return _ref4.apply(this, arguments);
+      }
+
+      return find;
+    }()
+  }, {
+    key: 'standby',
+    value: function () {
+      var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5() {
+        var activeDelegates, response;
+        return _regenerator2.default.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                activeDelegates = _store2.default.getters['network/activeDelegates'];
+                _context5.next = 3;
+                return _node2.default.get('delegates', { params: { offset: activeDelegates } });
+
+              case 3:
+                response = _context5.sent;
+                return _context5.abrupt('return', response.data.delegates);
+
+              case 5:
+              case 'end':
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
+
+      function standby() {
+        return _ref5.apply(this, arguments);
+      }
+
+      return standby;
+    }()
+  }, {
+    key: 'nextForgers',
+    value: function () {
+      var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6() {
+        var activeDelegates, response;
+        return _regenerator2.default.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                activeDelegates = _store2.default.getters['network/activeDelegates'];
+                _context6.next = 3;
+                return _node2.default.get('delegates/getNextForgers', {
+                  params: { limit: activeDelegates }
+                });
+
+              case 3:
+                response = _context6.sent;
+                return _context6.abrupt('return', response.data.delegates);
+
+              case 5:
+              case 'end':
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this);
+      }));
+
+      function nextForgers() {
+        return _ref6.apply(this, arguments);
+      }
+
+      return nextForgers;
+    }()
+
+    /**
+     * @TODO - Remove this when Core 2.0 is released.
+     */
+
+  }, {
+    key: 'activeDelegates',
+    value: function () {
+      var _ref7 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee7() {
+        var activeDelegates, response, delegateCount, blocks, lastBlocksFetched, delegates, requests, lastDelegatesLastBlock, results, delegatesLastBlock, nextForgers, delegatesRounds, height;
+        return _regenerator2.default.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                activeDelegates = _store2.default.getters['network/activeDelegates'];
+                _context7.next = 3;
+                return _node2.default.get('delegates', {
+                  params: {
+                    orderBy: 'rate:asc',
+                    limit: activeDelegates
+                  }
+                });
+
+              case 3:
+                response = _context7.sent;
+                delegateCount = response.data.totalCount;
+
+                // Last Block (from last 100 Blocks)
+
+                _context7.next = 7;
+                return _block2.default.latest(100);
+
+              case 7:
+                blocks = _context7.sent;
+                lastBlocksFetched = JSON.parse(sessionStorage.getItem('lastBlocksFetched') || '[]');
+
+                sessionStorage.setItem('lastBlocksFetched', (0, _stringify2.default)(blocks));
+
+                delegates = response.data.delegates.map(function (delegate) {
+                  var lastBlock = blocks.find(function (b) {
+                    return b.generatorPublicKey === delegate.publicKey;
+                  });
+
+                  if (lastBlock !== undefined && lastBlock.hasOwnProperty('timestamp')) {
+                    delegate.blocks = [lastBlock];
+                    delegate.blocksAt = lastBlock.timestamp;
+                  }
+
+                  return delegate;
+                });
+
+                // Last Block (from specific delegate)
+
+                requests = [];
+                lastDelegatesLastBlock = JSON.parse(sessionStorage.getItem('lastDelegatesLastBlock') || '[]');
+
+
+                delegates.forEach(function (delegate) {
+                  if (delegate.blocksAt) {
+                    // we already have the delegate's last block from looking at the last 100 blocks
+                    requests.push(delegate.blocks[0]);
+                  } else if (lastBlocksFetched.length && lastBlocksFetched[0].height >= blocks[blocks.length - 1].height) {
+                    // the delegate's last block is not in the last 100 blocks but we might have saved it in sessionStorage
+                    // only valid if there is no 'hole' between the last blocks fetched and the current ones
+                    var lastDel = lastDelegatesLastBlock.find(function (del) {
+                      return del.publicKey === delegate.publicKey;
+                    });
+                    if (lastDel) {
+                      requests.push(lastDel.blocks[0]);
+                    } else {
+                      requests.push(_block2.default.lastBlockByPublicKey(delegate.publicKey));
+                    }
+                  } else {
+                    // last option : make a specific server request to get the delegate's last block
+                    requests.push(_block2.default.lastBlockByPublicKey(delegate.publicKey));
+                  }
+                });
+
+                _context7.next = 16;
+                return _promise2.default.all(requests);
+
+              case 16:
+                results = _context7.sent;
+                delegatesLastBlock = delegates.map(function (result, index) {
+                  var lastBlock = results[index];
+
+                  result.blocks = [lastBlock];
+                  result.blocksAt = lastBlock ? lastBlock.timestamp : false;
+
+                  return result;
+                });
+
+                sessionStorage.setItem('lastDelegatesLastBlock', (0, _stringify2.default)(delegatesLastBlock));
+
+                // Rounds
+                _context7.next = 21;
+                return this.nextForgers();
+
+              case 21:
+                nextForgers = _context7.sent;
+                delegatesRounds = delegatesLastBlock.map(function (delegate) {
+                  var delegateIndex = nextForgers.findIndex(function (d) {
+                    return d === delegate.publicKey;
+                  });
+
+                  delegate.forgingTime = delegateIndex * 8;
+                  delegate.isRoundDelegate = delegateIndex !== -1;
+
+                  return delegate;
+                });
+
+                // Forging Status
+
+                _context7.next = 25;
+                return _block2.default.height();
+
+              case 25:
+                height = _context7.sent;
+                return _context7.abrupt('return', { delegateCount: delegateCount,
+                  delegates: delegatesRounds.map(function (delegate) {
+                    delegate.forgingStatus = _forging2.default.status(delegate, height);
+
+                    return delegate;
+                  }) });
+
+              case 27:
+              case 'end':
+                return _context7.stop();
+            }
+          }
+        }, _callee7, this);
+      }));
+
+      function activeDelegates() {
+        return _ref7.apply(this, arguments);
+      }
+
+      return activeDelegates;
+    }()
+  }, {
+    key: 'forged',
+    value: function () {
+      var _ref8 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee8() {
+        var activeDelegates, response, delegates, requests, results;
+        return _regenerator2.default.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                activeDelegates = _store2.default.getters['network/activeDelegates'];
+                _context8.next = 3;
+                return _node2.default.get('delegates', {
+                  params: {
+                    orderBy: 'rate:asc',
+                    limit: activeDelegates
+                  }
+                });
+
+              case 3:
+                response = _context8.sent;
+                delegates = response.data.delegates;
+                requests = [];
+
+
+                delegates.forEach(function (delegate) {
+                  requests.push(_node2.default.get('delegates/forging/getForgedByAccount', {
+                    params: {
+                      generatorPublicKey: delegate.publicKey
+                    }
+                  }));
+                });
+
+                _context8.next = 9;
+                return _promise2.default.all(requests);
+
+              case 9:
+                results = _context8.sent;
+                return _context8.abrupt('return', results.map(function (result, index) {
+                  return {
+                    delegate: delegates[index].publicKey,
+                    forged: Number(result.data.forged)
+                  };
+                }));
+
+              case 11:
+              case 'end':
+                return _context8.stop();
+            }
+          }
+        }, _callee8, this);
+      }));
+
+      function forged() {
+        return _ref8.apply(this, arguments);
+      }
+
+      return forged;
+    }()
+  }, {
+    key: 'activeDelegatesCount',
+    value: function () {
+      var _ref9 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee9() {
+        var response;
+        return _regenerator2.default.wrap(function _callee9$(_context9) {
+          while (1) {
+            switch (_context9.prev = _context9.next) {
+              case 0:
+                _context9.next = 2;
+                return _node2.default.get('delegates', {
+                  params: {
+                    orderBy: 'rate:asc',
+                    limit: 1
+                  }
+                });
+
+              case 2:
+                response = _context9.sent;
+                return _context9.abrupt('return', response.data.totalCount);
+
+              case 4:
+              case 'end':
+                return _context9.stop();
+            }
+          }
+        }, _callee9, this);
+      }));
+
+      function activeDelegatesCount() {
+        return _ref9.apply(this, arguments);
+      }
+
+      return activeDelegatesCount;
+    }()
+  }]);
+  return DelegateService;
+}();
+
+exports.default = new DelegateService();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRlbGVnYXRlLmpzIl0sIm5hbWVzIjpbIkRlbGVnYXRlU2VydmljZSIsImFjdGl2ZURlbGVnYXRlcyIsInN0b3JlIiwiZ2V0dGVycyIsIk5vZGVTZXJ2aWNlIiwiZ2V0IiwicGFyYW1zIiwibGltaXQiLCJyZXNwb25zZSIsInJlcXVlc3RzIiwicHVzaCIsImluZGV4IiwiTWF0aCIsImNlaWwiLCJkYXRhIiwidG90YWxDb3VudCIsIm9mZnNldCIsImFsbCIsInJlc3VsdHMiLCJtYXAiLCJyZXN1bHQiLCJkZWxlZ2F0ZXMiLCJyZWR1Y2UiLCJhIiwiYiIsInB1YmxpY0tleSIsImV4Y2x1ZGVMb3dCYWxhbmNlcyIsInZvdGVycyIsIl8iLCJvcmRlckJ5IiwiYWNjb3VudHMiLCJhY2NvdW50IiwiYmFsYW5jZSIsIk51bWJlciIsImZpbHRlciIsInBvdyIsInVzZXJuYW1lIiwiZGVsZWdhdGUiLCJmb3JnZVJlc3BvbnNlIiwiZm9yZ2VkIiwiZGVsZWdhdGVDb3VudCIsImJsb2NrIiwibGF0ZXN0IiwiYmxvY2tzIiwibGFzdEJsb2Nrc0ZldGNoZWQiLCJKU09OIiwicGFyc2UiLCJzZXNzaW9uU3RvcmFnZSIsImdldEl0ZW0iLCJzZXRJdGVtIiwibGFzdEJsb2NrIiwiZmluZCIsImdlbmVyYXRvclB1YmxpY0tleSIsInVuZGVmaW5lZCIsImhhc093blByb3BlcnR5IiwiYmxvY2tzQXQiLCJ0aW1lc3RhbXAiLCJsYXN0RGVsZWdhdGVzTGFzdEJsb2NrIiwiZm9yRWFjaCIsImxlbmd0aCIsImhlaWdodCIsImxhc3REZWwiLCJkZWwiLCJsYXN0QmxvY2tCeVB1YmxpY0tleSIsImRlbGVnYXRlc0xhc3RCbG9jayIsIm5leHRGb3JnZXJzIiwiZGVsZWdhdGVzUm91bmRzIiwiZGVsZWdhdGVJbmRleCIsImZpbmRJbmRleCIsImQiLCJmb3JnaW5nVGltZSIsImlzUm91bmREZWxlZ2F0ZSIsImZvcmdpbmdTdGF0dXMiLCJmb3JnaW5nIiwic3RhdHVzIl0sIm1hcHBpbmdzIjoi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QyxHQUFaLENBQWdCLFdBQWhCLEVBQTZCO0FBQ2xEQywwQkFBUTtBQUNOdUIsNkJBQVMsVUFESDtBQUVOdEIsMkJBQU9OO0FBRkQ7QUFEMEMsaUJBQTdCLEM7OztBQUFqQk8sd0I7QUFPQWEseUIsR0FBWWIsU0FBU00sSUFBVCxDQUFjTyxTO0FBQzFCWix3QixHQUFXLEU7OztBQUVqQlksMEJBQVVxQyxPQUFWLENBQWtCLG9CQUFZO0FBQzVCakQsMkJBQVNDLElBQVQsQ0FDRU4sZUFBWUMsR0FBWixDQUFnQixzQ0FBaEIsRUFBd0Q7QUFDdERDLDRCQUFRO0FBQ044QywwQ0FBb0JmLFNBQVNaO0FBRHZCO0FBRDhDLG1CQUF4RCxDQURGO0FBT0QsaUJBUkQ7Ozt1QkFVc0Isa0JBQVFSLEdBQVIsQ0FBWVIsUUFBWixDOzs7QUFBaEJTLHVCO2tEQUNDQSxRQUFRQyxHQUFSLENBQVksVUFBQ0MsTUFBRCxFQUFTVCxLQUFULEVBQW1CO0FBQ3BDLHlCQUFPO0FBQ0wwQiw4QkFBVWhCLFVBQVVWLEtBQVYsRUFBaUJjLFNBRHRCO0FBRUxjLDRCQUFRTixPQUFPYixPQUFPTixJQUFQLENBQVl5QixNQUFuQjtBQUZILG1CQUFQO0FBSUQsaUJBTE0sQzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7dUJBU2dCbkMsZUFBWUMsR0FBWixDQUFnQixXQUFoQixFQUE2QjtBQUNsREMsMEJBQVE7QUFDTnVCLDZCQUFTLFVBREg7QUFFTnRCLDJCQUFPO0FBRkQ7QUFEMEMsaUJBQTdCLEM7OztBQUFqQkMsd0I7a0RBTUNBLFNBQVNNLElBQVQsQ0FBY0MsVTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7a0JBSVYsSUFBSWYsZUFBSixFIiwiZmlsZSI6ImRlbGVnYXRlLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IE5vZGVTZXJ2aWNlIGZyb20gJ0Avc2VydmljZXMvbm9kZSdcbmltcG9ydCBibG9jayBmcm9tICdAL3NlcnZpY2VzL2Jsb2NrJ1xuaW1wb3J0IGZvcmdpbmcgZnJvbSAnQC9zZXJ2aWNlcy9mb3JnaW5nJ1xuaW1wb3J0IHN0b3JlIGZyb20gJ0Avc3RvcmUnXG5pbXBvcnQgXyBmcm9tICdsb2Rhc2gnXG5cbmNsYXNzIERlbGVnYXRlU2VydmljZSB7XG4gIGFzeW5jIGFsbCgpIHtcbiAgICBjb25zdCBhY3RpdmVEZWxlZ2F0ZXMgPSBzdG9yZS5nZXR0ZXJzWyduZXR3b3JrL2FjdGl2ZURlbGVnYXRlcyddXG5cbiAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IE5vZGVTZXJ2aWNlLmdldCgnZGVsZWdhdGVzJywge1xuICAgICAgcGFyYW1zOiB7XG4gICAgICAgIGxpbWl0OiBhY3RpdmVEZWxlZ2F0ZXNcbiAgICAgIH1cbiAgICB9KVxuXG4gICAgY29uc3QgcmVxdWVzdHMgPSBbXVxuICAgIHJlcXVlc3RzLnB1c2gocmVzcG9uc2UpXG5cbiAgICBmb3IgKFxuICAgICAgbGV0IGluZGV4ID0gMTtcbiAgICAgIGluZGV4IDwgTWF0aC5jZWlsKHJlc3BvbnNlLmRhdGEudG90YWxDb3VudCAvIGFjdGl2ZURlbGVnYXRlcyk7XG4gICAgICBpbmRleCsrXG4gICAgKSB7XG4gICAgICByZXF1ZXN0cy5wdXNoKFxuICAgICAgICBOb2RlU2VydmljZS5nZXQoJ2RlbGVnYXRlcycsIHtcbiAgICAgICAgICBwYXJhbXM6IHtcbiAgICAgICAgICAgIGxpbWl0OiBhY3RpdmVEZWxlZ2F0ZXMsXG4gICAgICAgICAgICBvZmZzZXQ6IGluZGV4ICogYWN0aXZlRGVsZWdhdGVzXG4gICAgICAgICAgfVxuICAgICAgICB9KVxuICAgICAgKVxuICAgIH1cblxuICAgIGNvbnN0IHJlc3VsdHMgPSBhd2FpdCBQcm9taXNlLmFsbChyZXF1ZXN0cylcblxuICAgIHJldHVybiByZXN1bHRzXG4gICAgICAubWFwKHJlc3VsdCA9PiB7XG4gICAgICAgIHJldHVybiByZXN1bHQuZGF0YS5kZWxlZ2F0ZXNcbiAgICAgIH0pXG4gICAgICAucmVkdWNlKChhLCBiKSA9PiBbLi4uYSwgLi4uYl0pXG4gIH1cblxuICBhc3luYyB2b3RlcnMocHVibGljS2V5LCBleGNsdWRlTG93QmFsYW5jZXMgPSB0cnVlKSB7XG4gICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBOb2RlU2VydmljZS5nZXQoJ2RlbGVnYXRlcy92b3RlcnMnLCB7XG4gICAgICBwYXJhbXM6IHtwdWJsaWNLZXl9XG4gICAgfSlcblxuICAgIGxldCB2b3RlcnMgPSBfLm9yZGVyQnkoXG4gICAgICByZXNwb25zZS5kYXRhLmFjY291bnRzLm1hcChhY2NvdW50ID0+IHtcbiAgICAgICAgYWNjb3VudC5iYWxhbmNlID0gTnVtYmVyKGFjY291bnQuYmFsYW5jZSlcblxuICAgICAgICByZXR1cm4gYWNjb3VudFxuICAgICAgfSksXG4gICAgICAnYmFsYW5jZScsXG4gICAgICAnZGVzYydcbiAgICApXG5cbiAgICBpZiAoZXhjbHVkZUxvd0JhbGFuY2VzKSB7XG4gICAgICB2b3RlcnMgPSBfLmZpbHRlcih2b3RlcnMsIGFjY291bnQgPT4ge1xuICAgICAgICByZXR1cm4gYWNjb3VudC5iYWxhbmNlID4gMC4xICogTWF0aC5wb3coMTAsIDgpXG4gICAgICB9KVxuICAgIH1cblxuICAgIHJldHVybiB2b3RlcnNcbiAgfVxuXG4gIGFzeW5jIGZpbmRCeVVzZXJuYW1lKHVzZXJuYW1lKSB7XG4gICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBOb2RlU2VydmljZS5nZXQoJ2RlbGVnYXRlcy9nZXQnLCB7XG4gICAgICBwYXJhbXM6IHt1c2VybmFtZX1cbiAgICB9KVxuICAgIHJldHVybiByZXNwb25zZS5kYXRhLmRlbGVnYXRlXG4gIH1cblxuICBhc3luYyBmaW5kKHB1YmxpY0tleSkge1xuICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgTm9kZVNlcnZpY2UuZ2V0KCdkZWxlZ2F0ZXMvZ2V0Jywge1xuICAgICAgcGFyYW1zOiB7cHVibGljS2V5fVxuICAgIH0pXG5cbiAgICBjb25zdCBkZWxlZ2F0ZSA9IHJlc3BvbnNlLmRhdGEuZGVsZWdhdGVcblxuICAgIGlmICghZGVsZWdhdGUpIHtcbiAgICAgIHJldHVybiBmYWxzZVxuICAgIH1cblxuICAgIGNvbnN0IGZvcmdlUmVzcG9uc2UgPSBhd2FpdCBOb2RlU2VydmljZS5nZXQoXG4gICAgICBgZGVsZWdhdGVzL2ZvcmdpbmcvZ2V0Rm9yZ2VkQnlBY2NvdW50P2dlbmVyYXRvclB1YmxpY0tleT0ke1xuICAgICAgICBkZWxlZ2F0ZS5wdWJsaWNLZXlcbiAgICAgIH1gXG4gICAgKVxuXG4gICAgZGVsZWdhdGUuZm9yZ2VkID0gTnVtYmVyKGZvcmdlUmVzcG9uc2UuZGF0YS5mb3JnZWQpXG5cbiAgICByZXR1cm4gZGVsZWdhdGVcbiAgfVxuXG4gIGFzeW5jIHN0YW5kYnkoKSB7XG4gICAgY29uc3QgYWN0aXZlRGVsZWdhdGVzID0gc3RvcmUuZ2V0dGVyc1snbmV0d29yay9hY3RpdmVEZWxlZ2F0ZXMnXVxuXG4gICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBOb2RlU2VydmljZS5nZXQoJ2RlbGVnYXRlcycsIHtwYXJhbXM6IHtvZmZzZXQ6IGFjdGl2ZURlbGVnYXRlc319KVxuICAgIHJldHVybiByZXNwb25zZS5kYXRhLmRlbGVnYXRlc1xuICB9XG5cbiAgYXN5bmMgbmV4dEZvcmdlcnMoKSB7XG4gICAgY29uc3QgYWN0aXZlRGVsZWdhdGVzID0gc3RvcmUuZ2V0dGVyc1snbmV0d29yay9hY3RpdmVEZWxlZ2F0ZXMnXVxuXG4gICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBOb2RlU2VydmljZS5nZXQoJ2RlbGVnYXRlcy9nZXROZXh0Rm9yZ2VycycsIHtcbiAgICAgIHBhcmFtczoge2xpbWl0OiBhY3RpdmVEZWxlZ2F0ZXN9XG4gICAgfSlcbiAgICByZXR1cm4gcmVzcG9uc2UuZGF0YS5kZWxlZ2F0ZXNcbiAgfVxuXG4gIC8qKlxuICAgKiBAVE9ETyAtIFJlbW92ZSB0aGlzIHdoZW4gQ29yZSAyLjAgaXMgcmVsZWFzZWQuXG4gICAqL1xuICBhc3luYyBhY3RpdmVEZWxlZ2F0ZXMoKSB7XG4gICAgY29uc3QgYWN0aXZlRGVsZWdhdGVzID0gc3RvcmUuZ2V0dGVyc1snbmV0d29yay9hY3RpdmVEZWxlZ2F0ZXMnXVxuXG4gICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBOb2RlU2VydmljZS5nZXQoJ2RlbGVnYXRlcycsIHtcbiAgICAgIHBhcmFtczoge1xuICAgICAgICBvcmRlckJ5OiAncmF0ZTphc2MnLFxuICAgICAgICBsaW1pdDogYWN0aXZlRGVsZWdhdGVzXG4gICAgICB9XG4gICAgfSlcbiAgICBjb25zdCBkZWxlZ2F0ZUNvdW50ID0gcmVzcG9uc2UuZGF0YS50b3RhbENvdW50XG5cbiAgICAvLyBMYXN0IEJsb2NrIChmcm9tIGxhc3QgMTAwIEJsb2NrcylcbiAgICBjb25zdCBibG9ja3MgPSBhd2FpdCBibG9jay5sYXRlc3QoMTAwKVxuICAgIGNvbnN0IGxhc3RCbG9ja3NGZXRjaGVkID0gSlNPTi5wYXJzZShzZXNzaW9uU3RvcmFnZS5nZXRJdGVtKCdsYXN0QmxvY2tzRmV0Y2hlZCcpIHx8ICdbXScpXG4gICAgc2Vzc2lvblN0b3JhZ2Uuc2V0SXRlbSgnbGFzdEJsb2Nrc0ZldGNoZWQnLCBKU09OLnN0cmluZ2lmeShibG9ja3MpKVxuXG4gICAgY29uc3QgZGVsZWdhdGVzID0gcmVzcG9uc2UuZGF0YS5kZWxlZ2F0ZXMubWFwKGRlbGVnYXRlID0+IHtcbiAgICAgIGNvbnN0IGxhc3RCbG9jayA9IGJsb2Nrcy5maW5kKFxuICAgICAgICBiID0+IGIuZ2VuZXJhdG9yUHVibGljS2V5ID09PSBkZWxlZ2F0ZS5wdWJsaWNLZXlcbiAgICAgIClcblxuICAgICAgaWYgKGxhc3RCbG9jayAhPT0gdW5kZWZpbmVkICYmIGxhc3RCbG9jay5oYXNPd25Qcm9wZXJ0eSgndGltZXN0YW1wJykpIHtcbiAgICAgICAgZGVsZWdhdGUuYmxvY2tzID0gW2xhc3RCbG9ja11cbiAgICAgICAgZGVsZWdhdGUuYmxvY2tzQXQgPSBsYXN0QmxvY2sudGltZXN0YW1wXG4gICAgICB9XG5cbiAgICAgIHJldHVybiBkZWxlZ2F0ZVxuICAgIH0pXG5cbiAgICAvLyBMYXN0IEJsb2NrIChmcm9tIHNwZWNpZmljIGRlbGVnYXRlKVxuICAgIGNvbnN0IHJlcXVlc3RzID0gW11cbiAgICBjb25zdCBsYXN0RGVsZWdhdGVzTGFzdEJsb2NrID0gSlNPTi5wYXJzZShzZXNzaW9uU3RvcmFnZS5nZXRJdGVtKCdsYXN0RGVsZWdhdGVzTGFzdEJsb2NrJykgfHwgJ1tdJylcblxuICAgIGRlbGVnYXRlcy5mb3JFYWNoKChkZWxlZ2F0ZSkgPT4ge1xuICAgICAgaWYgKGRlbGVnYXRlLmJsb2Nrc0F0KSB7XG4gICAgICAgIC8vIHdlIGFscmVhZHkgaGF2ZSB0aGUgZGVsZWdhdGUncyBsYXN0IGJsb2NrIGZyb20gbG9va2luZyBhdCB0aGUgbGFzdCAxMDAgYmxvY2tzXG4gICAgICAgIHJlcXVlc3RzLnB1c2goZGVsZWdhdGUuYmxvY2tzWzBdKVxuICAgICAgfSBlbHNlIGlmIChsYXN0QmxvY2tzRmV0Y2hlZC5sZW5ndGggJiYgbGFzdEJsb2Nrc0ZldGNoZWRbMF0uaGVpZ2h0ID49IGJsb2Nrc1tibG9ja3MubGVuZ3RoIC0gMV0uaGVpZ2h0KSB7XG4gICAgICAgIC8vIHRoZSBkZWxlZ2F0ZSdzIGxhc3QgYmxvY2sgaXMgbm90IGluIHRoZSBsYXN0IDEwMCBibG9ja3MgYnV0IHdlIG1pZ2h0IGhhdmUgc2F2ZWQgaXQgaW4gc2Vzc2lvblN0b3JhZ2VcbiAgICAgICAgLy8gb25seSB2YWxpZCBpZiB0aGVyZSBpcyBubyAnaG9sZScgYmV0d2VlbiB0aGUgbGFzdCBibG9ja3MgZmV0Y2hlZCBhbmQgdGhlIGN1cnJlbnQgb25lc1xuICAgICAgICBjb25zdCBsYXN0RGVsID0gbGFzdERlbGVnYXRlc0xhc3RCbG9jay5maW5kKGRlbCA9PiBkZWwucHVibGljS2V5ID09PSBkZWxlZ2F0ZS5wdWJsaWNLZXkpXG4gICAgICAgIGlmIChsYXN0RGVsKSB7IHJlcXVlc3RzLnB1c2gobGFzdERlbC5ibG9ja3NbMF0pIH0gZWxzZSB7IHJlcXVlc3RzLnB1c2goYmxvY2subGFzdEJsb2NrQnlQdWJsaWNLZXkoZGVsZWdhdGUucHVibGljS2V5KSkgfVxuICAgICAgfSBlbHNlIHtcbiAgICAgICAgLy8gbGFzdCBvcHRpb24gOiBtYWtlIGEgc3BlY2lmaWMgc2VydmVyIHJlcXVlc3QgdG8gZ2V0IHRoZSBkZWxlZ2F0ZSdzIGxhc3QgYmxvY2tcbiAgICAgICAgcmVxdWVzdHMucHVzaChibG9jay5sYXN0QmxvY2tCeVB1YmxpY0tleShkZWxlZ2F0ZS5wdWJsaWNLZXkpKVxuICAgICAgfVxuICAgIH0pXG5cbiAgICBjb25zdCByZXN1bHRzID0gYXdhaXQgUHJvbWlzZS5hbGwocmVxdWVzdHMpXG4gICAgY29uc3QgZGVsZWdhdGVzTGFzdEJsb2NrID0gZGVsZWdhdGVzLm1hcCgocmVzdWx0LCBpbmRleCkgPT4ge1xuICAgICAgbGV0IGxhc3RCbG9jayA9IHJlc3VsdHNbaW5kZXhdXG5cbiAgICAgIHJlc3VsdC5ibG9ja3MgPSBbbGFzdEJsb2NrXVxuICAgICAgcmVzdWx0LmJsb2Nrc0F0ID0gbGFzdEJsb2NrID8gbGFzdEJsb2NrLnRpbWVzdGFtcCA6IGZhbHNlXG5cbiAgICAgIHJldHVybiByZXN1bHRcbiAgICB9KVxuICAgIHNlc3Npb25TdG9yYWdlLnNldEl0ZW0oJ2xhc3REZWxlZ2F0ZXNMYXN0QmxvY2snLCBKU09OLnN0cmluZ2lmeShkZWxlZ2F0ZXNMYXN0QmxvY2spKVxuXG4gICAgLy8gUm91bmRzXG4gICAgY29uc3QgbmV4dEZvcmdlcnMgPSBhd2FpdCB0aGlzLm5leHRGb3JnZXJzKClcbiAgICBjb25zdCBkZWxlZ2F0ZXNSb3VuZHMgPSBkZWxlZ2F0ZXNMYXN0QmxvY2subWFwKGRlbGVnYXRlID0+IHtcbiAgICAgIGNvbnN0IGRlbGVnYXRlSW5kZXggPSBuZXh0Rm9yZ2Vycy5maW5kSW5kZXgoXG4gICAgICAgIGQgPT4gZCA9PT0gZGVsZWdhdGUucHVibGljS2V5XG4gICAgICApXG5cbiAgICAgIGRlbGVnYXRlLmZvcmdpbmdUaW1lID0gZGVsZWdhdGVJbmRleCAqIDhcbiAgICAgIGRlbGVnYXRlLmlzUm91bmREZWxlZ2F0ZSA9IGRlbGVnYXRlSW5kZXggIT09IC0xXG5cbiAgICAgIHJldHVybiBkZWxlZ2F0ZVxuICAgIH0pXG5cbiAgICAvLyBGb3JnaW5nIFN0YXR1c1xuICAgIGNvbnN0IGhlaWdodCA9IGF3YWl0IGJsb2NrLmhlaWdodCgpXG4gICAgcmV0dXJuIHsgZGVsZWdhdGVDb3VudDogZGVsZWdhdGVDb3VudCxcbiAgICAgIGRlbGVnYXRlczogZGVsZWdhdGVzUm91bmRzLm1hcChkZWxlZ2F0ZSA9PiB7XG4gICAgICAgIGRlbGVnYXRlLmZvcmdpbmdTdGF0dXMgPSBmb3JnaW5nLnN0YXR1cyhcbiAgICAgICAgICBkZWxlZ2F0ZSxcbiAgICAgICAgICBoZWlnaHRcbiAgICAgICAgKVxuXG4gICAgICAgIHJldHVybiBkZWxlZ2F0ZVxuICAgICAgfSkgfVxuICB9XG5cbiAgYXN5bmMgZm9yZ2VkKCkge1xuICAgIGNvbnN0IGFjdGl2ZURlbGVnYXRlcyA9IHN0b3JlLmdldHRlcnNbJ25ldHdvcmsvYWN0aXZlRGVsZWdhdGVzJ11cblxuICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgTm9kZVNlcnZpY2UuZ2V0KCdkZWxlZ2F0ZXMnLCB7XG4gICAgICBwYXJhbXM6IHtcbiAgICAgICAgb3JkZXJCeTogJ3JhdGU6YXNjJyxcbiAgICAgICAgbGltaXQ6IGFjdGl2ZURlbGVnYXRlc1xuICAgICAgfVxuICAgIH0pXG5cbiAgICBjb25zdCBkZWxlZ2F0ZXMgPSByZXNwb25zZS5kYXRhLmRlbGVnYXRlc1xuICAgIGNvbnN0IHJlcXVlc3RzID0gW11cblxuICAgIGRlbGVnYXRlcy5mb3JFYWNoKGRlbGVnYXRlID0+IHtcbiAgICAgIHJlcXVlc3RzLnB1c2goXG4gICAgICAgIE5vZGVTZXJ2aWNlLmdldCgnZGVsZWdhdGVzL2ZvcmdpbmcvZ2V0Rm9yZ2VkQnlBY2NvdW50Jywge1xuICAgICAgICAgIHBhcmFtczoge1xuICAgICAgICAgICAgZ2VuZXJhdG9yUHVibGljS2V5OiBkZWxlZ2F0ZS5wdWJsaWNLZXlcbiAgICAgICAgICB9XG4gICAgICAgIH0pXG4gICAgICApXG4gICAgfSlcblxuICAgIGNvbnN0IHJlc3VsdHMgPSBhd2FpdCBQcm9taXNlLmFsbChyZXF1ZXN0cylcbiAgICByZXR1cm4gcmVzdWx0cy5tYXAoKHJlc3VsdCwgaW5kZXgpID0+IHtcbiAgICAgIHJldHVybiB7XG4gICAgICAgIGRlbGVnYXRlOiBkZWxlZ2F0ZXNbaW5kZXhdLnB1YmxpY0tleSxcbiAgICAgICAgZm9yZ2VkOiBOdW1iZXIocmVzdWx0LmRhdGEuZm9yZ2VkKVxuICAgICAgfVxuICAgIH0pXG4gIH1cblxuICBhc3luYyBhY3RpdmVEZWxlZ2F0ZXNDb3VudCgpIHtcbiAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IE5vZGVTZXJ2aWNlLmdldCgnZGVsZWdhdGVzJywge1xuICAgICAgcGFyYW1zOiB7XG4gICAgICAgIG9yZGVyQnk6ICdyYXRlOmFzYycsXG4gICAgICAgIGxpbWl0OiAxXG4gICAgICB9XG4gICAgfSlcbiAgICByZXR1cm4gcmVzcG9uc2UuZGF0YS50b3RhbENvdW50XG4gIH1cbn1cblxuZXhwb3J0IGRlZmF1bHQgbmV3IERlbGVnYXRlU2VydmljZSgpXG4iXX0=

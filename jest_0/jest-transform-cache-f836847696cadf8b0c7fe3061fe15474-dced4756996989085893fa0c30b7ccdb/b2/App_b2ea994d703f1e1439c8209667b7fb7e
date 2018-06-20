@@ -1,0 +1,276 @@
+1c9414bcba2fddbb02a3c67c580d41f4
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _Main = require('@/components/header/Main');
+
+var _Main2 = _interopRequireDefault(_Main);
+
+var _Footer = require('@/components/Footer');
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+var _coinMarketCap = require('@/services/coin-market-cap');
+
+var _coinMarketCap2 = _interopRequireDefault(_coinMarketCap);
+
+var _block = require('@/services/block');
+
+var _block2 = _interopRequireDefault(_block);
+
+var _delegate = require('@/services/delegate');
+
+var _delegate2 = _interopRequireDefault(_delegate);
+
+var _loader = require('@/services/loader');
+
+var _loader2 = _interopRequireDefault(_loader);
+
+var _vuex = require('vuex');
+
+require('@/styles/style.css');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  components: { AppHeader: _Main2.default, AppFooter: _Footer2.default },
+
+  data: function data() {
+    return {
+      currencyTimer: null,
+      networkTimer: null
+    };
+  },
+
+  created: function created() {
+    var _this = this;
+
+    return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+      var network, response;
+      return _regenerator2.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              network = require('../networks/' + process.env.EXPLORER_CONFIG);
+
+
+              _this.$store.dispatch('network/setDefaults', network);
+
+              _this.$store.dispatch('network/setServer', network.server);
+              _this.$store.dispatch('network/setAlias', network.alias);
+              _this.$store.dispatch('network/setActiveDelegates', network.activeDelegates);
+              _this.$store.dispatch('network/setRewardOffset', network.rewardOffset);
+              _this.$store.dispatch('network/setCurrencies', network.currencies);
+              _this.$store.dispatch('network/setKnownWallets', network.knownWallets);
+
+              if (network.defaults.currency) {
+                _this.$store.dispatch('currency/setName', localStorage.getItem('currencyName') || network.defaults.currency.name);
+
+                _this.$store.dispatch('currency/setSymbol', localStorage.getItem('currencySymbol') || network.defaults.currency.symbol);
+              }
+
+              _context.next = 11;
+              return _loader2.default.config();
+
+            case 11:
+              response = _context.sent;
+
+              _this.$store.dispatch('network/setToken', response.token);
+              _this.$store.dispatch('network/setSymbol', response.symbol);
+              _this.$store.dispatch('network/setNethash', response.nethash);
+
+              _this.$store.dispatch('ui/setLanguage', localStorage.getItem('language') || 'en');
+
+              _this.$store.dispatch('ui/setPriceChart', localStorage.getItem('priceChart') || network.config.priceChart);
+
+              _this.$store.dispatch('ui/setNightMode', localStorage.getItem('nightMode') || false);
+
+              _this.updateCurrencyRate();
+              _this.updateSupply();
+              _this.updateHeight();
+              _this.updateDelegates();
+
+            case 22:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, _this);
+    }))();
+  },
+  mounted: function mounted() {
+    this.prepareComponent();
+  },
+
+
+  computed: (0, _extends3.default)({}, (0, _vuex.mapGetters)('currency', { currencyName: 'name' }), (0, _vuex.mapGetters)('ui', ['nightMode']), (0, _vuex.mapGetters)('network', ['token'])),
+
+  methods: {
+    prepareComponent: function prepareComponent() {
+      this.initialiseTimers();
+    },
+    updateCurrencyRate: function updateCurrencyRate() {
+      var _this2 = this;
+
+      return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
+        var rate;
+        return _regenerator2.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!(_this2.currencyName !== _this2.token)) {
+                  _context2.next = 5;
+                  break;
+                }
+
+                _context2.next = 3;
+                return _coinMarketCap2.default.price(_this2.currencyName);
+
+              case 3:
+                rate = _context2.sent;
+
+                _this2.$store.dispatch('currency/setRate', rate);
+
+              case 5:
+              case 'end':
+                return _context2.stop();
+            }
+          }
+        }, _callee2, _this2);
+      }))();
+    },
+    updateSupply: function updateSupply() {
+      var _this3 = this;
+
+      return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3() {
+        var supply;
+        return _regenerator2.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _block2.default.supply();
+
+              case 2:
+                supply = _context3.sent;
+
+                _this3.$store.dispatch('network/setSupply', supply);
+
+              case 4:
+              case 'end':
+                return _context3.stop();
+            }
+          }
+        }, _callee3, _this3);
+      }))();
+    },
+    updateHeight: function updateHeight() {
+      var _this4 = this;
+
+      return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4() {
+        var height;
+        return _regenerator2.default.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return _block2.default.height();
+
+              case 2:
+                height = _context4.sent;
+
+                _this4.$store.dispatch('network/setHeight', height);
+
+              case 4:
+              case 'end':
+                return _context4.stop();
+            }
+          }
+        }, _callee4, _this4);
+      }))();
+    },
+    updateDelegates: function updateDelegates() {
+      var _this5 = this;
+
+      return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5() {
+        var delegates;
+        return _regenerator2.default.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return _delegate2.default.all();
+
+              case 2:
+                delegates = _context5.sent;
+
+                _this5.$store.dispatch('delegates/setDelegates', delegates);
+
+              case 4:
+              case 'end':
+                return _context5.stop();
+            }
+          }
+        }, _callee5, _this5);
+      }))();
+    },
+    initialiseTimers: function initialiseTimers() {
+      var _this6 = this;
+
+      this.currencyTimer = setInterval(function () {
+        _this6.updateCurrencyRate();
+      }, 5 * 60 * 1000);
+
+      this.networkTimer = setInterval(function () {
+        _this6.updateSupply();
+        _this6.updateHeight();
+        _this6.updateDelegates();
+      }, 8 * 1000);
+    },
+    clearTimers: function clearTimers() {
+      clearInterval(this.currencyTimer);
+      clearInterval(this.networkTimer);
+    }
+  },
+
+  beforeDestroy: function beforeDestroy() {
+    this.clearTimers();
+  }
+};
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('main',{class:[
+  _vm.nightMode ? 'theme-dark' : 'theme-light',
+  'bg-theme-page-background text-theme-text-content min-h-screen font-sans xl:pt-8'
+]},[_c('app-header'),_vm._v(" "),_c('router-view'),_vm._v(" "),_c('app-footer')],1)}
+__vue__options__.staticRenderFns = []

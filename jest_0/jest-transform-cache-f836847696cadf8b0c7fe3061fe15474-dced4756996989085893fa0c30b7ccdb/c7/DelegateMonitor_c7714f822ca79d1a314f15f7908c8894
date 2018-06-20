@@ -1,0 +1,147 @@
+966fea2c905284fda85da2daf419cc81
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _Details = require('@/components/monitor/Details');
+
+var _Details2 = _interopRequireDefault(_Details);
+
+var _ActiveDelegates = require('@/components/monitor/ActiveDelegates');
+
+var _ActiveDelegates2 = _interopRequireDefault(_ActiveDelegates);
+
+var _StandbyDelegates = require('@/components/monitor/StandbyDelegates');
+
+var _StandbyDelegates2 = _interopRequireDefault(_StandbyDelegates);
+
+var _Forging = require('@/components/monitor/Forging');
+
+var _Forging2 = _interopRequireDefault(_Forging);
+
+var _delegate = require('@/services/delegate');
+
+var _delegate2 = _interopRequireDefault(_delegate);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  components: {
+    DelegateDetail: _Details2.default,
+    Forging: _Forging2.default,
+    ActiveDelegates: _ActiveDelegates2.default,
+    StandbyDelegates: _StandbyDelegates2.default
+  },
+
+  data: function data() {
+    return {
+      delegates: [],
+      delegateCount: null,
+      activeTab: 'active',
+      timer: null
+    };
+  },
+
+  mounted: function mounted() {
+    var _this = this;
+
+    return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+      return _regenerator2.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.getDelegates();
+
+            case 2:
+              _this.initialiseTimer();
+
+            case 3:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, _this);
+    }))();
+  },
+
+
+  methods: {
+    getDelegates: function getDelegates() {
+      var _this2 = this;
+
+      return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
+        var response;
+        return _regenerator2.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _delegate2.default.activeDelegates();
+
+              case 2:
+                response = _context2.sent;
+
+                _this2.delegates = response.delegates;
+                _this2.delegateCount = response.delegateCount;
+
+              case 5:
+              case 'end':
+                return _context2.stop();
+            }
+          }
+        }, _callee2, _this2);
+      }))();
+    },
+    initialiseTimer: function initialiseTimer() {
+      this.timer = setInterval(this.getDelegates, 8 * 1000);
+    }
+  },
+
+  beforeDestroy: function beforeDestroy() {
+    clearInterval(this.timer);
+  }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"max-w-2xl mx-auto md:pt-5"},[_c('content-header',[_vm._v(_vm._s(_vm.$t("Delegate Monitor")))]),_vm._v(" "),_c('delegate-detail',{attrs:{"delegateCount":_vm.delegateCount}}),_vm._v(" "),_c('section',{staticClass:"page-section py-8"},[_c('nav',{staticClass:"mx-5 sm:mx-10 mb-4 border-b flex items-end"},[_c('div',{class:_vm.activeTab === 'active' ? 'active-tab' : 'inactive-tab',on:{"click":function($event){_vm.activeTab = 'active'}}},[_vm._v("\n        "+_vm._s(_vm.$t("Active"))+"\n      ")]),_vm._v(" "),_c('div',{class:_vm.activeTab === 'standby' ? 'active-tab' : 'inactive-tab',on:{"click":function($event){_vm.activeTab = 'standby'}}},[_vm._v("\n        "+_vm._s(_vm.$t("Standby"))+"\n      ")])]),_vm._v(" "),_c('forging',{directives:[{name:"show",rawName:"v-show",value:(_vm.activeTab === 'active'),expression:"activeTab === 'active'"}],attrs:{"delegates":_vm.delegates}}),_vm._v(" "),(_vm.activeTab === 'active')?_c('active-delegates',{attrs:{"delegates":_vm.delegates}}):_vm._e(),_vm._v(" "),(_vm.activeTab === 'standby')?_c('standby-delegates'):_vm._e()],1)],1)}
+__vue__options__.staticRenderFns = []

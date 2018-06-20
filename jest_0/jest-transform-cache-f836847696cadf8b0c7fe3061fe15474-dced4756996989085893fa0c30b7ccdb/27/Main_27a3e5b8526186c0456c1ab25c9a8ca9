@@ -1,0 +1,84 @@
+1fbfb33f808518a80a3040e415ffc544
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _Default = require('@/components/header/Default');
+
+var _Default2 = _interopRequireDefault(_Default);
+
+var _Search = require('@/components/header/Search');
+
+var _Search2 = _interopRequireDefault(_Search);
+
+var _Desktop = require('@/components/header/currencies/Desktop');
+
+var _Desktop2 = _interopRequireDefault(_Desktop);
+
+var _Mobile = require('@/components/header/currencies/Mobile');
+
+var _Mobile2 = _interopRequireDefault(_Mobile);
+
+var _Desktop3 = require('@/components/header/menu/Desktop');
+
+var _Desktop4 = _interopRequireDefault(_Desktop3);
+
+var _Mobile3 = require('@/components/header/menu/Mobile');
+
+var _Mobile4 = _interopRequireDefault(_Mobile3);
+
+var _vuex = require('vuex');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  components: {
+    HeaderDefault: _Default2.default,
+    HeaderSearch: _Search2.default,
+    HeaderDesktopCurrencies: _Desktop2.default,
+    HeaderMobileCurrencies: _Mobile2.default,
+    HeaderDesktopMenu: _Desktop4.default,
+    HeaderMobileMenu: _Mobile4.default
+  },
+
+  computed: (0, _extends3.default)({}, (0, _vuex.mapGetters)('ui', ['headerType', 'menuVisible']))
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('header',{staticClass:"header min-h-50px md:min-h-80px z-50 max-w-2xl mx-auto flex bg-theme-nav-background shadow-theme xl:rounded-md mb-5 sm:mb-10"},[_c('router-link',{staticClass:"logo-container w-50px md:w-80px h-50px md:h-80px flex-none bg-red text-2xl xl:rounded-l-md flex justify-center items-center",attrs:{"to":{ name: 'home' }}},[_c('img',{staticClass:"logo max-w-25px md:max-w-38px",attrs:{"src":"@/assets/images/benchpay-logo.png"}})]),_vm._v(" "),_c('div',{staticClass:"w-full relative hidden xl:flex"},[(_vm.headerType === 'search')?_c('header-search'):(_vm.headerType === 'currencies')?_c('header-desktop-currencies'):_c('header-default'),_vm._v(" "),(_vm.menuVisible)?_c('header-desktop-menu'):_vm._e()],1),_vm._v(" "),_c('div',{staticClass:"w-full relative flex xl:hidden"},[(_vm.headerType === 'search')?_c('header-search'):_c('header-default')],1),_vm._v(" "),(_vm.menuVisible)?_c('header-mobile-menu'):(_vm.headerType === 'currencies')?_c('header-mobile-currencies'):_vm._e()],1)}
+__vue__options__.staticRenderFns = []

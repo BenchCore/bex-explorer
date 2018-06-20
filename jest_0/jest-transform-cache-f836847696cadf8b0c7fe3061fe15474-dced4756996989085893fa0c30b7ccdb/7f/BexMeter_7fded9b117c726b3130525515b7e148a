@@ -1,0 +1,534 @@
+1a4a36115e19c2bcbfcbf5515fe22fee
+/* istanbul ignore next */var cov_2ny5frahu5 = function () {
+  var path = "/root/benchcore-explorer/src/components/BexMeter.vue",
+      hash = "0726f1d56a4e91e7ac0352872de609bbb31e805a",
+      Function = function () {}.constructor,
+      global = new Function('return this')(),
+      gcv = "__coverage__",
+      coverageData = {
+    path: "/root/benchcore-explorer/src/components/BexMeter.vue",
+    statementMap: {
+      "0": {
+        start: {
+          line: 1,
+          column: 1
+        },
+        end: {
+          line: 53,
+          column: 4
+        }
+      },
+      "1": {
+        start: {
+          line: 4,
+          column: 0
+        },
+        end: {
+          line: 6,
+          column: 3
+        }
+      },
+      "2": {
+        start: {
+          line: 23,
+          column: 0
+        },
+        end: {
+          line: 52,
+          column: 2
+        }
+      },
+      "3": {
+        start: {
+          line: 41,
+          column: 6
+        },
+        end: {
+          line: 41,
+          column: 39
+        }
+      },
+      "4": {
+        start: {
+          line: 44,
+          column: 6
+        },
+        end: {
+          line: 44,
+          column: 47
+        }
+      },
+      "5": {
+        start: {
+          line: 47,
+          column: 21
+        },
+        end: {
+          line: 47,
+          column: 42
+        }
+      },
+      "6": {
+        start: {
+          line: 49,
+          column: 6
+        },
+        end: {
+          line: 49,
+          column: 49
+        }
+      },
+      "7": {
+        start: {
+          line: 54,
+          column: 20
+        },
+        end: {
+          line: 54,
+          column: 89
+        }
+      },
+      "8": {
+        start: {
+          line: 54,
+          column: 114
+        },
+        end: {
+          line: 54,
+          column: 187
+        }
+      },
+      "9": {
+        start: {
+          line: 55,
+          column: 0
+        },
+        end: {
+          line: 55,
+          column: 657
+        }
+      },
+      "10": {
+        start: {
+          line: 55,
+          column: 54
+        },
+        end: {
+          line: 55,
+          column: 58
+        }
+      },
+      "11": {
+        start: {
+          line: 55,
+          column: 66
+        },
+        end: {
+          line: 55,
+          column: 84
+        }
+      },
+      "12": {
+        start: {
+          line: 55,
+          column: 92
+        },
+        end: {
+          line: 55,
+          column: 108
+        }
+      },
+      "13": {
+        start: {
+          line: 55,
+          column: 109
+        },
+        end: {
+          line: 55,
+          column: 656
+        }
+      },
+      "14": {
+        start: {
+          line: 56,
+          column: 0
+        },
+        end: {
+          line: 56,
+          column: 37
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "(anonymous_0)",
+        decl: {
+          start: {
+            line: 1,
+            column: 2
+          },
+          end: {
+            line: 1,
+            column: 3
+          }
+        },
+        loc: {
+          start: {
+            line: 1,
+            column: 12
+          },
+          end: {
+            line: 53,
+            column: 1
+          }
+        },
+        line: 1
+      },
+      "1": {
+        name: "circumference",
+        decl: {
+          start: {
+            line: 40,
+            column: 28
+          },
+          end: {
+            line: 40,
+            column: 41
+          }
+        },
+        loc: {
+          start: {
+            line: 40,
+            column: 44
+          },
+          end: {
+            line: 42,
+            column: 5
+          }
+        },
+        line: 40
+      },
+      "2": {
+        name: "width",
+        decl: {
+          start: {
+            line: 43,
+            column: 20
+          },
+          end: {
+            line: 43,
+            column: 25
+          }
+        },
+        loc: {
+          start: {
+            line: 43,
+            column: 28
+          },
+          end: {
+            line: 45,
+            column: 5
+          }
+        },
+        line: 43
+      },
+      "3": {
+        name: "dashoffset",
+        decl: {
+          start: {
+            line: 46,
+            column: 25
+          },
+          end: {
+            line: 46,
+            column: 35
+          }
+        },
+        loc: {
+          start: {
+            line: 46,
+            column: 38
+          },
+          end: {
+            line: 50,
+            column: 5
+          }
+        },
+        line: 46
+      },
+      "4": {
+        name: "render",
+        decl: {
+          start: {
+            line: 55,
+            column: 35
+          },
+          end: {
+            line: 55,
+            column: 41
+          }
+        },
+        loc: {
+          start: {
+            line: 55,
+            column: 45
+          },
+          end: {
+            line: 55,
+            column: 657
+          }
+        },
+        line: 55
+      }
+    },
+    branchMap: {
+      "0": {
+        loc: {
+          start: {
+            line: 54,
+            column: 20
+          },
+          end: {
+            line: 54,
+            column: 89
+          }
+        },
+        type: "cond-expr",
+        locations: [{
+          start: {
+            line: 54,
+            column: 50
+          },
+          end: {
+            line: 54,
+            column: 72
+          }
+        }, {
+          start: {
+            line: 54,
+            column: 75
+          },
+          end: {
+            line: 54,
+            column: 89
+          }
+        }],
+        line: 54
+      },
+      "1": {
+        loc: {
+          start: {
+            line: 54,
+            column: 114
+          },
+          end: {
+            line: 54,
+            column: 187
+          }
+        },
+        type: "cond-expr",
+        locations: [{
+          start: {
+            line: 54,
+            column: 151
+          },
+          end: {
+            line: 54,
+            column: 172
+          }
+        }, {
+          start: {
+            line: 54,
+            column: 174
+          },
+          end: {
+            line: 54,
+            column: 187
+          }
+        }],
+        line: 54
+      },
+      "2": {
+        loc: {
+          start: {
+            line: 55,
+            column: 92
+          },
+          end: {
+            line: 55,
+            column: 108
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 55,
+            column: 92
+          },
+          end: {
+            line: 55,
+            column: 104
+          }
+        }, {
+          start: {
+            line: 55,
+            column: 106
+          },
+          end: {
+            line: 55,
+            column: 108
+          }
+        }],
+        line: 55
+      },
+      "3": {
+        loc: {
+          start: {
+            line: 55,
+            column: 384
+          },
+          end: {
+            line: 55,
+            column: 654
+          }
+        },
+        type: "cond-expr",
+        locations: [{
+          start: {
+            line: 55,
+            column: 401
+          },
+          end: {
+            line: 55,
+            column: 645
+          }
+        }, {
+          start: {
+            line: 55,
+            column: 646
+          },
+          end: {
+            line: 55,
+            column: 654
+          }
+        }],
+        line: 55
+      }
+    },
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0
+    },
+    f: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0
+    },
+    b: {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0],
+      "3": [0, 0]
+    },
+    _coverageSchema: "332fd63041d2c1bcb487cc26dd0d5f7d97098a6c"
+  },
+      coverage = global[gcv] || (global[gcv] = {});
+
+  if (coverage[path] && coverage[path].hash === hash) {
+    return coverage[path];
+  }
+
+  coverageData.hash = hash;
+  return coverage[path] = coverageData;
+}();
+
+; /* istanbul ignore next */cov_2ny5frahu5.s[0]++;
+(function () {
+  "use strict";
+
+  /* istanbul ignore next */cov_2ny5frahu5.f[0]++;
+  cov_2ny5frahu5.s[1]++;
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+
+  /* istanbul ignore next */cov_2ny5frahu5.s[2]++;
+  exports.default = {
+    props: {
+      percentage: {
+        type: Number,
+        default: 0
+      },
+      radius: {
+        type: Number,
+        default: 25
+      },
+      stroke: {
+        type: Number,
+        default: 8
+      }
+    },
+
+    computed: {
+      circumference: function circumference() {
+        /* istanbul ignore next */cov_2ny5frahu5.f[1]++;
+        cov_2ny5frahu5.s[3]++;
+
+        return 2 * Math.PI * this.radius;
+      },
+      width: function width() {
+        /* istanbul ignore next */cov_2ny5frahu5.f[2]++;
+        cov_2ny5frahu5.s[4]++;
+
+        return this.radius * 2 + this.stroke * 2;
+      },
+      dashoffset: function dashoffset() {
+        /* istanbul ignore next */cov_2ny5frahu5.f[3]++;
+
+        var progress = /* istanbul ignore next */(cov_2ny5frahu5.s[5]++, this.percentage / 100);
+
+        /* istanbul ignore next */cov_2ny5frahu5.s[6]++;
+        return this.circumference * (1 - progress);
+      }
+    }
+  };
+})();
+var defaultExport = /* istanbul ignore next */(cov_2ny5frahu5.s[7]++, module.exports.__esModule ? /* istanbul ignore next */(cov_2ny5frahu5.b[0][0]++, module.exports.default) : /* istanbul ignore next */(cov_2ny5frahu5.b[0][1]++, module.exports));var __vue__options__ = /* istanbul ignore next */(cov_2ny5frahu5.s[8]++, typeof defaultExport === "function" ? /* istanbul ignore next */(cov_2ny5frahu5.b[1][0]++, defaultExport.options) : /* istanbul ignore next */(cov_2ny5frahu5.b[1][1]++, defaultExport));
+/* istanbul ignore next */cov_2ny5frahu5.s[9]++;
+__vue__options__.render = function render() {
+  /* istanbul ignore next */cov_2ny5frahu5.f[4]++;
+  var _vm = /* istanbul ignore next */(cov_2ny5frahu5.s[10]++, this);var _h = /* istanbul ignore next */(cov_2ny5frahu5.s[11]++, _vm.$createElement);var _c = /* istanbul ignore next */(cov_2ny5frahu5.s[12]++, /* istanbul ignore next */(cov_2ny5frahu5.b[2][0]++, _vm._self._c) || /* istanbul ignore next */(cov_2ny5frahu5.b[2][1]++, _h)); /* istanbul ignore next */cov_2ny5frahu5.s[13]++;
+  return _c('svg', { staticStyle: { "transform": "rotate(-90deg)" }, attrs: { "viewBox": "0 0 " + _vm.width + " " + _vm.width } }, [_c('circle', { attrs: { "fill": "none", "stroke": "var(--bex-meter)", "cx": _vm.width / 2, "cy": _vm.width / 2, "r": _vm.radius, "stroke-width": _vm.stroke } }), _vm._v(" "), _vm.percentage ? /* istanbul ignore next */(cov_2ny5frahu5.b[3][0]++, _c('circle', { style: { strokeDashoffset: _vm.dashoffset, strokeDasharray: _vm.circumference }, attrs: { "stroke-linecap": "round", "fill": "none", "cx": _vm.width / 2, "cy": _vm.width / 2, "r": _vm.radius, "stroke-width": _vm.stroke, "stroke": "currentColor" } })) : /* istanbul ignore next */(cov_2ny5frahu5.b[3][1]++, _vm._e())]);
+};
+/* istanbul ignore next */cov_2ny5frahu5.s[14]++;
+__vue__options__.staticRenderFns = [];

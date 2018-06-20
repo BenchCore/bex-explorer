@@ -1,0 +1,1 @@
+{"version":3,"sources":["event-bus.js"],"names":["Vue"],"mappings":";;;;;;AAAA;;;;;;kBAEe,IAAIA,aAAJ,E","file":"event-bus.js","sourcesContent":["import Vue from 'vue'\n\nexport default new Vue()\n"]}

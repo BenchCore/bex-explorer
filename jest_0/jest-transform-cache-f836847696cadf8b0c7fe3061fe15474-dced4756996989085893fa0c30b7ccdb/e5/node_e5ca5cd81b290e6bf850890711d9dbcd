@@ -1,0 +1,88 @@
+4f3bf9137441fc68ae07092b25c2556c
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _stringify = require('babel-runtime/core-js/json/stringify');
+
+var _stringify2 = _interopRequireDefault(_stringify);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _store = require('@/store');
+
+var _store2 = _interopRequireDefault(_store);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var NodeService = function () {
+  function NodeService() {
+    (0, _classCallCheck3.default)(this, NodeService);
+  }
+
+  (0, _createClass3.default)(NodeService, [{
+    key: 'get',
+    value: function () {
+      var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(url, config) {
+        var server, response;
+        return _regenerator2.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                server = _store2.default.getters['network/server'];
+                _context.next = 3;
+                return _axios2.default.get(server + '/' + url, config);
+
+              case 3:
+                response = _context.sent;
+
+                if (response.data.success) {
+                  _context.next = 6;
+                  break;
+                }
+
+                throw new Error('Error GET ' + url + ' : ' + (0, _stringify2.default)(response));
+
+              case 6:
+                return _context.abrupt('return', response);
+
+              case 7:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function get(_x, _x2) {
+        return _ref.apply(this, arguments);
+      }
+
+      return get;
+    }()
+  }]);
+  return NodeService;
+}();
+
+exports.default = new NodeService();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vZGUuanMiXSwibmFtZXMiOlsiTm9kZVNlcnZpY2UiLCJ1cmwiLCJjb25maWciLCJzZXJ2ZXIiLCJzdG9yZSIsImdldHRlcnMiLCJheGlvcyIsImdldCIsInJlc3BvbnNlIiwiZGF0YSIsInN1Y2Nlc3MiLCJFcnJvciJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQTs7OztBQUNBOzs7Ozs7SUFFTUEsVzs7Ozs7Ozs7MkdBQ01DLEcsRUFBS0MsTTs7Ozs7O0FBQ1BDLHNCLEdBQVNDLGdCQUFNQyxPQUFOLENBQWMsZ0JBQWQsQzs7dUJBRVFDLGdCQUFNQyxHQUFOLENBQWFKLE1BQWIsU0FBdUJGLEdBQXZCLEVBQThCQyxNQUE5QixDOzs7QUFBakJNLHdCOztvQkFFREEsU0FBU0MsSUFBVCxDQUFjQyxPOzs7OztzQkFBaUIsSUFBSUMsS0FBSixDQUFVLGVBQWVWLEdBQWYsR0FBcUIsS0FBckIsR0FBNkIseUJBQWVPLFFBQWYsQ0FBdkMsQzs7O2lEQUM3QkEsUTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7a0JBSUksSUFBSVIsV0FBSixFIiwiZmlsZSI6Im5vZGUuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgYXhpb3MgZnJvbSAnYXhpb3MnXG5pbXBvcnQgc3RvcmUgZnJvbSAnQC9zdG9yZSdcblxuY2xhc3MgTm9kZVNlcnZpY2Uge1xuICBhc3luYyBnZXQodXJsLCBjb25maWcpIHtcbiAgICBjb25zdCBzZXJ2ZXIgPSBzdG9yZS5nZXR0ZXJzWyduZXR3b3JrL3NlcnZlciddXG5cbiAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IGF4aW9zLmdldChgJHtzZXJ2ZXJ9LyR7dXJsfWAsIGNvbmZpZylcblxuICAgIGlmICghcmVzcG9uc2UuZGF0YS5zdWNjZXNzKSB7IHRocm93IG5ldyBFcnJvcignRXJyb3IgR0VUICcgKyB1cmwgKyAnIDogJyArIEpTT04uc3RyaW5naWZ5KHJlc3BvbnNlKSkgfVxuICAgIHJldHVybiByZXNwb25zZVxuICB9XG59XG5cbmV4cG9ydCBkZWZhdWx0IG5ldyBOb2RlU2VydmljZSgpXG4iXX0=

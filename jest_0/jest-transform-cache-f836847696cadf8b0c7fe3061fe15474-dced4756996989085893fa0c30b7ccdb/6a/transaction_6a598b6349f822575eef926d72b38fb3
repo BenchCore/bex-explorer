@@ -1,0 +1,527 @@
+a2b59f4bf42cc2363752e4dfd3d19c69
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _node = require('@/services/node');
+
+var _node2 = _interopRequireDefault(_node);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var TransactionService = function () {
+  function TransactionService() {
+    (0, _classCallCheck3.default)(this, TransactionService);
+  }
+
+  (0, _createClass3.default)(TransactionService, [{
+    key: 'latest',
+    value: function () {
+      var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+        var limit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 25;
+        var response;
+        return _regenerator2.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _node2.default.get('transactions', {
+                  params: {
+                    orderBy: 'timestamp:desc',
+                    limit: limit
+                  }
+                });
+
+              case 2:
+                response = _context.sent;
+                return _context.abrupt('return', response.data.transactions);
+
+              case 4:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function latest() {
+        return _ref.apply(this, arguments);
+      }
+
+      return latest;
+    }()
+  }, {
+    key: 'find',
+    value: function () {
+      var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(id) {
+        var response;
+        return _regenerator2.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _node2.default.get('transactions/get', {
+                  params: {
+                    id: id
+                  }
+                });
+
+              case 2:
+                response = _context2.sent;
+                return _context2.abrupt('return', response.data.transaction);
+
+              case 4:
+              case 'end':
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function find(_x2) {
+        return _ref2.apply(this, arguments);
+      }
+
+      return find;
+    }()
+  }, {
+    key: 'findByBlock',
+    value: function () {
+      var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(id) {
+        var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+        var limit = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 25;
+        var offset, response;
+        return _regenerator2.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                offset = page > 1 ? (page - 1) * limit : 0;
+                _context3.next = 3;
+                return _node2.default.get('transactions', {
+                  params: {
+                    blockId: id,
+                    limit: limit,
+                    offset: offset,
+                    orderBy: 'timestamp:desc'
+                  }
+                });
+
+              case 3:
+                response = _context3.sent;
+                return _context3.abrupt('return', response.data.transactions);
+
+              case 5:
+              case 'end':
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function findByBlock(_x3) {
+        return _ref3.apply(this, arguments);
+      }
+
+      return findByBlock;
+    }()
+  }, {
+    key: 'latestRegistrations',
+    value: function () {
+      var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4() {
+        var response;
+        return _regenerator2.default.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return _node2.default.get('transactions', {
+                  params: {
+                    orderBy: 'timestamp:desc',
+                    limit: 5,
+                    type: 2
+                  }
+                });
+
+              case 2:
+                response = _context4.sent;
+                return _context4.abrupt('return', response.data.transactions);
+
+              case 4:
+              case 'end':
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function latestRegistrations() {
+        return _ref4.apply(this, arguments);
+      }
+
+      return latestRegistrations;
+    }()
+  }, {
+    key: 'latestVotes',
+    value: function () {
+      var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5() {
+        var response;
+        return _regenerator2.default.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return _node2.default.get('transactions', {
+                  params: {
+                    orderBy: 'timestamp:desc',
+                    limit: 5,
+                    type: 3
+                  }
+                });
+
+              case 2:
+                response = _context5.sent;
+                return _context5.abrupt('return', response.data.transactions);
+
+              case 4:
+              case 'end':
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
+
+      function latestVotes() {
+        return _ref5.apply(this, arguments);
+      }
+
+      return latestVotes;
+    }()
+  }, {
+    key: 'allByAddress',
+    value: function () {
+      var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6(address) {
+        var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+        var limit = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 25;
+        var offset, response;
+        return _regenerator2.default.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                offset = page > 1 ? (page - 1) * limit : 0;
+                _context6.next = 3;
+                return _node2.default.get('transactions', {
+                  params: {
+                    senderId: address,
+                    recipientId: address,
+                    limit: limit,
+                    offset: offset,
+                    orderBy: 'timestamp:desc'
+                  }
+                });
+
+              case 3:
+                response = _context6.sent;
+                return _context6.abrupt('return', response.data.transactions);
+
+              case 5:
+              case 'end':
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this);
+      }));
+
+      function allByAddress(_x6) {
+        return _ref6.apply(this, arguments);
+      }
+
+      return allByAddress;
+    }()
+  }, {
+    key: 'sentByAddress',
+    value: function () {
+      var _ref7 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee7(senderId) {
+        var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+        var limit = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 25;
+        var offset, response;
+        return _regenerator2.default.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                offset = page > 1 ? (page - 1) * limit : 0;
+                _context7.next = 3;
+                return _node2.default.get('transactions', {
+                  params: {
+                    senderId: senderId,
+                    limit: limit,
+                    offset: offset,
+                    orderBy: 'timestamp:desc'
+                  }
+                });
+
+              case 3:
+                response = _context7.sent;
+                return _context7.abrupt('return', response.data.transactions);
+
+              case 5:
+              case 'end':
+                return _context7.stop();
+            }
+          }
+        }, _callee7, this);
+      }));
+
+      function sentByAddress(_x9) {
+        return _ref7.apply(this, arguments);
+      }
+
+      return sentByAddress;
+    }()
+  }, {
+    key: 'receivedByAddress',
+    value: function () {
+      var _ref8 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee8(recipientId) {
+        var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+        var limit = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 25;
+        var offset, response;
+        return _regenerator2.default.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                offset = page > 1 ? (page - 1) * limit : 0;
+                _context8.next = 3;
+                return _node2.default.get('transactions', {
+                  params: {
+                    recipientId: recipientId,
+                    limit: limit,
+                    offset: offset,
+                    orderBy: 'timestamp:desc'
+                  }
+                });
+
+              case 3:
+                response = _context8.sent;
+                return _context8.abrupt('return', response.data.transactions);
+
+              case 5:
+              case 'end':
+                return _context8.stop();
+            }
+          }
+        }, _callee8, this);
+      }));
+
+      function receivedByAddress(_x12) {
+        return _ref8.apply(this, arguments);
+      }
+
+      return receivedByAddress;
+    }()
+  }, {
+    key: 'sentByAddressCount',
+    value: function () {
+      var _ref9 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee9(senderId) {
+        var response;
+        return _regenerator2.default.wrap(function _callee9$(_context9) {
+          while (1) {
+            switch (_context9.prev = _context9.next) {
+              case 0:
+                _context9.next = 2;
+                return _node2.default.get('transactions', {
+                  params: {
+                    senderId: senderId,
+                    limit: 1
+                  }
+                });
+
+              case 2:
+                response = _context9.sent;
+                return _context9.abrupt('return', response.data.count);
+
+              case 4:
+              case 'end':
+                return _context9.stop();
+            }
+          }
+        }, _callee9, this);
+      }));
+
+      function sentByAddressCount(_x15) {
+        return _ref9.apply(this, arguments);
+      }
+
+      return sentByAddressCount;
+    }()
+  }, {
+    key: 'receivedByAddressCount',
+    value: function () {
+      var _ref10 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee10(recipientId) {
+        var response;
+        return _regenerator2.default.wrap(function _callee10$(_context10) {
+          while (1) {
+            switch (_context10.prev = _context10.next) {
+              case 0:
+                _context10.next = 2;
+                return _node2.default.get('transactions', {
+                  params: {
+                    recipientId: recipientId,
+                    limit: 1
+                  }
+                });
+
+              case 2:
+                response = _context10.sent;
+                return _context10.abrupt('return', response.data.count);
+
+              case 4:
+              case 'end':
+                return _context10.stop();
+            }
+          }
+        }, _callee10, this);
+      }));
+
+      function receivedByAddressCount(_x16) {
+        return _ref10.apply(this, arguments);
+      }
+
+      return receivedByAddressCount;
+    }()
+  }, {
+    key: 'findByBlockCount',
+    value: function () {
+      var _ref11 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee11(blockId) {
+        var response;
+        return _regenerator2.default.wrap(function _callee11$(_context11) {
+          while (1) {
+            switch (_context11.prev = _context11.next) {
+              case 0:
+                _context11.next = 2;
+                return _node2.default.get('transactions', {
+                  params: {
+                    blockId: blockId,
+                    limit: 1
+                  }
+                });
+
+              case 2:
+                response = _context11.sent;
+                return _context11.abrupt('return', response.data.count);
+
+              case 4:
+              case 'end':
+                return _context11.stop();
+            }
+          }
+        }, _callee11, this);
+      }));
+
+      function findByBlockCount(_x17) {
+        return _ref11.apply(this, arguments);
+      }
+
+      return findByBlockCount;
+    }()
+  }, {
+    key: 'paginate',
+    value: function () {
+      var _ref12 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee12(page) {
+        var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 25;
+        var offset, response;
+        return _regenerator2.default.wrap(function _callee12$(_context12) {
+          while (1) {
+            switch (_context12.prev = _context12.next) {
+              case 0:
+                offset = page > 1 ? (page - 1) * limit : 0;
+                _context12.next = 3;
+                return _node2.default.get('transactions', {
+                  params: {
+                    orderBy: 'timestamp:desc',
+                    limit: limit,
+                    offset: offset
+                  }
+                });
+
+              case 3:
+                response = _context12.sent;
+                return _context12.abrupt('return', response.data.transactions);
+
+              case 5:
+              case 'end':
+                return _context12.stop();
+            }
+          }
+        }, _callee12, this);
+      }));
+
+      function paginate(_x18) {
+        return _ref12.apply(this, arguments);
+      }
+
+      return paginate;
+    }()
+  }, {
+    key: 'paginateByAddress',
+    value: function () {
+      var _ref13 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee13(address) {
+        var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+        var limit = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 25;
+        var offset, response;
+        return _regenerator2.default.wrap(function _callee13$(_context13) {
+          while (1) {
+            switch (_context13.prev = _context13.next) {
+              case 0:
+                offset = page > 1 ? (page - 1) * limit : 0;
+                _context13.next = 3;
+                return _node2.default.get('transactions', {
+                  params: {
+                    senderId: address,
+                    recipientId: address,
+                    limit: limit,
+                    offset: offset,
+                    orderBy: 'timestamp:desc'
+                  }
+                });
+
+              case 3:
+                response = _context13.sent;
+                return _context13.abrupt('return', response.data.transactions);
+
+              case 5:
+              case 'end':
+                return _context13.stop();
+            }
+          }
+        }, _callee13, this);
+      }));
+
+      function paginateByAddress(_x20) {
+        return _ref13.apply(this, arguments);
+      }
+
+      return paginateByAddress;
+    }()
+  }]);
+  return TransactionService;
+}();
+
+exports.default = new TransactionService();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRyYW5zYWN0aW9uLmpzIl0sIm5hbWVzIjpbIlRyYW5zYWN0aW9uU2VydmljZSIsImxpbWl0IiwiTm9kZVNlcnZpY2UiLCJnZXQiLCJwYXJhbXMiLCJvcmRlckJ5IiwicmVzcG9uc2UiLCJkYXRhIiwidHJhbnNhY3Rpb25zIiwiaWQiLCJ0cmFuc2FjdGlvbiIsInBhZ2UiLCJvZmZzZXQiLCJibG9ja0lkIiwidHlwZSIsImFkZHJlc3MiLCJzZW5kZXJJZCIsInJlY2lwaWVudElkIiwiY291bnQiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQTs7Ozs7O0lBRU1BLGtCOzs7Ozs7Ozs7WUFDU0MsSyx1RUFBUSxFOzs7Ozs7O3VCQUNJQyxlQUFZQyxHQUFaLENBQWdCLGNBQWhCLEVBQWdDO0FBQ3JEQywwQkFBUTtBQUNOQyw2QkFBUyxnQkFESDtBQUVOSjtBQUZNO0FBRDZDLGlCQUFoQyxDOzs7QUFBakJLLHdCO2lEQU1DQSxTQUFTQyxJQUFULENBQWNDLFk7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7NkdBR1pDLEU7Ozs7Ozs7dUJBQ2NQLGVBQVlDLEdBQVosQ0FBZ0Isa0JBQWhCLEVBQW9DO0FBQ3pEQywwQkFBUTtBQUNOSztBQURNO0FBRGlELGlCQUFwQyxDOzs7QUFBakJILHdCO2tEQUtDQSxTQUFTQyxJQUFULENBQWNHLFc7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7NkdBR0xELEU7WUFBSUUsSSx1RUFBTyxDO1lBQUdWLEssdUVBQVEsRTs7Ozs7O0FBQ2hDVyxzQixHQUFTRCxPQUFPLENBQVAsR0FBVyxDQUFDQSxPQUFPLENBQVIsSUFBYVYsS0FBeEIsR0FBZ0MsQzs7dUJBRXhCQyxlQUFZQyxHQUFaLENBQWdCLGNBQWhCLEVBQWdDO0FBQ3JEQywwQkFBUTtBQUNOUyw2QkFBU0osRUFESDtBQUVOUixnQ0FGTTtBQUdOVyxrQ0FITTtBQUlOUCw2QkFBUztBQUpIO0FBRDZDLGlCQUFoQyxDOzs7QUFBakJDLHdCO2tEQVFDQSxTQUFTQyxJQUFULENBQWND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LEdBQVVELE9BQU8sQ0FBUixHQUFhLENBQUNBLE9BQU8sQ0FBUixJQUFhVixLQUExQixHQUFrQyxDOzt1QkFFMUJDLGVBQVlDLEdBQVosQ0FBZ0IsY0FBaEIsRUFBZ0M7QUFDckRDLDBCQUFRO0FBQ05DLDZCQUFTLGdCQURIO0FBRU5KLGdDQUZNO0FBR05XO0FBSE07QUFENkMsaUJBQWhDLEM7OztBQUFqQk4sd0I7bURBT0NBLFNBQVNDLElBQVQsQ0FBY0MsWTs7Ozs7Ozs7Ozs7Ozs7Ozs7OzsrR0FHQ08sTztZQUFTSixJLHVFQUFPLEM7WUFBR1YsSyx1RUFBUSxFOzs7Ozs7QUFDM0NXLHNCLEdBQVVELE9BQU8sQ0FBUixHQUFhLENBQUNBLE9BQU8sQ0FBUixJQUFhVixLQUExQixHQUFrQyxDOzt1QkFFMUJDLGVBQVlDLEdBQVosQ0FBZ0IsY0FBaEIsRUFBZ0M7QUFDckRDLDBCQUFRO0FBQ05ZLDhCQUFVRCxPQURKO0FBRU5FLGlDQUFhRixPQUZQO0FBR05kLGdDQUhNO0FBSU5XLGtDQUpNO0FBS05QLDZCQUFTO0FBTEg7QUFENkMsaUJBQWhDLEM7OztBQUFqQkMsd0I7bURBU0NBLFNBQVNDLElBQVQsQ0FBY0MsWTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7a0JBSVYsSUFBSVIsa0JBQUosRSIsImZpbGUiOiJ0cmFuc2FjdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBOb2RlU2VydmljZSBmcm9tICdAL3NlcnZpY2VzL25vZGUnXG5cbmNsYXNzIFRyYW5zYWN0aW9uU2VydmljZSB7XG4gIGFzeW5jIGxhdGVzdChsaW1pdCA9IDI1KSB7XG4gICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBOb2RlU2VydmljZS5nZXQoJ3RyYW5zYWN0aW9ucycsIHtcbiAgICAgIHBhcmFtczoge1xuICAgICAgICBvcmRlckJ5OiAndGltZXN0YW1wOmRlc2MnLFxuICAgICAgICBsaW1pdFxuICAgICAgfVxuICAgIH0pXG4gICAgcmV0dXJuIHJlc3BvbnNlLmRhdGEudHJhbnNhY3Rpb25zXG4gIH1cblxuICBhc3luYyBmaW5kKGlkKSB7XG4gICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBOb2RlU2VydmljZS5nZXQoJ3RyYW5zYWN0aW9ucy9nZXQnLCB7XG4gICAgICBwYXJhbXM6IHtcbiAgICAgICAgaWRcbiAgICAgIH1cbiAgICB9KVxuICAgIHJldHVybiByZXNwb25zZS5kYXRhLnRyYW5zYWN0aW9uXG4gIH1cblxuICBhc3luYyBmaW5kQnlCbG9jayhpZCwgcGFnZSA9IDEsIGxpbWl0ID0gMjUpIHtcbiAgICBjb25zdCBvZmZzZXQgPSBwYWdlID4gMSA/IChwYWdlIC0gMSkgKiBsaW1pdCA6IDBcblxuICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgTm9kZVNlcnZpY2UuZ2V0KCd0cmFuc2FjdGlvbnMnLCB7XG4gICAgICBwYXJhbXM6IHtcbiAgICAgICAgYmxvY2tJZDogaWQsXG4gICAgICAgIGxpbWl0LFxuICAgICAgICBvZmZzZXQsXG4gICAgICAgIG9yZGVyQnk6ICd0aW1lc3RhbXA6ZGVzYydcbiAgICAgIH1cbiAgICB9KVxuICAgIHJldHVybiByZXNwb25zZS5kYXRhLnRyYW5zYWN0aW9uc1xuICB9XG5cbiAgYXN5bmMgbGF0ZXN0UmVnaXN0cmF0aW9ucygpIHtcbiAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IE5vZGVTZXJ2aWNlLmdldCgndHJhbnNhY3Rpb25zJywge1xuICAgICAgcGFyYW1zOiB7XG4gICAgICAgIG9yZGVyQnk6ICd0aW1lc3RhbXA6ZGVzYycsXG4gICAgICAgIGxpbWl0OiA1LFxuICAgICAgICB0eXBlOiAyXG4gICAgICB9XG4gICAgfSlcbiAgICByZXR1cm4gcmVzcG9uc2UuZGF0YS50cmFuc2FjdGlvbnNcbiAgfVxuXG4gIGFzeW5jIGxhdGVzdFZvdGVzKCkge1xuICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgTm9kZVNlcnZpY2UuZ2V0KCd0cmFuc2FjdGlvbnMnLCB7XG4gICAgICBwYXJhbXM6IHtcbiAgICAgICAgb3JkZXJCeTogJ3RpbWVzdGFtcDpkZXNjJyxcbiAgICAgICAgbGltaXQ6IDUsXG4gICAgICAgIHR5cGU6IDNcbiAgICAgIH1cbiAgICB9KVxuICAgIHJldHVybiByZXNwb25zZS5kYXRhLnRyYW5zYWN0aW9uc1xuICB9XG5cbiAgYXN5bmMgYWxsQnlBZGRyZXNzKGFkZHJlc3MsIHBhZ2UgPSAxLCBsaW1pdCA9IDI1KSB7XG4gICAgY29uc3Qgb2Zmc2V0ID0gcGFnZSA+IDEgPyAocGFnZSAtIDEpICogbGltaXQgOiAwXG5cbiAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IE5vZGVTZXJ2aWNlLmdldCgndHJhbnNhY3Rpb25zJywge1xuICAgICAgcGFyYW1zOiB7XG4gICAgICAgIHNlbmRlcklkOiBhZGRyZXNzLFxuICAgICAgICByZWNpcGllbnRJZDogYWRkcmVzcyxcbiAgICAgICAgbGltaXQsXG4gICAgICAgIG9mZnNldCxcbiAgICAgICAgb3JkZXJCeTogJ3RpbWVzdGFtcDpkZXNjJ1xuICAgICAgfVxuICAgIH0pXG4gICAgcmV0dXJuIHJlc3BvbnNlLmRhdGEudHJhbnNhY3Rpb25zXG4gIH1cblxuICBhc3luYyBzZW50QnlBZGRyZXNzKHNlbmRlcklkLCBwYWdlID0gMSwgbGltaXQgPSAyNSkge1xuICAgIGNvbnN0IG9mZnNldCA9IHBhZ2UgPiAxID8gKHBhZ2UgLSAxKSAqIGxpbWl0IDogMFxuXG4gICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBOb2RlU2VydmljZS5nZXQoJ3RyYW5zYWN0aW9ucycsIHtcbiAgICAgIHBhcmFtczoge1xuICAgICAgICBzZW5kZXJJZCxcbiAgICAgICAgbGltaXQsXG4gICAgICAgIG9mZnNldCxcbiAgICAgICAgb3JkZXJCeTogJ3RpbWVzdGFtcDpkZXNjJ1xuICAgICAgfVxuICAgIH0pXG4gICAgcmV0dXJuIHJlc3BvbnNlLmRhdGEudHJhbnNhY3Rpb25zXG4gIH1cblxuICBhc3luYyByZWNlaXZlZEJ5QWRkcmVzcyhyZWNpcGllbnRJZCwgcGFnZSA9IDEsIGxpbWl0ID0gMjUpIHtcbiAgICBjb25zdCBvZmZzZXQgPSBwYWdlID4gMSA/IChwYWdlIC0gMSkgKiBsaW1pdCA6IDBcblxuICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgTm9kZVNlcnZpY2UuZ2V0KCd0cmFuc2FjdGlvbnMnLCB7XG4gICAgICBwYXJhbXM6IHtcbiAgICAgICAgcmVjaXBpZW50SWQsXG4gICAgICAgIGxpbWl0LFxuICAgICAgICBvZmZzZXQsXG4gICAgICAgIG9yZGVyQnk6ICd0aW1lc3RhbXA6ZGVzYydcbiAgICAgIH1cbiAgICB9KVxuICAgIHJldHVybiByZXNwb25zZS5kYXRhLnRyYW5zYWN0aW9uc1xuICB9XG5cbiAgYXN5bmMgc2VudEJ5QWRkcmVzc0NvdW50KHNlbmRlcklkKSB7XG4gICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBOb2RlU2VydmljZS5nZXQoJ3RyYW5zYWN0aW9ucycsIHtcbiAgICAgIHBhcmFtczoge1xuICAgICAgICBzZW5kZXJJZCxcbiAgICAgICAgbGltaXQ6IDFcbiAgICAgIH1cbiAgICB9KVxuICAgIHJldHVybiByZXNwb25zZS5kYXRhLmNvdW50XG4gIH1cblxuICBhc3luYyByZWNlaXZlZEJ5QWRkcmVzc0NvdW50KHJlY2lwaWVudElkKSB7XG4gICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBOb2RlU2VydmljZS5nZXQoJ3RyYW5zYWN0aW9ucycsIHtcbiAgICAgIHBhcmFtczoge1xuICAgICAgICByZWNpcGllbnRJZCxcbiAgICAgICAgbGltaXQ6IDFcbiAgICAgIH1cbiAgICB9KVxuICAgIHJldHVybiByZXNwb25zZS5kYXRhLmNvdW50XG4gIH1cblxuICBhc3luYyBmaW5kQnlCbG9ja0NvdW50KGJsb2NrSWQpIHtcbiAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IE5vZGVTZXJ2aWNlLmdldCgndHJhbnNhY3Rpb25zJywge1xuICAgICAgcGFyYW1zOiB7XG4gICAgICAgIGJsb2NrSWQsXG4gICAgICAgIGxpbWl0OiAxXG4gICAgICB9XG4gICAgfSlcbiAgICByZXR1cm4gcmVzcG9uc2UuZGF0YS5jb3VudFxuICB9XG5cbiAgYXN5bmMgcGFnaW5hdGUocGFnZSwgbGltaXQgPSAyNSkge1xuICAgIGNvbnN0IG9mZnNldCA9IChwYWdlID4gMSkgPyAocGFnZSAtIDEpICogbGltaXQgOiAwXG5cbiAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IE5vZGVTZXJ2aWNlLmdldCgndHJhbnNhY3Rpb25zJywge1xuICAgICAgcGFyYW1zOiB7XG4gICAgICAgIG9yZGVyQnk6ICd0aW1lc3RhbXA6ZGVzYycsXG4gICAgICAgIGxpbWl0LFxuICAgICAgICBvZmZzZXRcbiAgICAgIH1cbiAgICB9KVxuICAgIHJldHVybiByZXNwb25zZS5kYXRhLnRyYW5zYWN0aW9uc1xuICB9XG5cbiAgYXN5bmMgcGFnaW5hdGVCeUFkZHJlc3MoYWRkcmVzcywgcGFnZSA9IDEsIGxpbWl0ID0gMjUpIHtcbiAgICBjb25zdCBvZmZzZXQgPSAocGFnZSA+IDEpID8gKHBhZ2UgLSAxKSAqIGxpbWl0IDogMFxuXG4gICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBOb2RlU2VydmljZS5nZXQoJ3RyYW5zYWN0aW9ucycsIHtcbiAgICAgIHBhcmFtczoge1xuICAgICAgICBzZW5kZXJJZDogYWRkcmVzcyxcbiAgICAgICAgcmVjaXBpZW50SWQ6IGFkZHJlc3MsXG4gICAgICAgIGxpbWl0LFxuICAgICAgICBvZmZzZXQsXG4gICAgICAgIG9yZGVyQnk6ICd0aW1lc3RhbXA6ZGVzYydcbiAgICAgIH1cbiAgICB9KVxuICAgIHJldHVybiByZXNwb25zZS5kYXRhLnRyYW5zYWN0aW9uc1xuICB9XG59XG5cbmV4cG9ydCBkZWZhdWx0IG5ldyBUcmFuc2FjdGlvblNlcnZpY2UoKVxuIl19

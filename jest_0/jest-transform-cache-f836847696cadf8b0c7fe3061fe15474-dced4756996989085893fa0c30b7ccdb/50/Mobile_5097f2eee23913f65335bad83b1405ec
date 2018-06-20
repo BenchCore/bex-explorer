@@ -1,0 +1,45 @@
+6c3016db4f7680198666365052642b4e
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _vuex = require('vuex');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  computed: (0, _extends3.default)({}, (0, _vuex.mapGetters)('ui', ['nightMode']))
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"menu-container w-full max-w-480px bg-table-row list-reset absolute pin-b pin-l py-5 block xl:hidden"},[_c('li',{class:[_vm.nightMode ? 'hover:bg-grey-dark' : 'hover:bg-grey-light', 'flex justify-center']},[_c('router-link',{staticClass:"cursor-pointer py-5 w-64 flex-none border-b border-theme-nav-border",attrs:{"to":{ name: 'home' },"tag":"div"}},[_vm._v(_vm._s(_vm.$t("Home")))])],1),_vm._v(" "),_c('li',{class:[_vm.nightMode ? 'hover:bg-grey-dark' : 'hover:bg-grey-light', 'flex justify-center']},[_c('router-link',{staticClass:"cursor-pointer py-5 w-64 flex-none border-b border-theme-nav-border",attrs:{"to":{ name: 'top-wallets', params: { page: 1 } },"tag":"div"}},[_vm._v(_vm._s(_vm.$t("Top Wallets")))])],1),_vm._v(" "),_c('li',{class:[_vm.nightMode ? 'hover:bg-grey-dark' : 'hover:bg-grey-light', 'flex justify-center']},[_c('router-link',{staticClass:"cursor-pointer py-5 w-64 flex-none",attrs:{"to":{ name: 'delegate-monitor' },"tag":"div"}},[_vm._v(_vm._s(_vm.$t("Delegate Monitor")))])],1)])}
+__vue__options__.staticRenderFns = []

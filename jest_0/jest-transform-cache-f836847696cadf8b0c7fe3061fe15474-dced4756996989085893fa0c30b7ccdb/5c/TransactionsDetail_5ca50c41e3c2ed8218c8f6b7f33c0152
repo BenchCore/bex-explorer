@@ -1,0 +1,93 @@
+aa9dd9d6d4a040f41981aab8d7d64889
+;(function(){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  props: {
+    transactions: {
+      // type: Array or null
+      required: true
+    }
+  },
+
+  computed: {
+    showSideChainIcon: function showSideChainIcon() {
+      if (this.transactions) {
+        return this.transactions.some(function (transaction) {
+          return !!transaction.vendorField;
+        });
+      }
+    }
+  }
+};
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('loader',{attrs:{"data":_vm.transactions}},[(_vm.transactions && _vm.transactions.length > 0)?_c('table-component',{attrs:{"data":_vm.transactions,"sort-by":"timestamp","sort-order":"desc","show-filter":false,"show-caption":false,"table-class":"w-full"}},[_c('table-column',{attrs:{"show":"id","label":_vm.$t('ID'),"header-class":"left-header-start-cell","cell-class":"left-start-cell"},scopedSlots:_vm._u([{key:"default",fn:function(row){return [_c('link-transaction',{attrs:{"id":row.id,"side-chain":row.vendorField,"show-side-chain-icon":_vm.showSideChainIcon}})]}}])}),_vm._v(" "),_c('table-column',{attrs:{"show":"timestamp","label":_vm.$t('Timestamp'),"header-class":"left-header-cell hidden lg:table-cell","cell-class":"left-cell hidden lg:table-cell"},scopedSlots:_vm._u([{key:"default",fn:function(row){return [_vm._v("\n        "+_vm._s(_vm.readableTimestamp(row.timestamp))+"\n      ")]}}])}),_vm._v(" "),_c('table-column',{attrs:{"show":"senderId","label":_vm.$t('Sender'),"header-class":"left-header-cell","cell-class":"left-cell"},scopedSlots:_vm._u([{key:"default",fn:function(row){return [_c('link-wallet',{attrs:{"address":row.senderId}})]}}])}),_vm._v(" "),_c('table-column',{attrs:{"show":"recipientId","label":_vm.$t('Recipient'),"header-class":"left-header-cell","cell-class":"left-cell"},scopedSlots:_vm._u([{key:"default",fn:function(row){return [_c('link-wallet',{attrs:{"address":row.recipientId,"type":row.type}})]}}])}),_vm._v(" "),_c('table-column',{attrs:{"show":"amount","label":_vm.$t('Amount (token)', {token: _vm.networkToken()}),"header-class":"right-header-cell","cell-class":"right-cell"},scopedSlots:_vm._u([{key:"default",fn:function(row){return [_c('span',{staticClass:"whitespace-no-wrap"},[_c('transaction-amount',{attrs:{"transaction":row,"type":row.type}})],1)]}}])}),_vm._v(" "),_c('table-column',{attrs:{"show":"fee","label":_vm.$t('Fee (token)', {token: _vm.networkToken()}),"header-class":"right-header-cell hidden md:table-cell","cell-class":"right-cell hidden md:table-cell"},scopedSlots:_vm._u([{key:"default",fn:function(row){return [_vm._v("\n        "+_vm._s(_vm.readableCrypto(row.fee))+"\n      ")]}}])}),_vm._v(" "),_c('table-column',{attrs:{"show":"confirmations","label":_vm.$t('Confirmations'),"header-class":"right-header-end-cell","cell-class":"right-end-cell"},scopedSlots:_vm._u([{key:"default",fn:function(row){return [_c('div',{staticClass:"flex items-center justify-end whitespace-no-wrap"},[(row.confirmations <= 52)?_c('div',{staticClass:"flex items-center justify-end whitespace-no-wrap"},[_c('span',{staticClass:"text-green inline-block mr-2"},[_vm._v(_vm._s(row.confirmations))]),_vm._v(" "),_c('img',{staticClass:"icon flex-none",attrs:{"src":"@/assets/images/icons/clock.svg"}})]):_c('div',[_c('div',{directives:[{name:"tooltip",rawName:"v-tooltip",value:(row.confirmations + ' ' + _vm.$t('Confirmations')),expression:"row.confirmations + ' ' + $t('Confirmations')"}]},[_vm._v("\n              "+_vm._s(_vm.$t("Well Confirmed"))+"\n            ")])])])]}}])})],1):_c('div',{staticClass:"px-5 md:px-10"},[_c('span',[_vm._v(_vm._s(_vm.$t("No Results")))])])],1)}
+__vue__options__.staticRenderFns = []

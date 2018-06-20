@@ -1,0 +1,42 @@
+03a8a973dd7365f9bce5f4c44ac5ebe0
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _DelegateCount = require('@/components/monitor/DelegateCount');
+
+var _DelegateCount2 = _interopRequireDefault(_DelegateCount);
+
+var _LastBlock = require('@/components/monitor/LastBlock');
+
+var _LastBlock2 = _interopRequireDefault(_LastBlock);
+
+var _TotalForged = require('@/components/monitor/TotalForged');
+
+var _TotalForged2 = _interopRequireDefault(_TotalForged);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  components: { DelegateCount: _DelegateCount2.default, LastBlock: _LastBlock2.default, TotalForged: _TotalForged2.default },
+
+  props: ['delegateCount']
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',{staticClass:"mb-5"},[_c('div',{staticClass:"px-5 sm:px-10 py-8 bg-theme-feature-background flex xl:rounded-lg items-center justify-between"},[_c('delegate-count',{attrs:{"delegateCount":_vm.delegateCount}}),_vm._v(" "),_c('total-forged'),_vm._v(" "),_c('last-block')],1)])}
+__vue__options__.staticRenderFns = []

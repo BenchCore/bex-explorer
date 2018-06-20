@@ -1,0 +1,243 @@
+6004c60fb33bdd485ef3a431c9fc83b1
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _cryptoCompare = require('@/services/crypto-compare');
+
+var _cryptoCompare2 = _interopRequireDefault(_cryptoCompare);
+
+var _priceChart = require('@/components/charts/price-chart');
+
+var _priceChart2 = _interopRequireDefault(_priceChart);
+
+var _vuex = require('vuex');
+
+var _store = require('@/store');
+
+var _store2 = _interopRequireDefault(_store);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  components: { PriceChart: _priceChart2.default },
+
+  data: function data() {
+    return {
+      type: 'day',
+      chartData: {},
+      options: {
+        showScale: true,
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+          display: false
+        },
+        layout: {
+          padding: {
+            left: 50,
+            right: 50,
+            top: 0,
+            bottom: 50
+          }
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              callback: function callback(value, index, values) {
+                // Skip every second tick
+                if (index % 2 === 0) return;
+
+                if ([_store2.default.getters['network/token'], 'BTC', 'ETH', 'LTC'].some(function (c) {
+                  return _store2.default.getters['currency/name'].indexOf(c) > -1;
+                })) {
+                  return _store2.default.getters['currency/symbol'] + value.toFixed(8);
+                }
+
+                return _store2.default.getters['currency/symbol'] + value.toFixed(2);
+              },
+              fontColor: '#838a9b',
+              fontSize: 13
+            },
+            gridLines: {
+              color: '#282b38'
+            }
+          }],
+          xAxes: [{
+            // type: 'time',
+            // time: {
+            //   unit: 'day',
+            //   unitStepSize: 1,
+            //   displayFormats: {
+            //     day: 'MMM D',
+            //   },
+            // },
+            gridLines: {
+              display: true,
+              color: '#282b38'
+            },
+            ticks: {
+              fontColor: '#838a9b',
+              fontSize: 13
+            }
+          }]
+        },
+        tooltips: {
+          backgroundColor: '#272936',
+          titleFontStyle: 'normal',
+          titleFontSize: 18,
+          bodyFontFamily: "'Proxima Nova', sans-serif",
+          cornerRadius: 3,
+          bodyFontColor: '#838a9b',
+          bodyFontSize: 14,
+          xPadding: 14,
+          yPadding: 14,
+          displayColors: false,
+          mode: 'index',
+          intersect: false,
+          // borderWidth: 1,
+          // borderColor: '#037cff',
+          callbacks: {
+            title: function title(tooltipItem) {
+              var name = _store2.default.getters['currency/name'];
+              var token = _store2.default.getters['currency/symbol'];
+
+              if ([token, 'BTC', 'ETH', 'LTC'].some(function (c) {
+                return name.indexOf(c) > -1;
+              })) {
+                return name + ' ' + Number(tooltipItem[0].yLabel).toFixed(8);
+              }
+
+              return name + ' ' + Number(tooltipItem[0].yLabel).toFixed(2);
+            },
+            label: function label(tooltipItem) {
+              return '';
+            }
+            // label: tooltipItem => `BTC ${tooltipItem.yLabel}`
+          }
+        }
+      }
+    };
+  },
+
+  computed: (0, _extends3.default)({}, (0, _vuex.mapGetters)('currency', { currencyName: 'name' })),
+
+  mounted: function mounted() {
+    this.prepareComponent();
+  },
+
+
+  methods: {
+    prepareComponent: function prepareComponent() {
+      this.renderChart();
+
+      this.watchCurrencyName();
+      this.watchNetworkToken();
+    },
+    period: function period(type) {
+      this.type = type;
+
+      this.renderChart();
+    },
+    renderChart: function renderChart(type) {
+      var _this = this;
+
+      return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+        var response;
+        return _regenerator2.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _cryptoCompare2.default[_this.type]();
+
+              case 2:
+                response = _context.sent;
+
+                _this.chartData = {
+                  labels: response.labels,
+                  datasets: [{
+                    type: 'line',
+                    pointHoverBackgroundColor: '#fff',
+                    borderColor: '#535972',
+                    pointHoverBorderColor: '#037cff',
+                    pointBackgroundColor: 'rgba(0,0,0,0)',
+                    pointBorderColor: 'rgba(0,0,0,0)',
+                    pointHoverRadius: 5,
+                    pointHoverBorderWidth: 4,
+                    fill: false,
+                    // data: this.chartData.map((point, index) => {
+                    //   return {
+                    //     t: this.labels[index],
+                    //     y: point,
+                    //   }
+                    // }),
+                    data: response.datasets
+                  }]
+                };
+
+              case 4:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, _this);
+      }))();
+    },
+    watchCurrencyName: function watchCurrencyName() {
+      var _this2 = this;
+
+      this.$store.watch(function (state) {
+        return state.currency.name;
+      }, function (value) {
+        return _this2.renderChart();
+      });
+    },
+    watchNetworkToken: function watchNetworkToken() {
+      var _this3 = this;
+
+      this.$store.watch(function (state) {
+        return state.network.token;
+      }, function (value) {
+        return _this3.renderChart();
+      });
+    }
+  }
+};
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"flex justify-between items-center px-10 py-8"},[_c('h2',{staticClass:"text-white m-0 text-xl font-normal"},[_vm._v(_vm._s(_vm.$t("Price in"))+" "+_vm._s(_vm.currencyName))]),_vm._v(" "),_c('div',[_c('button',{staticClass:"chart-tab",class:{ 'chart-tab-active': _vm.type === 'day' },on:{"click":function($event){_vm.period('day')}}},[_vm._v(_vm._s(_vm.$t("Day")))]),_vm._v(" "),_c('button',{staticClass:"chart-tab",class:{ 'chart-tab-active': _vm.type === 'week' },on:{"click":function($event){_vm.period('week')}}},[_vm._v(_vm._s(_vm.$t("Week")))]),_vm._v(" "),_c('button',{staticClass:"chart-tab",class:{ 'chart-tab-active': _vm.type === 'month' },on:{"click":function($event){_vm.period('month')}}},[_vm._v(_vm._s(_vm.$t("Month")))]),_vm._v(" "),_c('button',{staticClass:"chart-tab",class:{ 'chart-tab-active': _vm.type === 'quarter' },on:{"click":function($event){_vm.period('quarter')}}},[_vm._v(_vm._s(_vm.$t("Quarter")))]),_vm._v(" "),_c('button',{staticClass:"chart-tab",class:{ 'chart-tab-active': _vm.type === 'year' },on:{"click":function($event){_vm.period('year')}}},[_vm._v(_vm._s(_vm.$t("Year")))])])]),_vm._v(" "),_c('price-chart',{attrs:{"chartData":_vm.chartData,"options":_vm.options,"height":314}})],1)}
+__vue__options__.staticRenderFns = []

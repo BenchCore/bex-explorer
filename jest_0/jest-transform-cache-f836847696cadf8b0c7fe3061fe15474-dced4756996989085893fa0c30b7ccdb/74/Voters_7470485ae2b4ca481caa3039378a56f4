@@ -1,0 +1,138 @@
+807e7bb886a0e17a5a34b1ed17cad850
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _wallet = require('@/services/wallet');
+
+var _wallet2 = _interopRequireDefault(_wallet);
+
+var _delegate = require('@/services/delegate');
+
+var _delegate2 = _interopRequireDefault(_delegate);
+
+var _sumBy = require('lodash/sumBy');
+
+var _sumBy2 = _interopRequireDefault(_sumBy);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  data: function data() {
+    return {
+      wallets: null,
+      perPage: 25
+    };
+  },
+
+  created: function created() {
+    var _this = this;
+
+    this.$on('paginatorChanged', function (page) {
+      return _this.changePage(page);
+    });
+  },
+
+
+  computed: {
+    filteredWallets: function filteredWallets() {
+      if (!this.wallets) return null;
+
+      var page = this.page - 1;
+
+      return this.wallets.slice(page * this.perPage, (page + 1) * this.perPage);
+    },
+    page: function page() {
+      return this.$route.params.page;
+    },
+    votes: function votes() {
+      return (0, _sumBy2.default)(this.wallets, 'balance');
+    },
+    username: function username() {
+      return this.$route.params.username;
+    },
+    count: function count() {
+      return this.wallets.length;
+    }
+  },
+
+  mounted: function mounted() {
+    this.getVoters();
+  },
+
+
+  methods: {
+    getVoters: function getVoters() {
+      var _this2 = this;
+
+      return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+        var wallet, voters;
+        return _regenerator2.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return _wallet2.default.find(_this2.$route.params.address);
+
+              case 3:
+                wallet = _context.sent;
+                _context.next = 6;
+                return _delegate2.default.voters(wallet.publicKey);
+
+              case 6:
+                voters = _context.sent;
+
+                _this2.wallets = voters;
+                _context.next = 13;
+                break;
+
+              case 10:
+                _context.prev = 10;
+                _context.t0 = _context['catch'](0);
+                next({ name: '404' });
+              case 13:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, _this2, [[0, 10]]);
+      }))();
+    },
+    changePage: function changePage(page) {
+      this.$router.push({
+        name: 'wallet-voters',
+        params: { address: this.$route.params.address, username: this.$route.params.username, page: page }
+      });
+    }
+  }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"max-w-2xl mx-auto pt-5"},[_c('content-header',[_vm._v(_vm._s(_vm.$t("Voters"))+" "),_c('span',{directives:[{name:"show",rawName:"v-show",value:(_vm.username),expression:"username"}]},[_vm._v("- "+_vm._s(_vm.username))])]),_vm._v(" "),_c('section',{staticClass:"page-section py-10"},[_c('div',{staticClass:"hidden sm:block"},[_c('table-wallets',{attrs:{"wallets":_vm.filteredWallets,"total":_vm.votes}})],1),_vm._v(" "),_c('div',{staticClass:"sm:hidden"},[_c('table-wallets-mobile',{attrs:{"wallets":_vm.filteredWallets,"total":_vm.votes}})],1),_vm._v(" "),(_vm.wallets)?_c('paginator',{attrs:{"start":+this.page,"count":_vm.count}}):_vm._e()],1)],1)}
+__vue__options__.staticRenderFns = []

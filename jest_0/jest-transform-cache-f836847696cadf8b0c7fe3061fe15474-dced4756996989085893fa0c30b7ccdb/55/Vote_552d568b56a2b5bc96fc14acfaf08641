@@ -1,0 +1,78 @@
+c67245bdd46d85078e09487a619d262e
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _wallet2 = require('@/services/wallet');
+
+var _wallet3 = _interopRequireDefault(_wallet2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  props: {
+    wallet: {
+      type: Object,
+      required: true
+    }
+  },
+
+  data: function data() {
+    return { delegate: {} };
+  },
+
+  watch: {
+    wallet: function wallet(_wallet) {
+      if (_wallet.address) this.getVotes();
+    }
+  },
+
+  methods: {
+    getVotes: function getVotes() {
+      var _this = this;
+
+      return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+        var response;
+        return _regenerator2.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _wallet3.default.vote(_this.wallet.address);
+
+              case 2:
+                response = _context.sent;
+
+                _this.delegate = response;
+
+              case 4:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, _this);
+      }))();
+    }
+  }
+}; //
+//
+//
+//
+//
+//
+//
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(Object.keys(_vm.delegate).length),expression:"Object.keys(delegate).length"}],staticClass:"list-row"},[_c('div',[_vm._v(_vm._s(_vm.$t("Votes")))]),_vm._v(" "),_c('div',[(_vm.delegate.address)?_c('link-wallet',{attrs:{"address":_vm.delegate.address}},[_vm._v(_vm._s(_vm.delegate.username))]):_vm._e()],1)])}
+__vue__options__.staticRenderFns = []

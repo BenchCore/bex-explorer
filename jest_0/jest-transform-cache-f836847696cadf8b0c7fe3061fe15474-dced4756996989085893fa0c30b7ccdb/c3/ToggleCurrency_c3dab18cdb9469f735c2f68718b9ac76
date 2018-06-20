@@ -1,0 +1,43 @@
+cdde5b7550af48eb6c814339bed2bca3
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _vuex = require('vuex');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  computed: (0, _extends3.default)({}, (0, _vuex.mapGetters)('currency', {
+    currencyName: 'name',
+    currencyRate: 'rate'
+  }), (0, _vuex.mapGetters)('ui', ['headerType']), {
+    isCurrencyMenu: function isCurrencyMenu() {
+      return this.headerType === 'currencies';
+    },
+    imageSource: function imageSource() {
+      return require('@/assets/images/currencies/' + this.currencyName + '.svg');
+    }
+  })
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"px-2 md:px-4 py-3 md:py-6 flex items-center text-sm border-b-2 margin-t-2 border-transparent hover:border-red",on:{"click":function($event){_vm.$store.dispatch('ui/setHeaderType', _vm.isCurrencyMenu ? null : 'currencies')}}},[_c('img',{staticClass:"md:mr-4 flex-none",attrs:{"src":_vm.imageSource,"height":"16"}}),_vm._v(" "),_c('span',{staticClass:"whitespace-no-wrap text-theme-text-content hidden md:inline-block"},[_vm._v("\n    BEX/"+_vm._s(_vm.currencyName)+": "+_vm._s(_vm.rawCurrency(_vm.currencyRate, _vm.currencyName))+"\n  ")])])}
+__vue__options__.staticRenderFns = []

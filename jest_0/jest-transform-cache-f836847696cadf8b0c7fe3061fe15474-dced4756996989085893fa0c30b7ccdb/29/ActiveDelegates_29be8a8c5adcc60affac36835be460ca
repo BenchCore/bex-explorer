@@ -1,0 +1,125 @@
+8b3073d60938d3e64f64eb741def8c0a
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _vuex = require('vuex');
+
+var _moment = require('moment');
+
+var _moment2 = _interopRequireDefault(_moment);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  props: {
+    delegates: {
+      type: Array,
+      required: true
+    }
+  },
+
+  methods: {
+    lastForgingTime: function lastForgingTime(delegate) {
+      var lastBlock = delegate.forgingStatus.lastBlock;
+
+      return lastBlock ? this.readableTimestampAgo(lastBlock.timestamp) : this.$i18n.t('Never');
+    },
+    statusMessage: function statusMessage(row) {
+      var status = {
+        '0': this.$i18n.t('Forging'),
+        '1': this.$i18n.t('Missing'),
+        '2': this.$i18n.t('Not Forging'),
+        '3': this.$i18n.t('Awaiting Slot'),
+        '4': this.$i18n.t('Missed block, Awaiting Slot'),
+        '5': this.$i18n.t('Not Forging')
+      }[row.forgingStatus.code];
+
+      var lastBlock = row.forgingStatus.lastBlock;
+
+      var tooltip = {
+        content: '[' + status + '] Last Block @ ' + lastBlock.height + ' on ' + this.readableTimestamp(lastBlock.timestamp),
+        classes: ['tooltip-bg-' + row.forgingStatus.code, 'font-sans']
+      };
+
+      return lastBlock ? tooltip : status;
+    },
+    statusColor: function statusColor(row) {
+      return {
+        '0': '#46b02e', // Forging
+        '1': '#f6993f', // Missing
+        '2': '#ef192d', // Not Forging
+        '3': '#838a9b', // Awaiting Slot
+        '4': '#f6993f', // Missed in previous round, now awaiting Slot
+        '5': '#ef192d' // Not Forging
+      }[row.forgingStatus.code];
+    }
+  }
+};
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('table-component',{attrs:{"data":_vm.delegates,"sort-by":"rate","sort-order":"asc","show-filter":false,"show-caption":false,"table-class":"w-full text-xs md:text-base"}},[_c('table-column',{attrs:{"show":"rate","label":_vm.$t('Rank'),"header-class":"p-4 pl-5 sm:pl-10 text-left w-32","cell-class":"p-3 pl-5 sm:pl-10 text-left border-none"},scopedSlots:_vm._u([{key:"default",fn:function(row){return [_vm._v("\n      "+_vm._s(row.rate)+"\n    ")]}}])}),_vm._v(" "),_c('table-column',{attrs:{"show":"username","label":_vm.$t('Name'),"header-class":"left-header-cell","cell-class":"py-3 px-4 text-left border-none"},scopedSlots:_vm._u([{key:"default",fn:function(row){return [_c('link-wallet',{attrs:{"address":row.address}})]}}])}),_vm._v(" "),_c('table-column',{attrs:{"show":"producedblocks","label":_vm.$t('Forged blocks'),"header-class":"left-header-cell hidden xl:table-cell","cell-class":"py-3 px-4 text-left border-none hidden xl:table-cell"},scopedSlots:_vm._u([{key:"default",fn:function(row){return [_vm._v("\n      "+_vm._s(row.producedblocks)+"\n    ")]}}])}),_vm._v(" "),_c('table-column',{attrs:{"show":"blocksAt","label":_vm.$t('Last Forged'),"header-class":"left-header-cell hidden sm:table-cell","cell-class":"py-3 px-4 text-left border-none hidden sm:table-cell"},scopedSlots:_vm._u([{key:"default",fn:function(row){return [_vm._v("\n      "+_vm._s(_vm.lastForgingTime(row))+"\n    ")]}}])}),_vm._v(" "),_c('table-column',{attrs:{"sort-by":"status","show":"forgingStatus","label":_vm.$t('Status'),"header-class":"base-header-cell pr-5 sm:pr-10 md:pr-4 w-24 md:w-auto","cell-class":"py-3 px-4 pr-5 sm:pr-10 md:pr-4 text-center border-none"},scopedSlots:_vm._u([{key:"default",fn:function(row){return [_c('svg',{directives:[{name:"tooltip",rawName:"v-tooltip",value:(_vm.statusMessage(row)),expression:"statusMessage(row)"}],attrs:{"xmlns":"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink","width":"19px","height":"19px"}},[_c('path',{attrs:{"fill-rule":"evenodd","fill":_vm.statusColor(row),"d":"M9.500,-0.000 C14.746,-0.000 18.999,4.253 18.999,9.500 C18.999,14.747 14.746,19.000 9.500,19.000 C4.253,19.000 -0.001,14.747 -0.001,9.500 C-0.001,4.253 4.253,-0.000 9.500,-0.000 Z"}})])]}}])}),_vm._v(" "),_c('table-column',{attrs:{"show":"productivity","label":_vm.$t('Productivity'),"header-class":"right-header-cell hidden md:table-cell","cell-class":"py-3 px-4 text-right border-none hidden md:table-cell"},scopedSlots:_vm._u([{key:"default",fn:function(row){return [_vm._v("\n      "+_vm._s(_vm.percentageString(row.productivity))+"\n    ")]}}])}),_vm._v(" "),_c('table-column',{attrs:{"show":"approval","label":_vm.$t('Approval'),"header-class":"right-header-cell pr-5 md:pr-10 hidden md:table-cell","cell-class":"py-3 px-4 md:pr-10 text-right border-none hidden md:table-cell"},scopedSlots:_vm._u([{key:"default",fn:function(row){return [_c('span',{directives:[{name:"tooltip",rawName:"v-tooltip",value:({ content: _vm.readableCrypto(row.vote, true, 2), placement: 'top' }),expression:"{ content: readableCrypto(row.vote, true, 2), placement: 'top' }"}]},[_vm._v("\n        "+_vm._s(_vm.percentageString(row.approval))+"\n      ")])]}}])})],1)}
+__vue__options__.staticRenderFns = []

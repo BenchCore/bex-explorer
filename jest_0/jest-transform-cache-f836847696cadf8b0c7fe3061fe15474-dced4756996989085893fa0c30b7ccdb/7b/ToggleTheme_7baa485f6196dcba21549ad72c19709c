@@ -1,0 +1,68 @@
+72510b891b09e1a2e86bf82e8e3da3df
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _vuex = require('vuex');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  computed: (0, _extends3.default)({}, (0, _vuex.mapGetters)('ui', ['nightMode'])),
+
+  data: function data() {
+    return {
+      imageSource: null
+    };
+  },
+
+  mounted: function mounted() {
+    this.prepareComponent();
+  },
+
+
+  methods: {
+    prepareComponent: function prepareComponent() {
+      var _this = this;
+
+      this.setImageSource();
+
+      this.$store.watch(function (state) {
+        return state.ui.nightMode;
+      }, function (value) {
+        return _this.setImageSource();
+      });
+    },
+    setImageSource: function setImageSource() {
+      var name = this.nightMode ? 'sun' : 'moon';
+
+      this.imageSource = require('@/assets/images/theme/' + name + '.svg');
+    },
+    changeImageSource: function changeImageSource() {
+      var name = this.nightMode ? 'sun' : 'moon';
+
+      this.imageSource = require('@/assets/images/theme/hover/' + name + '.svg');
+    }
+  }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"px-2 py-2 md:py-4 text-yellow flex-none flex items-center border-b-2 margin-t-2 border-transparent hover:border-red",on:{"click":function($event){_vm.$store.dispatch('ui/setNightMode', !_vm.nightMode)},"mouseover":_vm.changeImageSource,"mouseleave":_vm.setImageSource}},[_c('img',{attrs:{"src":_vm.imageSource,"width":"30"}})])}
+__vue__options__.staticRenderFns = []

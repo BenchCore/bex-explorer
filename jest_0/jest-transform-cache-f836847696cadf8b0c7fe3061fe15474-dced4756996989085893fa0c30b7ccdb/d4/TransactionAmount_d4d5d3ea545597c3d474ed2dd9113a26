@@ -1,0 +1,45 @@
+2462c0673d55174ec3103fe3f9132f49
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _vuex = require('vuex');
+
+exports.default = {
+  props: {
+    transaction: {
+      type: Object,
+      required: true
+    },
+    type: {
+      type: Number,
+      required: true
+    }
+  },
+
+  computed: {
+    isTransfer: function isTransfer() {
+      if (this.type !== undefined) {
+        // 0 = transfer, 6 = timelock transfer, 7 = multipayment
+        return this.type === 0 || this.type === 6 || this.type === 7;
+      }
+      return false;
+    }
+  }
+}; //
+//
+//
+//
+//
+//
+//
+})()
+var defaultExport = (module.exports.__esModule) ? module.exports.default : module.exports;var __vue__options__ = (typeof defaultExport === "function"? defaultExport.options: defaultExport)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{class:{
+  'text-red': _vm.transaction.senderId === _vm.$route.params.address,
+  'text-green': _vm.transaction.recipientId === _vm.$route.params.address && _vm.isTransfer,
+}},[_vm._v(_vm._s(_vm.readableCrypto(_vm.transaction.amount)))])}
+__vue__options__.staticRenderFns = []
