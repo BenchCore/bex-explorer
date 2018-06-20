@@ -1,13 +1,13 @@
 # BenchCore Explorer
 
-You can access it at [https://explorer.benchpay.io/](https://explorer.benchpay.io/).
+You can access it at [https://explorer.bex.life/](http://explorer.bex.life).
 
 ## Build Setup
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/benchcore/benchcore-explorer
+git clone https://github.com/benchcore/bex-explorer
 ```
 
 ### 2. Install Dependencies
@@ -18,13 +18,13 @@ yarn install
 
 ### 3. Build for Production
 
-#### 3.1 Bexnet
+#### 3.1 BenchCore Live Network
 
 ```bash
 yarn build:bexnet
 ```
 
-#### 3.2 Dexnet
+#### 3.2 BenchCore Test Network
 
 ```bash
 yarn build:dexnet
@@ -44,7 +44,7 @@ If you are going to host your explorer instance on GitHub Pages you will need to
 yarn build --base https://username.github.io/repository/
 ```
 
-A running instance of the explorer on GitHub Pages can be found at https://benchcore.github.io/.
+A running instance of the explorer on GitHub Pages can be found at [https://benchcore.github.io/bex-explorer](https://benchcore.github.io/bex-explorer).
 
 > This step is not required if you are hosting the explorer on your "root" repository which is usually your username https://username.github.io/.
 
